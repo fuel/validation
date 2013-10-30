@@ -143,4 +143,19 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @covers Fuel\Validation\Validation::getRules
+	 * @covers Fuel\Validation\Validation::removeRule
+	 * @group Validation
+	 */
+	public function testRemoveInvalid()
+	{
+		$this->object->removeRule('fake');
+
+		$this->assertEquals(
+			array(),
+			$this->object->getRules()
+		);
+	}
+
 }
