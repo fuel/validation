@@ -18,7 +18,7 @@
 		"mockery/mockery": "0.7.*"
 	},
 	"autoload": {
-		"psr-0": { "FuelPHP\\Validation": "src/" }
+		"psr-0": { "Fuel\\Validation": "src/" }
 	},
 	"minimum-stability": "dev"
 }
