@@ -12,40 +12,40 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class EmailTest
+ * Class NumberTest
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  */
-class EmailTest extends \PHPUnit_Framework_TestCase
+class NumberTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Email
+	 * @var Number
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Email;
+		$this->object = new Number;
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::__construct
-	 * @covers \Fuel\Validation\Rule\Email::getMessage
+	 * @covers \Fuel\Validation\Rule\Number::__construct
+	 * @covers \Fuel\Validation\Rule\Number::getMessage
 	 * @group  Validation
 	 */
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field does not contain a valid email address.',
+			'The field is not valid number.',
 			$this->object->getMessage()
 		);
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::getMessage
-	 * @covers \Fuel\Validation\Rule\Email::setMessage
+	 * @covers \Fuel\Validation\Rule\Number::getMessage
+	 * @covers \Fuel\Validation\Rule\Number::setMessage
 	 * @group  Validation
 	 */
 	public function testSetGetMessage()
@@ -61,30 +61,30 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::validate
+	 * @covers \Fuel\Validation\Rule\Number::validate
 	 * @dataProvider validateProvider
 	 * @group  Validation
 	 */
-	public function testValidate($emailValue, $expected)
+	public function testValidate($value, $expected)
 	{
 		$this->assertEquals(
 			$expected,
-			$this->object->validate($emailValue)
+			$this->object->validate($value)
 		);
 	}
 
 	/**
-	 * Provides sample data for testing the email validation
+	 * Provides strings to test and expected results for testValidate
 	 *
 	 * @return array
 	 */
 	public function validateProvider()
 	{
 		return array(
-			array('admin@test.com', true),
-			array('', false),
-			array('@.com', false),
-			array('test.email.user@test.domain.tld', true),
+			array('123', true),
+			array('016547', true),
+			array('ghjgsd(*^"36723863*&723', false),
+			array('a', false),
 		);
 	}
 
