@@ -16,3 +16,4 @@ nbproject/
 *.sublime-project
 *.sublime-workspace
 index.php
+composer.phar
