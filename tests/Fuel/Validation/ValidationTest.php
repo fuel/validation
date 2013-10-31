@@ -11,7 +11,12 @@
 
 namespace Fuel\Validation;
 
-
+/**
+ * Tests for the Validation
+ *
+ * @package Fuel\Validation
+ * @author  Fuel Development Team
+ */
 class ValidationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -28,9 +33,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests getting and setting validation rules
 	 *
-	 * @covers Fuel\Validation\Validation::addRule
-	 * @covers Fuel\Validation\Validation::getRule
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::addRule
+	 * @covers \Fuel\Validation\Validation::getRule
+	 * @group  Validation
 	 */
 	public function testAddGetRule()
 	{
@@ -48,9 +53,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests getting an unknown rule
 	 *
-	 * @covers Fuel\Validation\Validation::getRule
+	 * @covers            \Fuel\Validation\Validation::getRule
 	 * @expectedException \InvalidArgumentException
-	 * @group Validation
+	 * @group             Validation
 	 */
 	public function testGetInvalid()
 	{
@@ -60,8 +65,8 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests checking for an unknown rule's existence
 	 *
-	 * @covers Fuel\Validation\Validation::isRule
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::isRule
+	 * @group  Validation
 	 */
 	public function testIsRuleInvalid()
 	{
@@ -73,9 +78,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests checking for an unknown rule's existence
 	 *
-	 * @covers Fuel\Validation\Validation::isRule
-	 * @covers Fuel\Validation\Validation::addRule
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::isRule
+	 * @covers \Fuel\Validation\Validation::addRule
+	 * @group  Validation
 	 */
 	public function testIsRule()
 	{
@@ -92,10 +97,10 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests removing a rule
 	 *
-	 * @covers Fuel\Validation\Validation::isRule
-	 * @covers Fuel\Validation\Validation::addRule
-	 * @covers Fuel\Validation\Validation::removeRule
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::isRule
+	 * @covers \Fuel\Validation\Validation::addRule
+	 * @covers \Fuel\Validation\Validation::removeRule
+	 * @group  Validation
 	 */
 	public function testRemoveRule()
 	{
@@ -113,8 +118,8 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests getting all rules when none are assigned
 	 *
-	 * @covers Fuel\Validation\Validation::getRules
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::getRules
+	 * @group  Validation
 	 */
 	public function testGetAllWithNone()
 	{
@@ -127,8 +132,8 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests getting all rules when none are assigned
 	 *
-	 * @covers Fuel\Validation\Validation::getRules
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::getRules
+	 * @group  Validation
 	 */
 	public function testGetAllWithOne()
 	{
@@ -144,9 +149,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Fuel\Validation\Validation::getRules
-	 * @covers Fuel\Validation\Validation::removeRule
-	 * @group Validation
+	 * @covers \Fuel\Validation\Validation::getRules
+	 * @covers \Fuel\Validation\Validation::removeRule
+	 * @group  Validation
 	 */
 	public function testRemoveInvalid()
 	{

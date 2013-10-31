@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * adaptors.
  *
  * @package Fuel\Validation
- * @author Steve West
+ * @author  Fuel Development Team
  */
 class Validation
 {
