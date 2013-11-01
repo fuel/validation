@@ -24,7 +24,7 @@ class Validation
 {
 
 	/**
-	 * @var string[RuleInterface[]]
+	 * @var RuleInterface[][]
 	 */
 	protected $rules = array();
 
