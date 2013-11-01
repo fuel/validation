@@ -61,9 +61,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::validate
+	 * @covers       \Fuel\Validation\Rule\Email::validate
 	 * @dataProvider validateProvider
-	 * @group  Validation
+	 * @group        Validation
 	 */
 	public function testValidate($emailValue, $expected)
 	{

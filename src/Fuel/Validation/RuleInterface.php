@@ -45,4 +45,22 @@ interface RuleInterface
 	 */
 	public function setMessage($message);
 
+	/**
+	 * Sets the parameter for this validation rule.
+	 * See each Rule's documentation for what this should be.
+	 *
+	 * @param mixed $params
+	 *
+	 * @return $this
+	 */
+	public function setParameter($params);
+
+	/**
+	 * Returns the value of the set parameter.
+	 * See each Rule's documentation for what the parameter does.
+	 *
+	 * @return mixed
+	 */
+	public function getParameter();
+
 }
