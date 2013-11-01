@@ -61,9 +61,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Number::validate
+	 * @covers       \Fuel\Validation\Rule\Number::validate
 	 * @dataProvider validateProvider
-	 * @group  Validation
+	 * @group        Validation
 	 */
 	public function testValidate($value, $expected)
 	{
