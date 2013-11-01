@@ -31,7 +31,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Contains some test fields with rules
 	 *
-	 * @var array
+	 * @var string[RuleInterface[]]
 	 */
 	protected $testFields;
 
