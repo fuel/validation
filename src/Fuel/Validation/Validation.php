@@ -11,6 +11,8 @@
 
 namespace Fuel\Validation;
 
+use Fuel\Validation\Exception\InvalidField;
+
 /**
  * Main entry point for the validation functionality. Handles registering validation rules and loading validation
  * adaptors.
@@ -27,84 +29,65 @@ class Validation
 	protected $rules = array();
 
 	/**
-	 * Adds a rule that can be used for validation
+	 * Adds a rule that can be used to validate a field
 	 *
-	 * @param string $name
-	 * @param RuleInterface   $rule
+	 * @param string        $field
+	 * @param RuleInterface $rule
 	 *
 	 * @return $this
 	 */
-	public function addRule($name, RuleInterface $rule)
+	public function addRule($field, RuleInterface $rule)
 	{
-		$this->rules[$name] = $rule;
+		$this->rules[$field][] = $rule;
 
 		return $this;
 	}
 
 	/**
-	 * Removes a validation rule.
+	 * Adds a new field to the validation object
 	 *
-	 * @param $name
+	 * @param string $field
 	 *
 	 * @return $this
 	 */
-	public function removeRule($name)
+	public function addField($field)
 	{
-		if ($this->isRule($name))
-		{
-			unset($this->rules[$name]);
-		}
+		$this->rules[$field] = array();
 
 		return $this;
 	}
 
 	/**
-	 * Gets a validation rule
+	 * Returns a list of all known validation rules for a given field.
 	 *
-	 * @param string $name Name of the rule to get
+	 * @param string $field Name of the field to get rules for, or null for all fields
 	 *
-	 * @return RuleInterface
-	 * @throws \InvalidArgumentException If the rule is not known
+	 * @return RuleInterface[]|string[RuleInterface[]]
 	 */
-	public function getRule($name)
+	public function getRules($field = null)
 	{
-		if ( ! array_key_exists($name, $this->rules))
+		// Check if we are fetching a specific field or all
+		if ( ! is_null($field))
 		{
-			throw new \InvalidArgumentException('VAL-001: [' . $name . '] is not a known validation rule.');
+			// Now we know we have a field check that we know about it
+			if (array_key_exists($field, $this->rules))
+			{
+				// It's a known field so grab the rules for it
+				$results = $this->rules[$field];
+			}
+			// If not throw an exception
+			else
+			{
+				throw new InvalidField($field);
+			}
+		}
+		else
+		{
+			// No field was specified so return all the fields' rules
+			$results = $this->rules;
 		}
 
-		return $this->rules[$name];
-	}
-
-	/**
-	 * Checks if the given rule is known or not
-	 *
-	 * @param string $name
-	 *
-	 * @return bool
-	 */
-	public function isRule($name)
-	{
-		try
-		{
-			$this->getRule($name);
-		}
-		catch(\InvalidArgumentException $iae)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Returns a list of all known validation rules
-	 *
-	 * @return RuleInterface[]
-	 */
-	public function getRules()
-	{
-		return $this->rules;
+		return $results;
 	}
 
 }

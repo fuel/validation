@@ -11,8 +11,11 @@
 
 namespace Fuel\Validation;
 
+use Fuel\Validation\Rule\Email;
+use Fuel\Validation\Rule\Number;
+
 /**
- * Tests for the Validation
+ * Tests for the Validation class
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
@@ -25,140 +28,96 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $object;
 
+	/**
+	 * Contains some test fields with rules
+	 *
+	 * @var array
+	 */
+	protected $testFields;
+
 	protected function setUp()
 	{
 		$this->object = new Validation;
-	}
 
-	/**
-	 * Tests getting and setting validation rules
-	 *
-	 * @covers \Fuel\Validation\Validation::addRule
-	 * @covers \Fuel\Validation\Validation::getRule
-	 * @group  Validation
-	 */
-	public function testAddGetRule()
-	{
-		$ruleMock = \Mockery::mock('Fuel\Validation\RuleInterface');
-		$name = 'test';
-
-		$this->object->addRule($name, $ruleMock);
-
-		$this->assertEquals(
-			$ruleMock,
-			$this->object->getRule($name)
+		$this->testFields = array(
+			'email' => array(
+				new Email(),
+			),
+			'age' => array(
+				new Number(),
+			),
 		);
 	}
 
 	/**
-	 * Tests getting an unknown rule
-	 *
-	 * @covers            \Fuel\Validation\Validation::getRule
-	 * @expectedException \InvalidArgumentException
+	 * Adds sample fields and rules to the validation object
+	 */
+	protected function addTestRules()
+	{
+		foreach ($this->testFields as $field => $rules)
+		{
+			$this->object->addField($field);
+
+			foreach ($rules as $rule)
+			{
+				$this->object->addRule($field, $rule);
+			}
+		}
+	}
+
+	/**
+	 * @covers            \Fuel\Validation\Validation::getRules
+	 * @expectedException \Fuel\Validation\Exception\InvalidField
 	 * @group             Validation
 	 */
-	public function testGetInvalid()
+	public function testGetRulesForUnknown()
 	{
-		$this->object->getRule('fake');
-	}
-
-	/**
-	 * Tests checking for an unknown rule's existence
-	 *
-	 * @covers \Fuel\Validation\Validation::isRule
-	 * @group  Validation
-	 */
-	public function testIsRuleInvalid()
-	{
-		$this->assertFalse(
-			$this->object->isRule('fake')
-		);
-	}
-
-	/**
-	 * Tests checking for an unknown rule's existence
-	 *
-	 * @covers \Fuel\Validation\Validation::isRule
-	 * @covers \Fuel\Validation\Validation::addRule
-	 * @group  Validation
-	 */
-	public function testIsRule()
-	{
-		$ruleMock = \Mockery::mock('Fuel\Validation\RuleInterface');
-		$name = 'test';
-
-		$this->object->addRule($name, $ruleMock);
-
-		$this->assertTrue(
-			$this->object->isRule($name)
-		);
-	}
-
-	/**
-	 * Tests removing a rule
-	 *
-	 * @covers \Fuel\Validation\Validation::isRule
-	 * @covers \Fuel\Validation\Validation::addRule
-	 * @covers \Fuel\Validation\Validation::removeRule
-	 * @group  Validation
-	 */
-	public function testRemoveRule()
-	{
-		$ruleMock = \Mockery::mock('Fuel\Validation\RuleInterface');
-		$name = 'test';
-
-		$this->object->addRule($name, $ruleMock);
-		$this->object->removeRule($name);
-
-		$this->assertFalse(
-			$this->object->isRule($name)
-		);
-	}
-
-	/**
-	 * Tests getting all rules when none are assigned
-	 *
-	 * @covers \Fuel\Validation\Validation::getRules
-	 * @group  Validation
-	 */
-	public function testGetAllWithNone()
-	{
-		$this->assertEquals(
-			array(),
-			$this->object->getRules()
-		);
-	}
-
-	/**
-	 * Tests getting all rules when none are assigned
-	 *
-	 * @covers \Fuel\Validation\Validation::getRules
-	 * @group  Validation
-	 */
-	public function testGetAllWithOne()
-	{
-		$ruleMock = \Mockery::mock('Fuel\Validation\RuleInterface');
-		$name = 'test';
-
-		$this->object->addRule($name, $ruleMock);
-
-		$this->assertEquals(
-			array($name => $ruleMock),
-			$this->object->getRules()
-		);
+		$this->object->getRules('fake');
 	}
 
 	/**
 	 * @covers \Fuel\Validation\Validation::getRules
-	 * @covers \Fuel\Validation\Validation::removeRule
+	 * @covers \Fuel\Validation\Validation::addField
 	 * @group  Validation
 	 */
-	public function testRemoveInvalid()
+	public function testAddField()
 	{
-		$this->object->removeRule('fake');
+		$field = 'test field';
+
+		$this->object->addField($field);
 
 		$this->assertEquals(
 			array(),
+			$this->object->getRules($field)
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Validation::getRules
+	 * @covers \Fuel\Validation\Validation::addRule
+	 * @group  Validation
+	 */
+	public function testGetFieldRules()
+	{
+		$this->addTestRules();
+
+		$this->assertEquals(
+			$this->testFields['email'],
+			$this->object->getRules('email')
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Validation::getRules
+	 * @covers \Fuel\Validation\Validation::addRule
+	 * @group  Validation
+	 */
+	public function testGetAllRules()
+	{
+		$this->addTestRules();
+
+		$this->assertEquals(
+			$this->testFields,
 			$this->object->getRules()
 		);
 	}
