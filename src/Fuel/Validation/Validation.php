@@ -62,6 +62,8 @@ class Validation
 	 *
 	 * @param string $field Name of the field to get rules for, or null for all fields
 	 *
+	 * @throws InvalidField
+	 *
 	 * @return RuleInterface[]|string[RuleInterface[]]
 	 */
 	public function getRules($field = null)
