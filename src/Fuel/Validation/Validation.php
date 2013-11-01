@@ -40,7 +40,7 @@ class Validation
 	 *
 	 * @var string[]
 	 */
-	protected $messages;
+	protected $messages = array();
 
 	/**
 	 * Resets the class to a fresh state, as if it had not been run

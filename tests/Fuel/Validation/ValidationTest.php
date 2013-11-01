@@ -243,6 +243,11 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->addTestRules();
 
+		$this->assertEquals(
+			array(),
+			$this->object->getMessages()
+		);
+
 		// Fail some validation
 		$this->object->run(array(
 				'email' => 'asdasd',
