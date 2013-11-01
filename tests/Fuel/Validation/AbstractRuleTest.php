@@ -58,4 +58,46 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 			$this->object->getMessage()
 		);
 	}
+
+	/**
+	 * @covers \Fuel\Validation\AbstractRule::getParameter
+	 * @group  Validation
+	 */
+	public function testGetParam()
+	{
+		$this->assertNull(
+			$this->object->getParameter()
+		);
+	}
+
+	/**
+	 * @covers       \Fuel\Validation\AbstractRule::getParameter
+	 * @covers       \Fuel\Validation\AbstractRule::setParameter
+	 * @dataProvider paramDataProvider
+	 * @group        Validation
+	 */
+	public function testSetGetParam($param)
+	{
+		$this->object->setParameter($param);
+
+		$this->assertEquals(
+			$param,
+			$this->object->getParameter()
+		);
+	}
+
+	/**
+	 * Returns various formats of data for testing rule parameter getting/setting
+	 *
+	 * @return array
+	 */
+	public function paramDataProvider()
+	{
+		return array(
+			array('Test'),
+			array(123),
+			array(new \stdClass()),
+		);
+	}
+
 }

@@ -15,9 +15,14 @@ use Fuel\Validation\AbstractRule;
 class Number extends AbstractRule
 {
 
-	public function __construct()
+	public function __construct($params = null, $message = '')
 	{
-		$this->setMessage('The field is not valid number.');
+		parent::__construct($params, $message);
+
+		if ($message == '')
+		{
+			$this->setMessage('The field is not valid number.');
+		}
 	}
 
 	/**

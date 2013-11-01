@@ -61,9 +61,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Number::validate
+	 * @covers       \Fuel\Validation\Rule\Number::validate
 	 * @dataProvider validateProvider
-	 * @group  Validation
+	 * @group        Validation
 	 */
 	public function testValidate($value, $expected)
 	{
@@ -85,6 +85,23 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 			array('016547', true),
 			array('ghjgsd(*^"36723863*&723', false),
 			array('a', false),
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Rule\Number::getMessage
+	 * @covers \Fuel\Validation\Rule\Number::__construct
+	 * @group  Validation
+	 */
+	public function testCustomMessageOnConstruct()
+	{
+		$message = 'foobarbazbat';
+
+		$object = new Number(null, $message);
+
+		$this->assertEquals(
+			$message,
+			$object->getMessage()
 		);
 	}
 

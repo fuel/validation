@@ -61,9 +61,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::validate
+	 * @covers       \Fuel\Validation\Rule\Email::validate
 	 * @dataProvider validateProvider
-	 * @group  Validation
+	 * @group        Validation
 	 */
 	public function testValidate($emailValue, $expected)
 	{
@@ -85,6 +85,23 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 			array('', false),
 			array('@.com', false),
 			array('test.email.user@test.domain.tld', true),
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Rule\Email::getMessage
+	 * @covers \Fuel\Validation\Rule\Email::__construct
+	 * @group  Validation
+	 */
+	public function testCustomMessageOnConstruct()
+	{
+		$message = 'foobarbazbat';
+
+		$object = new Email(null, $message);
+
+		$this->assertEquals(
+			$message,
+			$object->getMessage()
 		);
 	}
 
