@@ -160,5 +160,37 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @covers       \Fuel\Validation\Validation::run
+	 * @covers       \Fuel\Validation\Validation::validateField
+	 * @dataProvider runMultipleFieldsData
+	 * @group        Validation
+	 */
+	public function testRunMultipleFields($expected, $data)
+	{
+		$this->addTestRules();
+
+		$this->assertEquals(
+			$expected,
+			$this->object->run($data)
+		);
+	}
+
+	/**
+	 * Provides various data sets to test validation running
+	 *
+	 * @return array
+	 */
+	public function runMultipleFieldsData()
+	{
+		return array(
+			array(true, array('email' => 'user@domain.example', 'age' => 12)),
+			array(false, array('email' => 'example', 'age' => 12)),
+			array(false, array('email' => 'user@domain.example', 'age' => 'asdasd')),
+			array(true, array('email' => 'user@domain.example')),
+			array(true, array('age' => 12)),
+			array(true, array()),
+		);
+	}
 
 }
