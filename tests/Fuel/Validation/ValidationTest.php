@@ -193,4 +193,73 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @covers \Fuel\Validation\Validation::getMessages
+	 * @covers \Fuel\Validation\Validation::hasRun
+	 * @covers \Fuel\Validation\Validation::reset
+	 * @group  Validation
+	 */
+	public function testReset()
+	{
+		$this->object->reset();
+
+		// Check that hasRun has been reset
+		$this->assertFalse(
+			$this->object->hasRun()
+		);
+
+		// Check that messages have been reset
+		$this->assertEquals(
+			array(),
+			$this->object->getMessages()
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Validation::run
+	 * @covers \Fuel\Validation\Validation::hasRun
+	 * @group  Validation
+	 */
+	public function testHasRun()
+	{
+		$this->assertFalse(
+			$this->object->hasRun()
+		);
+
+		$this->object->run(array());
+
+		$this->assertTrue(
+			$this->object->hasRun()
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Validation::getMessages
+	 * @covers \Fuel\Validation\Validation::run
+	 * @covers \Fuel\Validation\Validation::validateField
+	 * @group  Validation
+	 */
+	public function testGetMessages()
+	{
+		$this->addTestRules();
+
+		// Fail some validation
+		$this->object->run(array(
+				'email' => 'asdasd',
+				'age' => 'asdasd',
+			)
+		);
+
+		// Set up an expected result
+		$expected = array(
+			'email' => $this->testFields['email'][0]->getMessage(),
+			'age' => $this->testFields['age'][0]->getMessage(),
+		);
+
+		// Check for that
+		$this->assertEquals(
+			$expected,
+			$this->object->getMessages()
+		);
+	}
 }

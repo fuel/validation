@@ -24,9 +24,32 @@ class Validation
 {
 
 	/**
-	 * @var RuleInterface[]
+	 * @var string[RuleInterface[]]
 	 */
 	protected $rules = array();
+
+	/**
+	 * Set to true if the run() function has been called
+	 *
+	 * @var bool
+	 */
+	protected $hasRun = false;
+
+	/**
+	 * Contains any validation messages.
+	 *
+	 * @var string[]
+	 */
+	protected $messages;
+
+	/**
+	 * Resets the class to a fresh state, as if it had not been run
+	 */
+	public function reset()
+	{
+		$this->hasRun = false;
+		$this->messages = array();
+	}
 
 	/**
 	 * Adds a rule that can be used to validate a field
@@ -95,6 +118,7 @@ class Validation
 	/**
 	 * Takes an array of data and validates that against the assigned rules.
 	 * The array is expected to have keys named after fields.
+	 * This function will call reset() before it runs.
 	 *
 	 * @param array $data
 	 *
@@ -102,6 +126,9 @@ class Validation
 	 */
 	public function run(array $data)
 	{
+		// Make sure we are in a fresh state
+		$this->reset();
+
 		$result = true;
 
 		foreach ($data as $fieldName => $value)
@@ -116,6 +143,8 @@ class Validation
 				$result = false;
 			}
 		}
+
+		$this->hasRun = true;
 
 		return $result;
 	}
@@ -140,11 +169,32 @@ class Validation
 
 			if ( ! $result)
 			{
+				// Make sure the message is collected
+				$this->messages[$field] = $rule->getMessage();
+
 				break;
 			}
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Returns true if validation has been run
+	 *
+	 * @return bool
+	 */
+	public function hasRun()
+	{
+		return $this->hasRun;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getMessages()
+	{
+		return $this->messages;
 	}
 
 }
