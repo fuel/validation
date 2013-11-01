@@ -122,4 +122,43 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @covers \Fuel\Validation\Validation::run
+	 * @covers \Fuel\Validation\Validation::validateField
+	 * @group  Validation
+	 */
+	public function testRun()
+	{
+		$fieldName = 'email';
+
+		$this->object->addRule($fieldName, new Email());
+
+		$this->assertTrue(
+			$this->object->run(array(
+					$fieldName => 'user@domain.example',
+				)
+			)
+		);
+	}
+
+	/**
+	 * @covers \Fuel\Validation\Validation::run
+	 * @covers \Fuel\Validation\Validation::validateField
+	 * @group  Validation
+	 */
+	public function testRunFailure()
+	{
+		$fieldName = 'email';
+
+		$this->object->addRule($fieldName, new Email());
+
+		$this->assertFalse(
+			$this->object->run(array(
+					$fieldName => 'example',
+				)
+			)
+		);
+	}
+
+
 }

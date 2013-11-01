@@ -90,4 +90,59 @@ class Validation
 		return $results;
 	}
 
+	/**
+	 * Takes an array of data and validates that against the assigned rules.
+	 * The array is expected to have keys named after fields.
+	 *
+	 * @param array $data
+	 *
+	 * @return bool True if all the fields validated
+	 */
+	public function run(array $data)
+	{
+		$result = true;
+
+		foreach ($data as $fieldName => $value)
+		{
+			$fieldResult = $this->validateField($fieldName, $value);
+
+			if ( ! $fieldResult)
+			{
+				// Only update the actual result if there was a failure
+				// This means that a later "true" value does not override a previous
+				// "false" value.
+				$result = false;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Validates a single field
+	 *
+	 * @param string $field
+	 * @param mixed  $value
+	 *
+	 * @return bool
+	 */
+	protected function validateField($field, $value)
+	{
+		$rules = $this->getRules($field);
+
+		$result = true;
+
+		foreach ($rules as $rule)
+		{
+			$result = $rule->validate($value);
+
+			if ( ! $result)
+			{
+				break;
+			}
+		}
+
+		return $result;
+	}
+
 }
