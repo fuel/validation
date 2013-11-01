@@ -22,9 +22,14 @@ use Fuel\Validation\AbstractRule;
 class Email extends AbstractRule
 {
 
-	public function __construct()
+	public function __construct($params = null, $message = '')
 	{
-		$this->setMessage('The field does not contain a valid email address.');
+		parent::__construct($params, $message);
+
+		if ($message == '')
+		{
+			$this->setMessage('The field does not contain a valid email address.');
+		}
 	}
 
 	/**

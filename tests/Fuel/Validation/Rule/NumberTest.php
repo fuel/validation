@@ -88,4 +88,21 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @covers \Fuel\Validation\Rule\Number::getMessage
+	 * @covers \Fuel\Validation\Rule\Number::__construct
+	 * @group  Validation
+	 */
+	public function testCustomMessageOnConstruct()
+	{
+		$message = 'foobarbazbat';
+
+		$object = new Number(null, $message);
+
+		$this->assertEquals(
+			$message,
+			$object->getMessage()
+		);
+	}
+
 }
