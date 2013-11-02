@@ -16,12 +16,14 @@ namespace Fuel\Validation\Exception;
  *
  * @package Fuel\Validation\Exception
  * @author  Fuel Development Team
+ *
+ * @covers  \Fuel\Validation\Exception\InvalidField
  */
 class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @covers \Fuel\Validation\Exception\InvalidField::__construct
+	 * @coversDefaultClass __construct
 	 * @group  Validation
 	 */
 	public function testDefaultConstructor()
@@ -35,7 +37,7 @@ class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Exception\InvalidField::__construct
+	 * @coversDefaultClass __construct
 	 * @group  Validation
 	 */
 	public function testConstructorWithField()

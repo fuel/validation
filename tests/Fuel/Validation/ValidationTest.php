@@ -19,6 +19,8 @@ use Fuel\Validation\Rule\Number;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ *
+ * @covers  \Fuel\Validation\Validation
  */
 class ValidationTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,9 +68,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers            \Fuel\Validation\Validation::getRules
-	 * @expectedException \Fuel\Validation\Exception\InvalidField
-	 * @group             Validation
+	 * @coversDefaultClass getRules
+	 * @expectedException  \Fuel\Validation\Exception\InvalidField
+	 * @group              Validation
 	 */
 	public function testGetRulesForUnknown()
 	{
@@ -76,9 +78,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::getRules
-	 * @covers \Fuel\Validation\Validation::addField
-	 * @group  Validation
+	 * @coversDefaultClass getRules
+	 * @coversDefaultClass addField
+	 * @group              Validation
 	 */
 	public function testAddField()
 	{
@@ -93,9 +95,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::getRules
-	 * @covers \Fuel\Validation\Validation::addRule
-	 * @group  Validation
+	 * @coversDefaultClass getRules
+	 * @coversDefaultClass addRule
+	 * @group              Validation
 	 */
 	public function testGetFieldRules()
 	{
@@ -108,9 +110,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::getRules
-	 * @covers \Fuel\Validation\Validation::addRule
-	 * @group  Validation
+	 * @coversDefaultClass getRules
+	 * @coversDefaultClass addRule
+	 * @group              Validation
 	 */
 	public function testGetAllRules()
 	{
@@ -123,9 +125,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::run
-	 * @covers \Fuel\Validation\Validation::validateField
-	 * @group  Validation
+	 * @coversDefaultClass run
+	 * @coversDefaultClass validateField
+	 * @group              Validation
 	 */
 	public function testRun()
 	{
@@ -142,9 +144,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::run
-	 * @covers \Fuel\Validation\Validation::validateField
-	 * @group  Validation
+	 * @coversDefaultClass run
+	 * @coversDefaultClass validateField
+	 * @group              Validation
 	 */
 	public function testRunFailure()
 	{
@@ -161,10 +163,10 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers       \Fuel\Validation\Validation::run
-	 * @covers       \Fuel\Validation\Validation::validateField
-	 * @dataProvider runMultipleFieldsData
-	 * @group        Validation
+	 * @coversDefaultClass run
+	 * @coversDefaultClass validateField
+	 * @dataProvider       runMultipleFieldsData
+	 * @group              Validation
 	 */
 	public function testRunMultipleFields($expected, $data)
 	{
@@ -194,10 +196,10 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::getMessages
-	 * @covers \Fuel\Validation\Validation::hasRun
-	 * @covers \Fuel\Validation\Validation::reset
-	 * @group  Validation
+	 * @coversDefaultClass getMessages
+	 * @coversDefaultClass hasRun
+	 * @coversDefaultClass reset
+	 * @group              Validation
 	 */
 	public function testReset()
 	{
@@ -216,9 +218,9 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::run
-	 * @covers \Fuel\Validation\Validation::hasRun
-	 * @group  Validation
+	 * @coversDefaultClass run
+	 * @coversDefaultClass hasRun
+	 * @group              Validation
 	 */
 	public function testHasRun()
 	{
@@ -234,10 +236,10 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Validation::getMessages
-	 * @covers \Fuel\Validation\Validation::run
-	 * @covers \Fuel\Validation\Validation::validateField
-	 * @group  Validation
+	 * @coversDefaultClass getMessages
+	 * @coversDefaultClass run
+	 * @coversDefaultClass validateField
+	 * @group              Validation
 	 */
 	public function testGetMessages()
 	{

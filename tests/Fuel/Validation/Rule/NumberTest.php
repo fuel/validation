@@ -12,10 +12,12 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class NumberTest
+ * Tests for Number validation rule
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
+ *
+ * @covers  \Fuel\Validation\Rule\Number
  */
 class NumberTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,9 +33,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Number::__construct
-	 * @covers \Fuel\Validation\Rule\Number::getMessage
-	 * @group  Validation
+	 * @coversDefaultClass __construct
+	 * @coversDefaultClass getMessage
+	 * @group              Validation
 	 */
 	public function testGetMessage()
 	{
@@ -44,9 +46,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Number::getMessage
-	 * @covers \Fuel\Validation\Rule\Number::setMessage
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @coversDefaultClass setMessage
+	 * @group              Validation
 	 */
 	public function testSetGetMessage()
 	{
@@ -61,9 +63,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers       \Fuel\Validation\Rule\Number::validate
-	 * @dataProvider validateProvider
-	 * @group        Validation
+	 * @coversDefaultClass validate
+	 * @dataProvider       validateProvider
+	 * @group              Validation
 	 */
 	public function testValidate($value, $expected)
 	{
@@ -89,9 +91,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Number::getMessage
-	 * @covers \Fuel\Validation\Rule\Number::__construct
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @coversDefaultClass __construct
+	 * @group              Validation
 	 */
 	public function testCustomMessageOnConstruct()
 	{

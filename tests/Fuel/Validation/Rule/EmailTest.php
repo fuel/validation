@@ -16,6 +16,8 @@ namespace Fuel\Validation\Rule;
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
+ *
+ * @covers  \Fuel\Validation\Rule\Email
  */
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,9 +33,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::__construct
-	 * @covers \Fuel\Validation\Rule\Email::getMessage
-	 * @group  Validation
+	 * @coversDefaultClass __construct
+	 * @coversDefaultClass getMessage
+	 * @group              Validation
 	 */
 	public function testGetMessage()
 	{
@@ -44,9 +46,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::getMessage
-	 * @covers \Fuel\Validation\Rule\Email::setMessage
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @coversDefaultClass setMessage
+	 * @group              Validation
 	 */
 	public function testSetGetMessage()
 	{
@@ -61,9 +63,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers       \Fuel\Validation\Rule\Email::validate
-	 * @dataProvider validateProvider
-	 * @group        Validation
+	 * @coversDefaultClass validate
+	 * @dataProvider       validateProvider
+	 * @group              Validation
 	 */
 	public function testValidate($emailValue, $expected)
 	{
@@ -89,9 +91,9 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\Rule\Email::getMessage
-	 * @covers \Fuel\Validation\Rule\Email::__construct
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @coversDefaultClass __construct
+	 * @group              Validation
 	 */
 	public function testCustomMessageOnConstruct()
 	{

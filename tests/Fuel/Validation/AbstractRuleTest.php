@@ -16,6 +16,8 @@ namespace Fuel\Validation;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ *
+ * @covers  \Fuel\Validation\AbstractRule
  */
 class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,8 +33,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\AbstractRule::getMessage
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @group              Validation
 	 */
 	public function testDefaultMessage()
 	{
@@ -43,9 +45,9 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\AbstractRule::getMessage
-	 * @covers \Fuel\Validation\AbstractRule::setMessage
-	 * @group  Validation
+	 * @coversDefaultClass getMessage
+	 * @coversDefaultClass setMessage
+	 * @group              Validation
 	 */
 	public function testGetSetMessage()
 	{
@@ -60,8 +62,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Fuel\Validation\AbstractRule::getParameter
-	 * @group  Validation
+	 * @coversDefaultClass getParameter
+	 * @group              Validation
 	 */
 	public function testGetParam()
 	{
@@ -71,10 +73,10 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers       \Fuel\Validation\AbstractRule::getParameter
-	 * @covers       \Fuel\Validation\AbstractRule::setParameter
-	 * @dataProvider paramDataProvider
-	 * @group        Validation
+	 * @coversDefaultClass getParameter
+	 * @coversDefaultClass setParameter
+	 * @dataProvider       paramDataProvider
+	 * @group              Validation
 	 */
 	public function testSetGetParam($param)
 	{
