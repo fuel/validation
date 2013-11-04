@@ -133,7 +133,7 @@ class Validation
 
 		foreach ($data as $fieldName => $value)
 		{
-			$fieldResult = $this->validateField($fieldName, $value);
+			$fieldResult = $this->validateField($fieldName, $value, $data);
 
 			if ( ! $fieldResult)
 			{
@@ -152,12 +152,13 @@ class Validation
 	/**
 	 * Validates a single field
 	 *
-	 * @param string $field
-	 * @param mixed  $value
+	 * @param string    $field
+	 * @param mixed     $value
+	 * @param mixed[] & $data
 	 *
 	 * @return bool
 	 */
-	protected function validateField($field, $value)
+	protected function validateField($field, $value, &$data)
 	{
 		$rules = $this->getRules($field);
 
@@ -165,7 +166,7 @@ class Validation
 
 		foreach ($rules as $rule)
 		{
-			$result = $rule->validate($value);
+			$result = $rule->validate($value, $field, $data);
 
 			if ( ! $result)
 			{

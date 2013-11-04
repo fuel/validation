@@ -39,7 +39,7 @@ class Number extends AbstractRule
 	 *
 	 * @return bool
 	 */
-	public function validate($value)
+	public function validate($value, $field = null, &$allFields = null)
 	{
 		return is_numeric($value);
 	}

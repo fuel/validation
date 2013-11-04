@@ -14,7 +14,7 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Class Email
+ * Checks that the value is a valid email address
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
@@ -33,13 +33,13 @@ class Email extends AbstractRule
 	}
 
 	/**
-	 * Returns true if the given value is a valid email
-	 *
-	 * @param mixed  $value
+	 * @param mixed $value
+	 * @param null  $field
+	 * @param null  $allFields
 	 *
 	 * @return bool
 	 */
-	public function validate($value)
+	public function validate($value, $field = null, &$allFields = null)
 	{
 		return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
 	}

@@ -21,13 +21,21 @@ interface RuleInterface
 {
 
 	/**
-	 * Performs validation on the given value
+	 * Performs validation on the given value.
+	 * $field and $allFields are optional values to allow the validation rule to have some idea of context. This allows
+	 * for rules such as "required" and "match field", validation rules that act on all the data rather than a single
+	 * field.
 	 *
-	 * @param mixed $value Value to validate
+	 * If a validation rule requires $field or $allFields but is not passed a value the rule should return false
+	 * rather than throwing an exception.
+	 *
+	 * @param mixed  $value     Value to validate
+	 * @param string $field     Name of the field that is being validated
+	 * @param array  $allFields Values of all the other fields being validated
 	 *
 	 * @return bool
 	 */
-	public function validate($value);
+	public function validate($value, $field = null, &$allFields = null);
 
 	/**
 	 * Gets the failure message for this rule
