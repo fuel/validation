@@ -49,7 +49,7 @@ class MatchField extends AbstractRule
 		$matchAgainst = $this->getParameter();
 
 		// If any of the needed settings are missing, return false
-		if (is_null($allFields) or is_null($field) or is_null($matchAgainst))
+		if (is_null($allFields) or is_null($matchAgainst))
 		{
 			return false;
 		}
