@@ -88,6 +88,7 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
             array(function(){ return false; }, 100, true),
             array('', null, true),
             array(null, 1, true),
+            array("a", null, false),
             array(null, null, true)
         );
     }
