@@ -41,11 +41,16 @@ class MaxLength extends AbstractRule
      */
     public function validate($value, $field = null, &$allFields = null)
     {
+        mb_internal_encoding("UTF-8");
         if ( is_object($value) && ! method_exists($value, '__toString') )
         {
-            return false;
+            return true;
         }
-        return (strlen(( string ) $value) <= $this->getParameter());
+        if (mb_strlen(( string ) $value) == 0 && $this->getParameter() >= 0)
+        {
+            return true;
+        }
+        return (mb_strlen(( string ) $value) <= $this->getParameter());
     }
 
 }

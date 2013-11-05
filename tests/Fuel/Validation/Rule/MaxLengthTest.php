@@ -11,6 +11,7 @@
 
 namespace Fuel\Validation\Rule;
 
+require_once('/tests/ClassWithToString.php');
 /**
  * Class MaxLengthTest
  *
@@ -66,26 +67,27 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
      */
     public function validateProvider()
     {
-        require_once('/tests/ClassWithToString.php');
-        $classWithToString = new ClassWithToString();
+        $classWithToString = new \ClassWithToString();
 
         return array(
-            array('hello', 1, true),
-            array('', 1, false),
+            array('hello', 1, false),
+            array('', 1, true),
             array('12345', 5, true),
-            array('test.email.user@test.domain.tld', 500, false),
+            array('test.email.user@test.domain.tld', 500, true),
+            array('b', 1, true),
             array('ä', 1, true),
             array('', 0, true),
-            array('', -1, true),
-            array('z', 0, true),
-            array(new \stdClass(), 100, false),
-            array(new \stdClass(), null, false),
-            array($classWithToString, 1, true),
-            array($classWithToString, null, true),
-            array($classWithToString, 100000, false),
-            array(function(){ return false; }, null, false),
+            array('', -1, false),
+            array('z', 0, false),
+            array(new \stdClass(), 100, true),
+            array(new \stdClass(), null, true),
+            array($classWithToString, 1, false),
+            array($classWithToString, null, false),
+            array($classWithToString, 100000, true),
+            array(function(){ return false; }, null, true),
+            array(function(){ return false; }, 100, true),
             array('', null, true),
-            array(null, 1, false),
+            array(null, 1, true),
             array(null, null, true)
         );
     }
