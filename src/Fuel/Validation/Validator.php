@@ -115,22 +115,25 @@ class Validator
 	 *
 	 * @param array $data
 	 *
-	 * @return bool True if all the fields validated
+	 * @return ResultInterface
 	 */
-	public function run(array $data)
+	public function run(array $data, ResultInterface $result = null)
 	{
-		$result = true;
+		if (is_null($result))
+		{
+			$result = new Result;
+		}
+
+		$result->setResult(true);
 
 		foreach ($data as $fieldName => $value)
 		{
-			$fieldResult = $this->validateField($fieldName, $value, $data);
+			$fieldResult = $this->validateField($fieldName, $value, $data, $result);
 
 			if ( ! $fieldResult)
 			{
-				// Only update the actual result if there was a failure
-				// This means that a later "true" value does not override a previous
-				// "false" value.
-				$result = false;
+				// There was a failure so log it to the result object
+				$result->setResult(false);
 			}
 		}
 
@@ -140,13 +143,14 @@ class Validator
 	/**
 	 * Validates a single field
 	 *
-	 * @param string    $field
-	 * @param mixed     $value
-	 * @param mixed[] & $data
+	 * @param string          $field
+	 * @param mixed           $value
+	 * @param mixed[]       & $data
+	 * @param ResultInterface $resultInterface
 	 *
 	 * @return bool
 	 */
-	protected function validateField($field, $value, &$data)
+	protected function validateField($field, $value, &$data, ResultInterface $resultInterface)
 	{
 		$rules = $this->getRules($field);
 
@@ -159,8 +163,15 @@ class Validator
 			if ( ! $result)
 			{
 				// Don't allow any others to run if this one failed
+				$resultInterface->setError($field, $rule->getMessage());
 				break;
 			}
+		}
+
+		if ($result)
+		{
+			// All is good so make sure the field gets added as one of the validated fields
+			$resultInterface->setValidated($field);
 		}
 
 		return $result;

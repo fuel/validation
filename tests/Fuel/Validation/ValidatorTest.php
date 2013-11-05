@@ -139,7 +139,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 			$this->object->run(array(
 					$fieldName => 'user@domain.example',
 				)
-			)
+			)->isValid()
 		);
 	}
 
@@ -158,7 +158,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 			$this->object->run(array(
 					$fieldName => 'example',
 				)
-			)
+			)->isValid()
 		);
 	}
 
@@ -174,7 +174,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals(
 			$expected,
-			$this->object->run($data)
+			$this->object->run($data)->isValid()
 		);
 	}
 
