@@ -46,10 +46,6 @@ class MaxLength extends AbstractRule
         {
             return true;
         }
-        if (mb_strlen(( string ) $value) == 0 && $this->getParameter() >= 0)
-        {
-            return true;
-        }
         return (mb_strlen(( string ) $value) <= $this->getParameter());
     }
 
