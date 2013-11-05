@@ -21,7 +21,7 @@ use Fuel\Validation\Exception\InvalidRule;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  */
-class Validation
+class Validator
 {
 
 	/**

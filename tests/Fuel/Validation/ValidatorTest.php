@@ -20,13 +20,13 @@ use Fuel\Validation\Rule\Number;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Validation
+ * @covers  \Fuel\Validation\Validator
  */
-class ValidationTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Validation
+	 * @var Validator
 	 */
 	protected $object;
 
@@ -39,7 +39,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->object = new Validation;
+		$this->object = new Validator;
 
 		$this->testFields = array(
 			'email' => array(
