@@ -269,4 +269,79 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 			$this->object->getMessages()
 		);
 	}
+
+	/**
+	 * @coversDefaultClass __call
+	 * @expectedException  \Fuel\Validation\Exception\InvalidRule
+	 * @group              Validation
+	 */
+	public function testMagicRuleInvalid()
+	{
+		$this->object->fakeTestRule();
+	}
+
+	/**
+	 * @coversDefaultClass __call
+	 * @group              Validation
+	 */
+	public function testAddMagicRule()
+	{
+		$this->object->addField('test')
+			->required();
+
+		$rules = $this->object->getRules('test');
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Required',
+			$rules[0]
+		);
+	}
+
+	/**
+	 * @coversDefaultClass __call
+	 * @group              Validation
+	 */
+	public function testMagicChain()
+	{
+		$this->object
+			->addField('first magic test')
+				->number()
+			->addField('test')
+				->required()
+				->matchField('first');
+
+		$firstRules = $this->object->getRules('first magic test');
+
+		// Make sure the first rule has been added correctly
+		$this->assertEquals(
+			1,
+			count($firstRules)
+		);
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Number',
+			$firstRules[0]
+		);
+
+		// Make sure the second field's rules are added correctly
+		$testRules = $this->object->getRules('test');
+
+		// Make sure there are two entries
+		$this->assertEquals(
+			2,
+			count($testRules)
+		);
+
+		// And that the right rules have been added
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Required',
+			$testRules[0]
+		);
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\MatchField',
+			$testRules[1]
+		);
+	}
+
 }

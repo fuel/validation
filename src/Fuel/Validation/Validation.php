@@ -12,6 +12,7 @@
 namespace Fuel\Validation;
 
 use Fuel\Validation\Exception\InvalidField;
+use Fuel\Validation\Exception\InvalidRule;
 
 /**
  * Main entry point for the validation functionality. Handles registering validation rules and loading validation
@@ -24,6 +25,8 @@ class Validation
 {
 
 	/**
+	 * Contains a list of fields and all their rules
+	 *
 	 * @var RuleInterface[][]
 	 */
 	protected $rules = array();
@@ -41,6 +44,13 @@ class Validation
 	 * @var string[]
 	 */
 	protected $messages = array();
+
+	/**
+	 * Keeps track of the last field added for magic method chaining
+	 *
+	 * @var string
+	 */
+	protected $lastAddedField;
 
 	/**
 	 * Resets the class to a fresh state, as if it had not been run
@@ -61,6 +71,11 @@ class Validation
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
+		if ( ! array_key_exists($field, $this->rules))
+		{
+			$this->addField($field);
+		}
+
 		$this->rules[$field][] = $rule;
 
 		return $this;
@@ -76,6 +91,7 @@ class Validation
 	public function addField($field)
 	{
 		$this->rules[$field] = array();
+		$this->lastAddedField = $field;
 
 		return $this;
 	}
@@ -87,7 +103,7 @@ class Validation
 	 *
 	 * @throws InvalidField
 	 *
-	 * @return RuleInterface[]|string[RuleInterface[]]
+	 * @return RuleInterface[]|RuleInterface[][]
 	 */
 	public function getRules($field = null)
 	{
@@ -196,6 +212,33 @@ class Validation
 	public function getMessages()
 	{
 		return $this->messages;
+	}
+
+	/**
+	 * Allows validation rules to be dynamically added using method chaining.
+	 *
+	 * @param string $name
+	 * @param array  $arguments
+	 *
+	 * @return $this
+	 * @throws InvalidRule
+	 */
+	function __call($name, $arguments)
+	{
+		// Convert the function name into a rule class
+		$className = '\Fuel\Validation\Rule\\' . ucfirst($name);
+
+		// If the class does not exist throw an error
+		if ( ! class_exists($className))
+		{
+			throw new InvalidRule($name);
+		}
+
+		// We have a valid class name so go ahead and add the new rule
+		$rule = new $className($arguments);
+		$this->addRule($this->lastAddedField, $rule);
+
+		return $this;
 	}
 
 }
