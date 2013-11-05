@@ -30,7 +30,6 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->object = new MinLength;
-        $this->object->setParameter(3);
     }
 
     /**
@@ -70,7 +69,6 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidate($stringValue, $minLength, $expected)
     {
-       // echo 'Checking '.$stringValue.' to see if it is longer than '.$minLength."\n";
         $this->object->setParameter($minLength);
         $this->assertEquals(
             $expected,
@@ -85,6 +83,8 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
      */
     public function validateProvider()
     {
+        $classWithToString = new ClassWithToString();
+
         return array(
             array('hello', 1, true),
             array('', 1, false),
@@ -94,12 +94,17 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
             array('', 0, true),
             array('', -1, true),
             array('z', 0, true),
+            array(new \stdClass(), 100, false),
+            array(new \stdClass(), null, false),
+            array($classWithToString, 1, true),
+            array($classWithToString, null, true),
+            array($classWithToString, 100000, false),
+            array(function(){ return false; }, null, false),
             array('', null, true),
             array(null, 1, false),
             array(null, null, true)
         );
     }
-
     /**
      * @coversDefaultClass getMessage
      * @coversDefaultClass __construct
@@ -115,6 +120,21 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
             $message,
             $object->getMessage()
         );
+    }
+
+}
+
+/**
+ * Class ClassWithToString
+ *
+ * @package Fuel\Validation\Rule
+ * @author  Fuel Development Team
+ */
+class ClassWithToString
+{
+    function __toString()
+    {
+        return '1234567890'; //returns string of length 10.
     }
 
 }
