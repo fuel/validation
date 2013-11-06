@@ -98,27 +98,20 @@ class Validator
 	public function getRules($field = null)
 	{
 		// Check if we are fetching a specific field or all
-		if ( ! is_null($field))
+		if ($field === null)
 		{
-			// Now we know we have a field check that we know about it
-			if (array_key_exists($field, $this->rules))
-			{
-				// It's a known field so grab the rules for it
-				$results = $this->rules[$field];
-			}
-			// If not throw an exception
-			else
-			{
-				throw new InvalidField($field);
-			}
-		}
-		else
-		{
-			// No field was specified so return all the fields' rules
-			$results = $this->rules;
+			return $this->rules;
 		}
 
-		return $results;
+		// Now we know we have a field check that we know about it
+		if ( ! array_key_exists($field, $this->rules))
+		{
+			// If it's not there, throw an exception
+			throw new InvalidField($field);
+		}
+
+		// Return the requested field
+		return $this->rules[$field];
 	}
 
 	/**
