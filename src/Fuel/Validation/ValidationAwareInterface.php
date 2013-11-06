@@ -30,6 +30,6 @@ interface ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function populateRules(Validator $validator = null);
+	public function populateRules(Validator $validator);
 
 }

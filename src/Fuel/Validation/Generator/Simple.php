@@ -64,18 +64,13 @@ class Simple implements ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function populateRules(Validator $validator = null)
+	public function populateRules(Validator $validator)
 	{
 		$data = $this->getData();
 
 		if (is_null($data))
 		{
 			throw new \InvalidArgumentException('VAL-005: No data specified. Please call setData() first.');
-		}
-
-		if (is_null($validator))
-		{
-			$validator = new Validator;
 		}
 
 		// Loop through and add all the rules

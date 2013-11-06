@@ -46,21 +46,9 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 			$this->object->getData()
 		);
 
-		$this->object->populateRules();
-	}
+		$validator = \Mockery::mock('\Fuel\Validation\Validator');
 
-	/**
-	 * @coversDefaultClass populateRules
-	 * @group              Validation
-	 */
-	public function testNoValidator()
-	{
-		$this->object->setData(array());
-
-		$this->assertInstanceOf(
-			'\Fuel\Validation\Validator',
-			$this->object->populateRules()
-		);
+		$this->object->populateRules($validator);
 	}
 
 	public function testPopulate()
