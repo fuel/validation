@@ -74,6 +74,7 @@ abstract class AbstractRule implements RuleInterface
 	public function setMessage($message)
 	{
 		$this->message = $message;
+
 		return $this;
 	}
 
@@ -90,6 +91,7 @@ abstract class AbstractRule implements RuleInterface
 	public function setParameter($params)
 	{
 		$this->params = $params;
+
 		return $this;
 	}
 
