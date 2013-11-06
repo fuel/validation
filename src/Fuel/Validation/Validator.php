@@ -19,6 +19,7 @@ use Fuel\Validation\Exception\InvalidRule;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ * @since   2.0
  */
 class Validator
 {
@@ -44,6 +45,8 @@ class Validator
 	 * @param RuleInterface $rule
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
@@ -63,6 +66,8 @@ class Validator
 	 * @param string $field
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function addField($field)
 	{
@@ -80,6 +85,8 @@ class Validator
 	 * @throws InvalidField
 	 *
 	 * @return RuleInterface[]|RuleInterface[][]
+	 *
+	 * @since 2.0
 	 */
 	public function getRules($field = null)
 	{
@@ -115,6 +122,8 @@ class Validator
 	 * @param array $data
 	 *
 	 * @return ResultInterface
+	 *
+	 * @since 2.0
 	 */
 	public function run(array $data, ResultInterface $result = null)
 	{
@@ -148,6 +157,8 @@ class Validator
 	 * @param ResultInterface $resultInterface
 	 *
 	 * @return bool
+	 *
+	 * @since 2.0
 	 */
 	protected function validateField($field, $value, &$data, ResultInterface $resultInterface)
 	{
@@ -184,6 +195,8 @@ class Validator
 	 *
 	 * @return $this
 	 * @throws InvalidRule
+	 *
+	 * @since 2.0
 	 */
 	function __call($name, $arguments)
 	{

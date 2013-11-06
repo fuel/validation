@@ -17,6 +17,8 @@ use Fuel\Validation\Exception\InvalidField;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ *
+ * @since   2.0
  */
 class Result implements ResultInterface
 {
@@ -46,6 +48,8 @@ class Result implements ResultInterface
 	 * @param bool $isValid
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setResult($isValid)
 	{
@@ -56,6 +60,8 @@ class Result implements ResultInterface
 
 	/**
 	 * @return bool
+	 *
+	 * @since 2.0
 	 */
 	public function isValid()
 	{
@@ -67,6 +73,8 @@ class Result implements ResultInterface
 	 *
 	 * @return null|string
 	 * @throws InvalidField
+	 *
+	 * @since 2.0
 	 */
 	public function getError($field)
 	{
@@ -80,6 +88,8 @@ class Result implements ResultInterface
 
 	/**
 	 * @return string[]
+	 *
+	 * @since 2.0
 	 */
 	public function getErrors()
 	{
@@ -93,6 +103,8 @@ class Result implements ResultInterface
 	 * @param string $message
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setError($field, $message)
 	{
@@ -103,6 +115,8 @@ class Result implements ResultInterface
 
 	/**
 	 * @return string[]
+	 *
+	 * @since 2.0
 	 */
 	public function getValidated()
 	{
@@ -113,6 +127,8 @@ class Result implements ResultInterface
 	 * @param string $field
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setValidated($field)
 	{

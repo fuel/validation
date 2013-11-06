@@ -15,6 +15,8 @@ namespace Fuel\Validation;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ *
+ * @since   2.0
  */
 interface ResultInterface
 {
@@ -25,6 +27,8 @@ interface ResultInterface
 	 * @param bool $isValid
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setResult($isValid);
 
@@ -32,6 +36,8 @@ interface ResultInterface
 	 * True if the validation passed
 	 *
 	 * @return bool
+	 *
+	 * @since 2.0
 	 */
 	public function isValid();
 
@@ -41,6 +47,8 @@ interface ResultInterface
 	 * @param string $field
 	 *
 	 * @return string
+	 *
+	 * @since 2.0
 	 */
 	public function getError($field);
 
@@ -48,6 +56,8 @@ interface ResultInterface
 	 * Returns a list of all validation errors.
 	 *
 	 * @return string[]
+	 *
+	 * @since 2.0
 	 */
 	public function getErrors();
 
@@ -58,6 +68,8 @@ interface ResultInterface
 	 * @param string $message
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setError($field, $message);
 
@@ -65,6 +77,8 @@ interface ResultInterface
 	 * Returns a list of fields that where successfully validated.
 	 *
 	 * @return string[]
+	 *
+	 * @since 2.0
 	 */
 	public function getValidated();
 
@@ -74,6 +88,8 @@ interface ResultInterface
 	 * @param string[] $fields
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setValidated($field);
 

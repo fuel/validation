@@ -15,6 +15,8 @@ namespace Fuel\Validation\Exception;
  *
  * @package Fuel\Validation\Exception
  * @author  Fuel Development Team
+ *
+ * @since   2.0
  */
 class InvalidRule extends \InvalidArgumentException
 {
@@ -23,6 +25,8 @@ class InvalidRule extends \InvalidArgumentException
 	 * @param string     $message  This is expected to be left blank or be a field name
 	 * @param int        $code
 	 * @param \Exception $previous
+	 *
+	 * @since 2.0
 	 */
 	public function __construct($message = '', $code = 0, \Exception $previous = null)
 	{

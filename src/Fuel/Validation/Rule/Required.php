@@ -17,10 +17,19 @@ use Fuel\Validation\AbstractRule;
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
+ *
+ * @since   2.0
  */
 class Required extends AbstractRule
 {
 
+
+	/**
+	 * @param mixed  $params
+	 * @param string $message
+	 *
+	 * @since 2.0
+	 */
 	public function __construct($params = null, $message = '')
 	{
 		parent::__construct($params, $message);
@@ -37,6 +46,8 @@ class Required extends AbstractRule
 	 * @param null  $allFields
 	 *
 	 * @return bool
+	 *
+	 * @since 2.0
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
