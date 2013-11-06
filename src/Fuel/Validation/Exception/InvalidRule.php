@@ -10,6 +10,9 @@
 
 namespace Fuel\Validation\Exception;
 
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Thrown when a specified rule is not known
  *
@@ -18,7 +21,7 @@ namespace Fuel\Validation\Exception;
  *
  * @since   2.0
  */
-class InvalidRule extends \InvalidArgumentException
+class InvalidRule extends InvalidArgumentException
 {
 
 	/**
@@ -28,18 +31,16 @@ class InvalidRule extends \InvalidArgumentException
 	 *
 	 * @since 2.0
 	 */
-	public function __construct($message = '', $code = 0, \Exception $previous = null)
+	public function __construct($message = '', $code = 0, Exception $previous = null)
 	{
+		$error = 'VAL-004: The rule ['.$message.'] is not known.';
+
 		if (empty($message))
 		{
-			$message = 'VAL-003: The specified rule is not known.';
-		}
-		else
-		{
-			$message = 'VAL-004: The rule ['.$message.'] is not known.';
+			$error = 'VAL-003: The specified rule is not known.';
 		}
 
-		parent::__construct($message, $code, $previous);
+		parent::__construct($error, $code, $previous);
 	}
 
 }

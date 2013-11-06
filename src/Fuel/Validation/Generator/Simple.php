@@ -12,6 +12,7 @@ namespace Fuel\Validation\Generator;
 
 use Fuel\Validation\ValidationAwareInterface;
 use Fuel\Validation\Validator;
+use InvalidArgumentException;
 
 /**
  * Allows sets of validation rules to be generated from an array structure
@@ -72,7 +73,7 @@ class Simple implements ValidationAwareInterface
 
 		if (is_null($data))
 		{
-			throw new \InvalidArgumentException('VAL-005: No data specified. Please call setData() first.');
+			throw new InvalidArgumentException('VAL-005: No data specified. Please call setData() first.');
 		}
 
 		// Loop through and add all the rules

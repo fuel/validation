@@ -10,6 +10,9 @@
 
 namespace Fuel\Validation\Exception;
 
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Thrown when a specified field is invalid
  *
@@ -18,7 +21,7 @@ namespace Fuel\Validation\Exception;
  *
  * @since   2.0
  */
-class InvalidField extends \InvalidArgumentException
+class InvalidField extends InvalidArgumentException
 {
 
 	/**
@@ -28,18 +31,16 @@ class InvalidField extends \InvalidArgumentException
 	 *
 	 * @since 2.0
 	 */
-	public function __construct($message = '', $code = 0, \Exception $previous = null)
+	public function __construct($message = '', $code = 0, Exception $previous = null)
 	{
+		$error = 'VAL-002: The field ['.$message.'] is not known.';
+
 		if (empty($message))
 		{
-			$message = 'VAL-001: The specified field is not known.';
-		}
-		else
-		{
-			$message = 'VAL-002: The field ['.$message.'] is not known.';
+			$error = 'VAL-001: The specified field is not known.';
 		}
 
-		parent::__construct($message, $code, $previous);
+		parent::__construct($error, $code, $previous);
 	}
 
 }
