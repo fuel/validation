@@ -21,7 +21,7 @@ use InvalidArgumentException;
  *
  * @since   2.0
  */
-class InvalidRule extends InvalidArgumentException
+class InvalidRuleException extends InvalidArgumentException
 {
 
 	/**

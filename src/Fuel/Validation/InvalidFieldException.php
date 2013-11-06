@@ -21,7 +21,7 @@ use InvalidArgumentException;
  *
  * @since   2.0
  */
-class InvalidField extends InvalidArgumentException
+class InvalidFieldException extends InvalidArgumentException
 {
 
 	/**
