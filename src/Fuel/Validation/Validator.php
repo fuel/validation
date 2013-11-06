@@ -198,7 +198,43 @@ class Validator
 	 *
 	 * @since 2.0
 	 */
-	function __call($name, $arguments)
+	public function __call($name, $arguments)
+	{
+		// Create and then add the new rule to the last added field
+		$rule = $this->createRuleInstance($name, $arguments);
+
+		$this->addRule($this->lastAddedField, $rule);
+
+		return $this;
+	}
+
+	/**
+	 * Creates an instance of the given rule name
+	 *
+	 * @param string $name
+	 * @param mixed  $parameters
+	 *
+	 * @return RuleInterface
+	 *
+	 * @since 2.0
+	 */
+	public function createRuleInstance($name, $parameters = null)
+	{
+		$className = $this->getRuleClassName($name);
+		return new $className($parameters);
+	}
+
+	/**
+	 * Returns the full class name for the given validation rule
+	 *
+	 * @param $name
+	 *
+	 * @return string
+	 * @throws InvalidRule
+	 *
+	 * @since 2.0
+	 */
+	protected function getRuleClassName($name)
 	{
 		// Convert the function name into a rule class
 		$className = '\Fuel\Validation\Rule\\' . ucfirst($name);
@@ -209,11 +245,7 @@ class Validator
 			throw new InvalidRule($name);
 		}
 
-		// We have a valid class name so go ahead and add the new rule
-		$rule = new $className($arguments);
-		$this->addRule($this->lastAddedField, $rule);
-
-		return $this;
+		return $className;
 	}
 
 }
