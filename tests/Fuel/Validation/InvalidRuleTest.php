@@ -8,15 +8,15 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Exception;
+namespace Fuel\Validation;
 
 /**
  * Tests for InvalidRule exception
  *
- * @package Fuel\Validation\Exception
+ * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Exception\InvalidRule
+ * @covers  \Fuel\Validation\InvalidRuleException
  */
 class InvalidRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class InvalidRuleTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDefaultConstructor()
 	{
-		$object = new InvalidRule();
+		$object = new InvalidRuleException();
 
 		$this->assertEquals(
 			'VAL-003: The specified rule is not known.',
@@ -43,7 +43,7 @@ class InvalidRuleTest extends \PHPUnit_Framework_TestCase
 	{
 		$ruleName = 'myCustomField';
 
-		$object = new InvalidRule($ruleName);
+		$object = new InvalidRuleException($ruleName);
 
 		$this->assertEquals(
 			'VAL-004: The rule ['.$ruleName.'] is not known.',

@@ -13,10 +13,10 @@ namespace Fuel\Validation\Exception;
 /**
  * Tests for InvalidField exception
  *
- * @package Fuel\Validation\Exception
+ * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Exception\InvalidField
+ * @covers  \Fuel\Validation\InvalidFieldException
  */
 class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDefaultConstructor()
 	{
-		$object = new InvalidField();
+		$object = new InvalidFieldException();
 
 		$this->assertEquals(
 			'VAL-001: The specified field is not known.',
@@ -43,7 +43,7 @@ class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 	{
 		$fieldName = 'myCustomField';
 
-		$object = new InvalidField($fieldName);
+		$object = new InvalidFieldException($fieldName);
 
 		$this->assertEquals(
 			'VAL-002: The field ['.$fieldName.'] is not known.',

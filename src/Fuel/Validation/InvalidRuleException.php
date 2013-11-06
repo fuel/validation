@@ -8,20 +8,20 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Exception;
+namespace Fuel\Validation;
 
 use Exception;
 use InvalidArgumentException;
 
 /**
- * Thrown when a specified field is invalid
+ * Thrown when a specified rule is not known
  *
- * @package Fuel\Validation\Exception
+ * @package Fuel\Validation
  * @author  Fuel Development Team
  *
  * @since   2.0
  */
-class InvalidField extends InvalidArgumentException
+class InvalidRule extends InvalidArgumentException
 {
 
 	/**
@@ -33,11 +33,11 @@ class InvalidField extends InvalidArgumentException
 	 */
 	public function __construct($message = '', $code = 0, Exception $previous = null)
 	{
-		$error = 'VAL-002: The field ['.$message.'] is not known.';
+		$error = 'VAL-004: The rule ['.$message.'] is not known.';
 
 		if (empty($message))
 		{
-			$error = 'VAL-001: The specified field is not known.';
+			$error = 'VAL-003: The specified rule is not known.';
 		}
 
 		parent::__construct($error, $code, $previous);
