@@ -40,9 +40,9 @@ class MinLength extends AbstractRule
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param string    $field
-	 * @param array $allFields
+	 * @param mixed    $value     Value to be validated
+	 * @param string   $field     Unused by this rule
+	 * @param array  & $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *

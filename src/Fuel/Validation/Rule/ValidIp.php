@@ -13,14 +13,14 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Checks that the given field exists
+ * Validates that a field is a valid IP address. Returns true for both IPv4 and v6.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @since   2.0
+ * @since 2.0
  */
-class Required extends AbstractRule
+class ValidIp extends AbstractRule
 {
 
 	/**
@@ -35,14 +35,16 @@ class Required extends AbstractRule
 
 		if ($message == '')
 		{
-			$this->setMessage('The field is required and has not been specified.');
+			$this->setMessage('The field is not a valid IP address.');
 		}
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param null  $field
-	 * @param null  $allFields
+	 * Returns true if the given value is a valid IP address
+	 *
+	 * @param mixed    $value     Value to validate
+	 * @param string   $field     Unused by this rule
+	 * @param array  & $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
@@ -50,19 +52,7 @@ class Required extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		// Make sure the array key exists in the data
-		// This check will only be performed if $field and $allFields are set. Else only the value passed will be tested
-		if ( ( $field !== null and $allFields !== null ) and
-			! array_key_exists($field, $allFields)
-		)
-		{
-			return false;
-		}
-
-		return ! ($value === false or
-			$value === null or
-			$value === '' or
-			$value === array()
-		);
+		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}
+
 }

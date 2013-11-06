@@ -40,9 +40,9 @@ class Email extends AbstractRule
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param null  $field
-	 * @param null  $allFields
+	 * @param mixed   $value     Value to be validated
+	 * @param null    $field     Unused by this rule
+	 * @param null  & $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *

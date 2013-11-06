@@ -42,7 +42,9 @@ class Number extends AbstractRule
 	/**
 	 * Performs validation on the given value
 	 *
-	 * @param mixed $value Value to validate
+	 * @param mixed    $value     Value to validate
+	 * @param string   $field     Unused by this rule
+	 * @param array  & $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
