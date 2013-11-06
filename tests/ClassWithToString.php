@@ -1,12 +1,14 @@
 <?php
+
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
+
 
 
 /**
@@ -17,9 +19,9 @@
 */
 class ClassWithToString
 {
-    function __toString()
-    {
-        return '1234567890';
-    }
+	function __toString()
+	{
+		return '1234567890';
+	}
 
 }
