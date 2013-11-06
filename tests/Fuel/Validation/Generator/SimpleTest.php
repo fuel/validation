@@ -77,7 +77,6 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 		$validator->shouldReceive('addRule')->with('test field', $requiredRule)->once();
 		$validator->shouldReceive('addRule')->with('test field', $minLengthRule)->once();
 
-
 		$this->object->setData($data);
 		$this->object->populateRules($validator);
 	}

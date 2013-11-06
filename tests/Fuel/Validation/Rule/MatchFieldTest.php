@@ -11,7 +11,7 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class MatchFieldTest
+ * Defines tests for MatchField
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team

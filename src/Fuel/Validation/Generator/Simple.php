@@ -62,6 +62,8 @@ class Simple implements ValidationAwareInterface
 	 *
 	 * @return Validator
 	 *
+	 * @throws \InvalidArgumentException
+	 *
 	 * @since 2.0
 	 */
 	public function populateRules(Validator $validator)

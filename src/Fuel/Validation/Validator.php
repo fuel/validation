@@ -32,6 +32,13 @@ class Validator
 	protected $rules = array();
 
 	/**
+	 * Contains a list of any custom validation rules
+	 *
+	 * @var string[]
+	 */
+	protected $customRules = array();
+
+	/**
 	 * Keeps track of the last field added for magic method chaining
 	 *
 	 * @var string
@@ -236,8 +243,17 @@ class Validator
 	 */
 	protected function getRuleClassName($name)
 	{
-		// Convert the function name into a rule class
-		$className = '\Fuel\Validation\Rule\\' . ucfirst($name);
+		// Check if we have a custom rule registered
+		if (array_key_exists($name, $this->customRules))
+		{
+			// We do so grab the class name from the store
+			$className = $this->customRules[$name];
+		}
+		else
+		{
+			// Not found so look at our core rules
+			$className = '\Fuel\Validation\Rule\\' . ucfirst($name);
+		}
 
 		// If the class does not exist throw an error
 		if ( ! class_exists($className))
@@ -246,6 +262,28 @@ class Validator
 		}
 
 		return $className;
+	}
+
+	/**
+	 * Adds custom validation rules and allows for core rules to be overridden.
+	 * When wanting to override a core rule just specify the rule name as $name.
+	 * Eg, 'required', 'minLength'. Note the lowercase first letter.
+	 *
+	 * The name of the rule should not contain any whitespace or special characters as the name will be available
+	 * to use as a function name in the method chaining syntax.
+	 *
+	 * @param string $name
+	 * @param string $class
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function addCustomRule($name, $class)
+	{
+		$this->customRules[$name] = $class;
+
+		return $this;
 	}
 
 }

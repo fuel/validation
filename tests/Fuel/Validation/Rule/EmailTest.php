@@ -11,7 +11,7 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class EmailTest
+ * Defines tests for Email
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team

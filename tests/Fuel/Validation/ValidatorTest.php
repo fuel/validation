@@ -268,4 +268,54 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass addCustomRule
+	 * @coversDefaultClass createRuleInstance
+	 * @group              Validation
+	 */
+	public function testAddCustomRule()
+	{
+		$this->object->addCustomRule('testRule', '\Fuel\Validation\FakeRule');
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\FakeRule',
+			$this->object->createRuleInstance('testRule')
+		);
+
+		// Check that our magic methods are working
+	}
+
+	/**
+	 * @coversDefaultClass addCustomRule
+	 * @coversDefaultClass createRuleInstance
+	 * @group              Validation
+	 */
+	public function testAddCoreRuleOverride()
+	{
+		$this->object->addCustomRule('required', '\Fuel\Validation\FakeRule');
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\FakeRule',
+			$this->object->createRuleInstance('required')
+		);
+	}
+
+}
+
+/**
+ * Fake validation rule to test adding custom rules
+ *
+ * @package Fuel\Validation
+ * @author  Fuel Development Team
+ */
+class FakeRule extends AbstractRule
+{
+
+	/**
+	 * Will always return the $value
+	 */
+	public function validate($value, $field = null, &$allFields = null)
+	{
+		return $value;
+	}
 }

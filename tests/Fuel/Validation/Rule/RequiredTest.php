@@ -11,7 +11,7 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class RequiredTest
+ * Tests for Required
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team

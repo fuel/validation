@@ -11,7 +11,7 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Class MinLengthTest
+ * Defines tests for MinLength
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
