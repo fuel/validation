@@ -10,9 +10,6 @@
 
 namespace Fuel\Validation;
 
-use Fuel\Validation\Exception\InvalidField;
-use Fuel\Validation\Exception\InvalidRule;
-
 /**
  * Main entry point for the validation functionality. Handles registering validation rules and loading validation
  * adaptors.
@@ -89,7 +86,7 @@ class Validator
 	 *
 	 * @param string $field Name of the field to get rules for, or null for all fields
 	 *
-	 * @throws InvalidField
+	 * @throws InvalidFieldException
 	 *
 	 * @return RuleInterface[]|RuleInterface[][]
 	 *
@@ -107,7 +104,7 @@ class Validator
 		if ( ! array_key_exists($field, $this->rules))
 		{
 			// If it's not there, throw an exception
-			throw new InvalidField($field);
+			throw new InvalidFieldException($field);
 		}
 
 		// Return the requested field
@@ -188,7 +185,7 @@ class Validator
 	 * @param array  $arguments
 	 *
 	 * @return $this
-	 * @throws InvalidRule
+	 * @throws InvalidRuleException
 	 *
 	 * @since 2.0
 	 */
@@ -210,7 +207,7 @@ class Validator
 	 *
 	 * @return RuleInterface
 	 *
-	 * @throws InvalidField
+	 * @throws InvalidRuleException
 	 *
 	 * @since 2.0
 	 */
@@ -220,7 +217,7 @@ class Validator
 
 		if ( ! class_exists($className))
 		{
-			throw new InvalidRule($name);
+			throw new InvalidRuleException($name);
 		}
 
 		return new $className($parameters);

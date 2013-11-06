@@ -68,7 +68,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass getRules
-	 * @expectedException  \Fuel\Validation\Exception\InvalidField
+	 * @expectedException  \Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
 	public function testGetRulesForUnknown()
@@ -196,7 +196,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass __call
-	 * @expectedException  \Fuel\Validation\Exception\InvalidRule
+	 * @expectedException  \Fuel\Validation\InvalidRuleException
 	 * @group              Validation
 	 */
 	public function testMagicRuleInvalid()

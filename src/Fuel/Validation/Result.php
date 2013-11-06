@@ -10,8 +10,6 @@
 
 namespace Fuel\Validation;
 
-use Fuel\Validation\Exception\InvalidField;
-
 /**
  * Defines common functionality for interacting with validation results
  *
@@ -72,7 +70,7 @@ class Result implements ResultInterface
 	 * @param string $field
 	 *
 	 * @return null|string
-	 * @throws InvalidField
+	 * @throws InvalidFieldException
 	 *
 	 * @since 2.0
 	 */
@@ -80,7 +78,7 @@ class Result implements ResultInterface
 	{
 		if ( ! array_key_exists($field, $this->errors))
 		{
-			throw new InvalidField($field);
+			throw new InvalidFieldException($field);
 		}
 
 		return $this->errors[$field];

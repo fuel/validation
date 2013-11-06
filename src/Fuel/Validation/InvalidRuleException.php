@@ -8,7 +8,7 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Exception;
+namespace Fuel\Validation;
 
 use Exception;
 use InvalidArgumentException;
@@ -16,12 +16,12 @@ use InvalidArgumentException;
 /**
  * Thrown when a specified rule is not known
  *
- * @package Fuel\Validation\Exception
+ * @package Fuel\Validation
  * @author  Fuel Development Team
  *
  * @since   2.0
  */
-class InvalidRule extends InvalidArgumentException
+class InvalidRuleException extends InvalidArgumentException
 {
 
 	/**
