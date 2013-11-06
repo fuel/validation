@@ -116,7 +116,8 @@ class Validator
 	 * The array is expected to have keys named after fields.
 	 * This function will call reset() before it runs.
 	 *
-	 * @param array $data
+	 * @param array           $data
+	 * @param ResultInterface $result
 	 *
 	 * @return ResultInterface
 	 *

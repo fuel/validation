@@ -71,7 +71,7 @@ class Simple implements ValidationAwareInterface
 	{
 		$data = $this->getData();
 
-		if (is_null($data))
+		if ($data === null)
 		{
 			throw new InvalidArgumentException('VAL-005: No data specified. Please call setData() first.');
 		}
