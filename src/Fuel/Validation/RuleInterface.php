@@ -1,12 +1,11 @@
 <?php
-
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
 
 namespace Fuel\Validation;
@@ -16,6 +15,8 @@ namespace Fuel\Validation;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ *
+ * @since   2.0
  */
 interface RuleInterface
 {
@@ -34,6 +35,8 @@ interface RuleInterface
 	 * @param array  $allFields Values of all the other fields being validated
 	 *
 	 * @return bool
+	 *
+	 * @since 2.0
 	 */
 	public function validate($value, $field = null, &$allFields = null);
 
@@ -41,6 +44,8 @@ interface RuleInterface
 	 * Gets the failure message for this rule
 	 *
 	 * @return string
+	 *
+	 * @since 2.0
 	 */
 	public function getMessage();
 
@@ -50,6 +55,8 @@ interface RuleInterface
 	 * @param string $message
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setMessage($message);
 
@@ -60,6 +67,8 @@ interface RuleInterface
 	 * @param mixed $params
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setParameter($params);
 
@@ -68,6 +77,8 @@ interface RuleInterface
 	 * See each Rule's documentation for what the parameter does.
 	 *
 	 * @return mixed
+	 *
+	 * @since 2.0
 	 */
 	public function getParameter();
 

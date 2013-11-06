@@ -1,25 +1,24 @@
 <?php
-
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Exception;
+namespace Fuel\Validation;
 
 /**
- * Tests for InvalidField exception
+ * Tests for InvalidRule exception
  *
- * @package Fuel\Validation\Exception
+ * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Exception\InvalidField
+ * @covers  \Fuel\Validation\InvalidRuleException
  */
-class InvalidFieldTest extends \PHPUnit_Framework_TestCase
+class InvalidRuleExceptionTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
@@ -28,10 +27,10 @@ class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDefaultConstructor()
 	{
-		$object = new InvalidField();
+		$object = new InvalidRuleException();
 
 		$this->assertEquals(
-			'VAL-001: The specified field is not known.',
+			'VAL-003: The specified rule is not known.',
 			$object->getMessage()
 		);
 	}
@@ -42,12 +41,12 @@ class InvalidFieldTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testConstructorWithField()
 	{
-		$fieldName = 'myCustomField';
+		$ruleName = 'myCustomField';
 
-		$object = new InvalidField($fieldName);
+		$object = new InvalidRuleException($ruleName);
 
 		$this->assertEquals(
-			'VAL-002: The field ['.$fieldName.'] is not known.',
+			'VAL-004: The rule ['.$ruleName.'] is not known.',
 			$object->getMessage()
 		);
 	}

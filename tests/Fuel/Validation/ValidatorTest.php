@@ -1,12 +1,11 @@
 <?php
-
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
 
 namespace Fuel\Validation;
@@ -20,13 +19,13 @@ use Fuel\Validation\Rule\Number;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Validation
+ * @covers  \Fuel\Validation\Validator
  */
-class ValidationTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Validation
+	 * @var Validator
 	 */
 	protected $object;
 
@@ -39,7 +38,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->object = new Validation;
+		$this->object = new Validator;
 
 		$this->testFields = array(
 			'email' => array(
@@ -69,7 +68,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass getRules
-	 * @expectedException  \Fuel\Validation\Exception\InvalidField
+	 * @expectedException  \Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
 	public function testGetRulesForUnknown()
@@ -139,7 +138,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 			$this->object->run(array(
 					$fieldName => 'user@domain.example',
 				)
-			)
+			)->isValid()
 		);
 	}
 
@@ -158,7 +157,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 			$this->object->run(array(
 					$fieldName => 'example',
 				)
-			)
+			)->isValid()
 		);
 	}
 
@@ -174,7 +173,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals(
 			$expected,
-			$this->object->run($data)
+			$this->object->run($data)->isValid()
 		);
 	}
 
@@ -196,77 +195,127 @@ class ValidationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessages
-	 * @coversDefaultClass hasRun
-	 * @coversDefaultClass reset
+	 * @coversDefaultClass __call
+	 * @expectedException  \Fuel\Validation\InvalidRuleException
 	 * @group              Validation
 	 */
-	public function testReset()
+	public function testMagicRuleInvalid()
 	{
-		$this->object->reset();
+		$this->object->fakeTestRule();
+	}
 
-		// Check that hasRun has been reset
-		$this->assertFalse(
-			$this->object->hasRun()
-		);
+	/**
+	 * @coversDefaultClass __call
+	 * @group              Validation
+	 */
+	public function testAddMagicRule()
+	{
+		$this->object->addField('test')
+			->required();
 
-		// Check that messages have been reset
-		$this->assertEquals(
-			array(),
-			$this->object->getMessages()
+		$rules = $this->object->getRules('test');
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Required',
+			$rules[0]
 		);
 	}
 
 	/**
-	 * @coversDefaultClass run
-	 * @coversDefaultClass hasRun
+	 * @coversDefaultClass __call
 	 * @group              Validation
 	 */
-	public function testHasRun()
+	public function testMagicChain()
 	{
-		$this->assertFalse(
-			$this->object->hasRun()
+		$this->object
+			->addField('first magic test')
+				->number()
+			->addField('test')
+				->required()
+				->matchField('first');
+
+		$firstRules = $this->object->getRules('first magic test');
+
+		// Make sure the first rule has been added correctly
+		$this->assertEquals(
+			1,
+			count($firstRules)
 		);
 
-		$this->object->run(array());
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Number',
+			$firstRules[0]
+		);
 
-		$this->assertTrue(
-			$this->object->hasRun()
+		// Make sure the second field's rules are added correctly
+		$testRules = $this->object->getRules('test');
+
+		// Make sure there are two entries
+		$this->assertEquals(
+			2,
+			count($testRules)
+		);
+
+		// And that the right rules have been added
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\Required',
+			$testRules[0]
+		);
+
+		$this->assertInstanceOf(
+			'\Fuel\Validation\Rule\MatchField',
+			$testRules[1]
 		);
 	}
 
 	/**
-	 * @coversDefaultClass getMessages
-	 * @coversDefaultClass run
-	 * @coversDefaultClass validateField
+	 * @coversDefaultClass addCustomRule
+	 * @coversDefaultClass createRuleInstance
 	 * @group              Validation
 	 */
-	public function testGetMessages()
+	public function testAddCustomRule()
 	{
-		$this->addTestRules();
+		$this->object->addCustomRule('testRule', '\Fuel\Validation\FakeRule');
 
-		$this->assertEquals(
-			array(),
-			$this->object->getMessages()
+		$this->assertInstanceOf(
+			'\Fuel\Validation\FakeRule',
+			$this->object->createRuleInstance('testRule')
 		);
 
-		// Fail some validation
-		$this->object->run(array(
-				'email' => 'asdasd',
-				'age' => 'asdasd',
-			)
-		);
+		// Check that our magic methods are working
+	}
 
-		// Set up an expected result
-		$expected = array(
-			'email' => $this->testFields['email'][0]->getMessage(),
-			'age' => $this->testFields['age'][0]->getMessage(),
-		);
+	/**
+	 * @coversDefaultClass addCustomRule
+	 * @coversDefaultClass createRuleInstance
+	 * @group              Validation
+	 */
+	public function testAddCoreRuleOverride()
+	{
+		$this->object->addCustomRule('required', '\Fuel\Validation\FakeRule');
 
-		// Check for that
-		$this->assertEquals(
-			$expected,
-			$this->object->getMessages()
+		$this->assertInstanceOf(
+			'\Fuel\Validation\FakeRule',
+			$this->object->createRuleInstance('required')
 		);
+	}
+
+}
+
+/**
+ * Fake validation rule to test adding custom rules
+ *
+ * @package Fuel\Validation
+ * @author  Fuel Development Team
+ */
+class FakeRule extends AbstractRule
+{
+
+	/**
+	 * Will always return the $value
+	 */
+	public function validate($value, $field = null, &$allFields = null)
+	{
+		return $value;
 	}
 }

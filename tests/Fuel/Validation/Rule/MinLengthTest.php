@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Fuel\Validation
  * @version   2.0
@@ -14,7 +13,7 @@ namespace Fuel\Validation\Rule;
 require_once(__DIR__.'/../../../ClassWithToString.php');
 
 /**
- * Tests the MinLength class
+ * Defines tests for MinLength
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team

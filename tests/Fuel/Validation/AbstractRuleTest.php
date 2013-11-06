@@ -1,15 +1,16 @@
 <?php
-
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
 
 namespace Fuel\Validation;
+
+require_once(__DIR__.'/../../DummyAbstractRule.php');
 
 /**
  * Tests for AbstractRule
@@ -29,7 +30,29 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->object = \Mockery::mock('Fuel\Validation\AbstractRule[validate]');
+		$this->object = new \DummyAbstractRule;
+	}
+
+	/**
+	 * @coversDefaultClass __construct
+	 * @group              Validation
+	 */
+	public function testConstruct()
+	{
+		$params = 'foobar';
+		$message = 'test message';
+
+		$abstractRule = new \DummyAbstractRule($params, $message);
+
+		$this->assertEquals(
+			$params,
+			$abstractRule->getParameter()
+		);
+
+		$this->assertEquals(
+			$message,
+			$abstractRule->getMessage()
+		);
 	}
 
 	/**

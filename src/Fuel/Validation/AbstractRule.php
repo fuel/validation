@@ -1,12 +1,11 @@
 <?php
-
 /**
- * Part of the FuelPHP framework.
- *
  * @package   Fuel\Validation
  * @version   2.0
+ * @author    Fuel Development Team
  * @license   MIT License
  * @copyright 2010 - 2013 Fuel Development Team
+ * @link      http://fuelphp.com
  */
 
 namespace Fuel\Validation;
@@ -16,6 +15,7 @@ namespace Fuel\Validation;
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
+ * @since   2.0
  */
 abstract class AbstractRule implements RuleInterface
 {
@@ -40,7 +40,7 @@ abstract class AbstractRule implements RuleInterface
 	 * @param mixed  $params
 	 * @param string $message
 	 *
-	 * @codeCoverageIgnore
+	 * @since 2.0
 	 */
 	public function __construct($params = null, $message = '')
 	{
@@ -52,6 +52,8 @@ abstract class AbstractRule implements RuleInterface
 	 * Gets the failure message for this rule
 	 *
 	 * @return string
+	 *
+	 * @since 2.0
 	 */
 	public function getMessage()
 	{
@@ -64,10 +66,13 @@ abstract class AbstractRule implements RuleInterface
 	 * @param string $message
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setMessage($message)
 	{
 		$this->message = $message;
+
 		return $this;
 	}
 
@@ -78,10 +83,13 @@ abstract class AbstractRule implements RuleInterface
 	 * @param mixed $params
 	 *
 	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setParameter($params)
 	{
 		$this->params = $params;
+
 		return $this;
 	}
 
@@ -90,6 +98,8 @@ abstract class AbstractRule implements RuleInterface
 	 * See each Rule's documentation for what the parameter does.
 	 *
 	 * @return mixed
+	 *
+	 * @since 2.0
 	 */
 	public function getParameter()
 	{

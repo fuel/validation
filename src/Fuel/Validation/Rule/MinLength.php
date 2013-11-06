@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Fuel\Validation
  * @version   2.0
@@ -19,11 +18,17 @@ use Fuel\Validation\AbstractRule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @since 2.0
+ * @since	2.0
  */
 class MinLength extends AbstractRule
 {
 
+	/**
+	 * @param mixed  $params
+	 * @param string $message
+	 *
+	 * @since 2.0
+	 */
 	public function __construct($params = null, $message = '')
 	{
 		parent::__construct($params, $message);
@@ -34,15 +39,15 @@ class MinLength extends AbstractRule
 		}
 	}
 
-/**
- * @param mixed $value
- * @param string    $field
- * @param array $allFields
- *
- * @return bool
- *
- * @since 2.0
- */
+	/**
+	 * @param mixed $value
+	 * @param string    $field
+	 * @param array $allFields
+	 *
+	 * @return bool
+	 *
+	 * @since 2.0
+	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
 		mb_internal_encoding('UTF-8');
