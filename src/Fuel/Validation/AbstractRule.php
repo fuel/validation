@@ -41,8 +41,6 @@ abstract class AbstractRule implements RuleInterface
 	 * @param string $message
 	 *
 	 * @since 2.0
-	 *
-	 * @codeCoverageIgnore
 	 */
 	public function __construct($params = null, $message = '')
 	{
