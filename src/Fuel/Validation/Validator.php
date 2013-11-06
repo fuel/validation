@@ -127,7 +127,7 @@ class Validator
 	 */
 	public function run(array $data, ResultInterface $result = null)
 	{
-		if (is_null($result))
+		if ($result === null)
 		{
 			$result = new Result;
 		}
@@ -164,27 +164,21 @@ class Validator
 	{
 		$rules = $this->getRules($field);
 
-		$result = true;
-
 		foreach ($rules as $rule)
 		{
-			$result = $rule->validate($value, $field, $data);
-
-			if ( ! $result)
+			if ( ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
 				$resultInterface->setError($field, $rule->getMessage());
-				break;
+
+				return false;
 			}
 		}
 
-		if ($result)
-		{
-			// All is good so make sure the field gets added as one of the validated fields
-			$resultInterface->setValidated($field);
-		}
+		// All is good so make sure the field gets added as one of the validated fields
+		$resultInterface->setValidated($field);
 
-		return $result;
+		return true;
 	}
 
 	/**
