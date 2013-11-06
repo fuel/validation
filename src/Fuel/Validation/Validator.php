@@ -223,11 +223,19 @@ class Validator
 	 *
 	 * @return RuleInterface
 	 *
+	 * @throws InvalidField
+	 *
 	 * @since 2.0
 	 */
 	public function createRuleInstance($name, $parameters = null)
 	{
 		$className = $this->getRuleClassName($name);
+
+		if ( ! class_exists($className))
+		{
+			throw new InvalidRule($name);
+		}
+
 		return new $className($parameters);
 	}
 
@@ -237,7 +245,6 @@ class Validator
 	 * @param $name
 	 *
 	 * @return string
-	 * @throws InvalidRule
 	 *
 	 * @since 2.0
 	 */
@@ -247,21 +254,10 @@ class Validator
 		if (array_key_exists($name, $this->customRules))
 		{
 			// We do so grab the class name from the store
-			$className = $this->customRules[$name];
-		}
-		else
-		{
-			// Not found so look at our core rules
-			$className = '\Fuel\Validation\Rule\\' . ucfirst($name);
+			return $this->customRules[$name];
 		}
 
-		// If the class does not exist throw an error
-		if ( ! class_exists($className))
-		{
-			throw new InvalidRule($name);
-		}
-
-		return $className;
+		return 'Fuel\Validation\Rule\\' . ucfirst($name);
 	}
 
 	/**
