@@ -14,7 +14,7 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Checks that the value is longer than the given maximum length.
+ * Checks that a string value is no longer than the given maximum allowed length.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
@@ -41,7 +41,7 @@ class MaxLength extends AbstractRule
      */
     public function validate($value, $field = null, &$allFields = null)
     {
-        mb_internal_encoding("UTF-8");
+        mb_internal_encoding('UTF-8');
         if ( is_object($value) && ! method_exists($value, '__toString') )
         {
             return true;

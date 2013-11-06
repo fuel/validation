@@ -32,16 +32,16 @@ class MinLength extends AbstractRule
 		}
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param string    $field
-	 * @param array $allFields
-	 *
-	 * @return bool
-	 */
+/**
+ * @param mixed $value
+ * @param string    $field
+ * @param array $allFields
+ *
+ * @return bool
+ */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-        mb_internal_encoding("UTF-8");
+        mb_internal_encoding('UTF-8');
 		if ( is_object($value) && ! method_exists($value, '__toString') )
 		{
 			return false;

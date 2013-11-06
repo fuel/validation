@@ -10,9 +10,11 @@
  */
 
 namespace Fuel\Validation\Rule;
-require_once('/tests/ClassWithToString.php');
+
+require_once(__DIR__.'/../../../ClassWithToString.php');
+
 /**
- * Class MinLengthTest
+ * Tests the MinLength class
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
@@ -66,9 +68,6 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
      */
     public function validateProvider()
     {
-
-        $classWithToString = new \ClassWithToString();
-
         return array(
             array('hello', 1, true),
             array('', 1, false),
@@ -80,9 +79,9 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
             array('z', 0, true),
             array(new \stdClass(), 100, false),
             array(new \stdClass(), null, false),
-            array($classWithToString, 1, true),
-            array($classWithToString, null, true),
-            array($classWithToString, 100000, false),
+            array(new \ClassWithToString(), 1, true),
+            array(new \ClassWithToString(), null, true),
+            array(new \ClassWithToString(), 100000, false),
             array(function(){ return false; }, null, false),
             array('', null, true),
             array(null, 1, false),
