@@ -34,9 +34,9 @@ class ExactLength extends AbstractRule
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param string    $field
-	 * @param array $allFields
+	 * @param mixed  $value
+	 * @param string $field
+	 * @param array  $allFields
 	 *
 	 * @return bool
 	 *
@@ -44,13 +44,15 @@ class ExactLength extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		mb_internal_encoding('UTF-8');
-		if ( is_object($value) && ! method_exists($value, '__toString'))
+		if($this->getParameter() === null)
 		{
-			if($this->getParameter() === null)
-			{
-				return true;
-			}
+			return false;
+		}
+
+		mb_internal_encoding('UTF-8');
+
+		if ( is_object($value) && ! method_exists($value, '__toString') )
+		{
 			return false;
 		}
 		return (mb_strlen(( string ) $value) == $this->getParameter());

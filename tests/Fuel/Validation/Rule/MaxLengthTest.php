@@ -68,7 +68,6 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function validateProvider()
 	{
-
 		return array(
 			array('hello', 1, false),
 			array('', 1, true),
@@ -80,16 +79,16 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 			array('', -1, false),
 			array('z', 0, false),
 			array(new \stdClass(), 100, true),
-			array(new \stdClass(), null, true),
+			array(new \stdClass(), null, false),
 			array(new \ClassWithToString(), 1, false),
 			array(new \ClassWithToString(), null, false),
 			array(new \ClassWithToString(), 100000, true),
-			array(function(){ return false; }, null, true),
+			array(function(){ return false; }, null, false),
 			array(function(){ return false; }, 100, true),
-			array('', null, true),
+			array('', null, false),
 			array(null, 1, true),
 			array("a", null, false),
-			array(null, null, true)
+			array(null, null, false)
 		);
 	}
 	/**

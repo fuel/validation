@@ -79,12 +79,12 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 			array(new \stdClass(), 100, false),
 			array(new \stdClass(), null, false),
 			array(new \ClassWithToString(), 1, true),
-			array(new \ClassWithToString(), null, true),
+			array(new \ClassWithToString(), null, false),
 			array(new \ClassWithToString(), 100000, false),
 			array(function(){ return false; }, null, false),
-			array('', null, true),
+			array('', null, false),
 			array(null, 1, false),
-			array(null, null, true)
+			array(null, null, false)
 		);
 	}
 	/**
