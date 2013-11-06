@@ -49,12 +49,13 @@ class MaxLength extends AbstractRule
 			return false;
 		}
 
-		mb_internal_encoding('UTF-8');
-
 		if ( is_object($value) && ! method_exists($value, '__toString') )
 		{
 			return true;
 		}
+
+		mb_internal_encoding('UTF-8');
+
 		return (mb_strlen(( string ) $value) <= $this->getParameter());
 	}
 
