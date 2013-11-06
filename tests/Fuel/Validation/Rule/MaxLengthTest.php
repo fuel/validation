@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Fuel\Validation
  * @version   2.0

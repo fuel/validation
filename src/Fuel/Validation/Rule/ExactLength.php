@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Fuel\Validation
  * @version   2.0
@@ -49,7 +48,9 @@ class ExactLength extends AbstractRule
 		if ( is_object($value) && ! method_exists($value, '__toString'))
 		{
 			if($this->getParameter() === null)
-			return true;
+			{
+				return true;
+			}
 			return false;
 		}
 		return (mb_strlen(( string ) $value) == $this->getParameter());
