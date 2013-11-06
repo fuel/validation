@@ -13,8 +13,6 @@
  *
  * @package Fuel\Validation
  * @author  Fuel Development Team
- *
- * @codeCoverageIgnore
  */
 class DummyAbstractRule extends \Fuel\Validation\AbstractRule
 {
