@@ -8,8 +8,6 @@
  * @link      http://fuelphp.com
  */
 
-
-
 /**
 * Provides a simple class with a magic toString method, used for testing objects that can be cast to strings.
 *
