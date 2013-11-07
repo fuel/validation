@@ -50,6 +50,7 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - numericBetween - Checks if a numeric value falls between an upper and lower band
  - numericMax - Checks if the value is less than or equal to a given value
  - numericMin - Checks if the value is greater than or equal to a given value
+ - regex - Checks if the value matches against a given regular expression
  - required - Checks if the value exists in the data being validated
  - url - Checks if the given value is a valid url or not
 
@@ -114,7 +115,7 @@ $v->addRule('myCustomRule', 'My\App\Rules\CustomRule');
 // Example of adding the new rule via magic method syntax
 $v->addField('foobar')
     ->myCustomRule();
-    
+
 $instance = $v->getRuleInstance('myCustomRule');
 var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
@@ -135,7 +136,7 @@ $v->addRule('required', 'My\App\Rules\CustomRule');
 // Example of adding the new rule via magic method syntax
 $v->addField('foobar')
     ->required();
-    
+
 $instance = $v->getRuleInstance('required');
 var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
@@ -165,7 +166,7 @@ $config = array(
         'number',
         'numericMin' => 18, // Make sure the value is 18 or greater
     ),
-    
+
     // The exact parameters for each rule are documented with the rule itself and can differ between rules.
 );
 
