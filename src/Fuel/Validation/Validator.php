@@ -54,7 +54,7 @@ class Validator
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
-		if ( ! array_key_exists($field, $this->rules))
+		if ( ! isset($this->rules[$field]))
 		{
 			$this->addField($field);
 		}
@@ -101,7 +101,7 @@ class Validator
 		}
 
 		// Now we know we have a field check that we know about it
-		if ( ! array_key_exists($field, $this->rules))
+		if ( ! isset($this->rules[$field]))
 		{
 			// If it's not there, throw an exception
 			throw new InvalidFieldException($field);
@@ -236,7 +236,7 @@ class Validator
 	protected function getRuleClassName($name)
 	{
 		// Check if we have a custom rule registered
-		if (array_key_exists($name, $this->customRules))
+		if (isset($this->customRules[$name]))
 		{
 			// We do so grab the class name from the store
 			return $this->customRules[$name];

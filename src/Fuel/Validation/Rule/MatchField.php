@@ -59,7 +59,7 @@ class MatchField extends AbstractRule
 
 		// If any of the needed settings are missing, return false and
 		// check if the array key exists, if not nothing to validate against
-		if ($allFields === null or $matchAgainst === null or ! array_key_exists($matchAgainst, $allFields))
+		if ($allFields === null or $matchAgainst === null or ! isset($allFields[$matchAgainst]))
 		{
 			return false;
 		}

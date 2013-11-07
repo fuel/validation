@@ -76,7 +76,7 @@ class Result implements ResultInterface
 	 */
 	public function getError($field)
 	{
-		if ( ! array_key_exists($field, $this->errors))
+		if ( ! isset($this->errors[$field]))
 		{
 			throw new InvalidFieldException($field);
 		}

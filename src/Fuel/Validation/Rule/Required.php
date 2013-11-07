@@ -52,9 +52,7 @@ class Required extends AbstractRule
 	{
 		// Make sure the array key exists in the data
 		// This check will only be performed if $field and $allFields are set. Else only the value passed will be tested
-		if ( ( $field !== null and $allFields !== null ) and
-			! array_key_exists($field, $allFields)
-		)
+		if ($field !== null and $allFields !== null and ! isset($allFields[$field]))
 		{
 			return false;
 		}
