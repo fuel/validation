@@ -8,7 +8,7 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Generator;
+namespace Fuel\Validation\RuleProvider;
 
 use Fuel\Validation\ValidationAwareInterface;
 use Fuel\Validation\Validator;
@@ -17,7 +17,7 @@ use InvalidArgumentException;
 /**
  * Allows sets of validation rules to be generated from an array structure
  *
- * @package Fuel\Validation\Generator
+ * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  * @since   2.0
  */

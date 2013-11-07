@@ -8,7 +8,7 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Generator;
+namespace Fuel\Validation\RuleProvider;
 
 use Fuel\Validation\Rule\MinLength;
 use Fuel\Validation\Rule\Required;
@@ -16,10 +16,10 @@ use Fuel\Validation\Rule\Required;
 /**
  * Tests for Simple
  *
- * @package Fuel\Validation\Generator
+ * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Generator\Simple
+ * @covers Fuel\Validation\RuleProvider\Simple
  */
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {
