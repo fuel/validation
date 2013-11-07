@@ -51,12 +51,7 @@ class NumericMin extends AbstractRule
 	{
 		$min = $this->getParameter();
 
-		if ( ! is_numeric($value))
-		{
-			return false;
-		}
-
-		if ($min === null)
+		if ($min === null or ! is_numeric($value))
 		{
 			return false;
 		}

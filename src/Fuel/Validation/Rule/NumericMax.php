@@ -49,18 +49,13 @@ class NumericMax extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		$min = $this->getParameter();
+		$max = $this->getParameter();
 
-		if ( ! is_numeric($value))
+		if ($max === null or ! is_numeric($value))
 		{
 			return false;
 		}
 
-		if ($min === null)
-		{
-			return false;
-		}
-
-		return $value <= $min;
+		return $value <= $max;
 	}
 }
