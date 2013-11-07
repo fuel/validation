@@ -78,6 +78,7 @@ class NumericMinTest extends \PHPUnit_Framework_TestCase
 			11 => array(2100, 20, true),
 			12 => array(21, -10, true),
 			13 => array(-20, -10, false),
+			14 => array(-20, null, false),
 		);
 	}
 

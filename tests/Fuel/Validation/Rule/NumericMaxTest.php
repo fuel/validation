@@ -78,6 +78,7 @@ class NumericMaxTest extends \PHPUnit_Framework_TestCase
 			11 => array(2100, 20, false),
 			12 => array(21, -10, false),
 			13 => array(-20, -10, true),
+			14 => array(-20, null, false),
 		);
 	}
 
