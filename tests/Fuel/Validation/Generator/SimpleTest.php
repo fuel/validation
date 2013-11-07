@@ -48,9 +48,14 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 
 		$validator = \Mockery::mock('\Fuel\Validation\Validator');
 
-		$this->object->populateValidation($validator);
+		$this->object->populateValidator($validator);
 	}
 
+	/**
+	 * @coversDefaultClass populateValidator
+	 * @coversDefaultClass setData
+	 * @group              Validation
+	 */
 	public function testPopulate()
 	{
 		$data = array(
@@ -78,7 +83,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 		$validator->shouldReceive('addRule')->with('test field', $minLengthRule)->once();
 
 		$this->object->setData($data);
-		$this->object->populateValidation($validator);
+		$this->object->populateValidator($validator);
 	}
 
 }

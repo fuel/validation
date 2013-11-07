@@ -67,7 +67,7 @@ class Simple implements ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function populateValidation(Validator $validator)
+	public function populateValidator(Validator $validator)
 	{
 		$data = $this->getData();
 
