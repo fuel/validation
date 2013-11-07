@@ -142,6 +142,46 @@ $config = array(
     'name' => array(
         'required', // Rules with no parameters can be specified like this
     ),
+    'email' => array(
+        'required',
+        'email', // Make sure this is a valid email address
+    ),
+    'age' => array(
+        'number',
+        'numericMin' => 18, // Make sure the value is 18 or greater
+    ),
+    
+    // The exact parameters for each rule are documented with the rule itself and can differ between rules.
 );
+
+$v = new Validator;
+
+$generator = new Simple;
+$generator->setData($data)->populateValidator($v);
+
+// $v is now populated with the fields and rules specified in the config array.
 ```
 
+The `Generator`s will also be aware of custom rules that are added to the `Validator` that they are passed.
+
+```php
+<?php
+<?php
+
+use \Fuel\Validation\Validator;
+use \Fuel\Validation\Generator\Simple;
+
+$config = array(
+    'name' => array(
+        'myCustomRule',
+    ),
+);
+
+$v = new Validator;
+
+$v->addRule('myCustomRule', 'My\App\Rules\CustomRule');
+
+$generator = new Simple;
+$generator->setData($data)->populateValidator($v);
+
+```
