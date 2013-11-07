@@ -152,13 +152,13 @@ class Validator
 	 * @param string          $field
 	 * @param mixed           $value
 	 * @param mixed[]       & $data
-	 * @param ResultInterface $resultInterface
+	 * @param ResultInterface $result
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	protected function validateField($field, $value, &$data, ResultInterface $resultInterface)
+	protected function validateField($field, $value, &$data, ResultInterface $result)
 	{
 		$rules = $this->getRules($field);
 
@@ -167,14 +167,14 @@ class Validator
 			if ( ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
-				$resultInterface->setError($field, $rule->getMessage());
+				$result->setError($field, $rule->getMessage());
 
 				return false;
 			}
 		}
 
 		// All is good so make sure the field gets added as one of the validated fields
-		$resultInterface->setValidated($field);
+		$result->setValidated($field);
 
 		return true;
 	}
