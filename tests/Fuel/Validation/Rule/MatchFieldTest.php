@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\MatchField
+ * @covers  Fuel\Validation\Rule\MatchField
  */
 class MatchFieldTest extends \PHPUnit_Framework_TestCase
 {

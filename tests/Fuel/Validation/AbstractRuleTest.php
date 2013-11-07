@@ -18,7 +18,7 @@ require_once(__DIR__.'/../../DummyAbstractRule.php');
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\AbstractRule
+ * @covers  Fuel\Validation\AbstractRule
  */
 class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 {

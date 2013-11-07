@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Rule\NumericMax
+ * @covers Fuel\Validation\Rule\NumericMax
  */
 class NumericMaxTest extends \PHPUnit_Framework_TestCase
 {

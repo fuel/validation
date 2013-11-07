@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\Required
+ * @covers  Fuel\Validation\Rule\Required
  */
 class RequiredTest extends \PHPUnit_Framework_TestCase
 {

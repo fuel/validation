@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Rule\Ip
+ * @covers Fuel\Validation\Rule\Ip
  */
 class IpTest extends \PHPUnit_Framework_TestCase
 {

@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\Email
+ * @covers  Fuel\Validation\Rule\Email
  */
 class EmailTest extends \PHPUnit_Framework_TestCase
 {

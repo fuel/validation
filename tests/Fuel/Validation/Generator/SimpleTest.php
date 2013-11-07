@@ -19,7 +19,7 @@ use Fuel\Validation\Rule\Required;
  * @package Fuel\Validation\Generator
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Generator\Simple
+ * @covers Fuel\Validation\Generator\Simple
  */
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,7 +46,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 			$this->object->getData()
 		);
 
-		$validator = \Mockery::mock('\Fuel\Validation\Validator');
+		$validator = \Mockery::mock('Fuel\Validation\Validator');
 
 		$this->object->populateValidator($validator);
 	}
@@ -65,7 +65,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 			),
 		);
 
-		$validator = \Mockery::mock('\Fuel\Validation\Validator');
+		$validator = \Mockery::mock('Fuel\Validation\Validator');
 
 		// Ensure the field gets added
 		$validator->shouldReceive('addField')->once()->with('test field');

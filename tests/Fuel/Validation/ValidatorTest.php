@@ -19,7 +19,7 @@ use Fuel\Validation\Rule\Number;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Validator
+ * @covers  Fuel\Validation\Validator
  */
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -68,7 +68,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass getRules
-	 * @expectedException  \Fuel\Validation\InvalidFieldException
+	 * @expectedException  Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
 	public function testGetRulesForUnknown()
@@ -196,7 +196,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass __call
-	 * @expectedException  \Fuel\Validation\InvalidRuleException
+	 * @expectedException  Fuel\Validation\InvalidRuleException
 	 * @group              Validation
 	 */
 	public function testMagicRuleInvalid()
@@ -216,7 +216,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		$rules = $this->object->getRules('test');
 
 		$this->assertInstanceOf(
-			'\Fuel\Validation\Rule\Required',
+			'Fuel\Validation\Rule\Required',
 			$rules[0]
 		);
 	}
@@ -243,7 +243,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$this->assertInstanceOf(
-			'\Fuel\Validation\Rule\Number',
+			'Fuel\Validation\Rule\Number',
 			$firstRules[0]
 		);
 
@@ -258,12 +258,12 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 		// And that the right rules have been added
 		$this->assertInstanceOf(
-			'\Fuel\Validation\Rule\Required',
+			'Fuel\Validation\Rule\Required',
 			$testRules[0]
 		);
 
 		$this->assertInstanceOf(
-			'\Fuel\Validation\Rule\MatchField',
+			'Fuel\Validation\Rule\MatchField',
 			$testRules[1]
 		);
 	}
@@ -275,10 +275,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testAddCustomRule()
 	{
-		$this->object->addCustomRule('testRule', '\Fuel\Validation\FakeRule');
+		$this->object->addCustomRule('testRule', 'Fuel\Validation\FakeRule');
 
 		$this->assertInstanceOf(
-			'\Fuel\Validation\FakeRule',
+			'Fuel\Validation\FakeRule',
 			$this->object->createRuleInstance('testRule')
 		);
 
@@ -292,10 +292,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testAddCoreRuleOverride()
 	{
-		$this->object->addCustomRule('required', '\Fuel\Validation\FakeRule');
+		$this->object->addCustomRule('required', 'Fuel\Validation\FakeRule');
 
 		$this->assertInstanceOf(
-			'\Fuel\Validation\FakeRule',
+			'Fuel\Validation\FakeRule',
 			$this->object->createRuleInstance('required')
 		);
 	}
