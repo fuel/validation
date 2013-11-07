@@ -43,6 +43,13 @@ class Validator
 	protected $lastAddedField;
 
 	/**
+	 * Keeps track of the last rule added for message setting
+	 *
+	 * @var string
+	 */
+	protected $lastAddedRule;
+
+	/**
 	 * Adds a rule that can be used to validate a field
 	 *
 	 * @param string        $field
@@ -59,7 +66,7 @@ class Validator
 			$this->addField($field);
 		}
 
-		$this->rules[$field][] = $rule;
+		$this->rules[$field][] = $this->lastAddedRule = $rule;
 
 		return $this;
 	}
@@ -196,6 +203,27 @@ class Validator
 		$rule = $this->createRuleInstance($name, $arguments);
 
 		$this->addRule($this->lastAddedField, $rule);
+
+		return $this;
+	}
+
+	/**
+	 * Sets the failure message for the last added rule
+	 *
+	 * @param string $message
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setMessage($message)
+	{
+		if ( ! $this->lastAddedRule)
+		{
+			throw new \LogicException('A rule should be added before setting a message');
+		}
+
+		$this->lastAddedRule->setMessage($message);
 
 		return $this;
 	}
