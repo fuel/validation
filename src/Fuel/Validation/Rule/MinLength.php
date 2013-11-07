@@ -22,22 +22,12 @@ use Fuel\Validation\AbstractRule;
  */
 class MinLength extends AbstractRule
 {
-
 	/**
-	 * @param mixed  $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field does not satisfy the minimum length requirement.');
-		}
-	}
+	protected $message = 'The field does not satisfy the minimum length requirement.';
 
 	/**
 	 * @param mixed    $value     Value to be validated

@@ -21,22 +21,12 @@ use Fuel\Validation\AbstractRule;
  */
 class NumericMax extends AbstractRule
 {
-
 	/**
-	 * @param mixed  $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field is not equal to or less than the specified value.');
-		}
-	}
+	protected $message = 'The field is not equal to or less than the specified value.';
 
 	/**
 	 * @param mixed  $value     Value to validate

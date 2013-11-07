@@ -24,23 +24,12 @@ use Fuel\Validation\AbstractRule;
  */
 class MatchField extends AbstractRule
 {
-
 	/**
-	 * @param string $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field does not match the other given field.');
-		}
-	}
-
+	protected $message = 'The field does not match the other given field.';
 
 	/**
 	 * Returns true if $value matches the value of the field specified with setParameter()

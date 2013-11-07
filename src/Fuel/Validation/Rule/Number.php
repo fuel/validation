@@ -22,22 +22,12 @@ use Fuel\Validation\AbstractRule;
  */
 class Number extends AbstractRule
 {
-
 	/**
-	 * @param mixed  $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field is not valid number.');
-		}
-	}
+	protected $message = 'The field is not valid number.';
 
 	/**
 	 * Performs validation on the given value

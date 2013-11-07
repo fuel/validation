@@ -21,22 +21,12 @@ use Fuel\Validation\AbstractRule;
  */
 class Url extends AbstractRule
 {
-
 	/**
-	 * @param mixed  $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		if (empty($message))
-		{
-			$message = 'The field is not a valid url.';
-		}
-
-		parent::__construct($params, $message);
-	}
+	protected $message = 'The field is not a valid url.';
 
 	/**
 	 * @param mixed  $value     Value to validate

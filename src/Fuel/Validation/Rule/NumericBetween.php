@@ -25,22 +25,12 @@ use Fuel\Validation\AbstractRule;
  */
 class NumericBetween extends AbstractRule
 {
-
 	/**
-	 * @param mixed  $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field is not between the specified values.');
-		}
-	}
+	protected $message = 'The field is not between the specified values.';
 
 	/**
 	 * @param mixed  $value     Value to validate
