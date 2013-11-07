@@ -166,7 +166,6 @@ The `Generator`s will also be aware of custom rules that are added to the `Valid
 
 ```php
 <?php
-<?php
 
 use \Fuel\Validation\Validator;
 use \Fuel\Validation\Generator\Simple;
