@@ -19,19 +19,19 @@ use Fuel\Validation\Rule\Required;
  * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\RuleProvider\Simple
+ * @covers Fuel\Validation\RuleProvider\FromArray
  */
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Simple
+	 * @var FromArray
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Simple;
+		$this->object = new FromArray;
 	}
 
 	/**

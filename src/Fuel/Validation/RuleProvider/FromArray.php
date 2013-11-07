@@ -21,7 +21,7 @@ use InvalidArgumentException;
  * @author  Fuel Development Team
  * @since   2.0
  */
-class Simple implements ValidationAwareInterface
+class FromArray implements ValidationAwareInterface
 {
 
 	/**
