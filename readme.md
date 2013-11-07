@@ -9,7 +9,7 @@ A flexable library to validate different kinds of data.
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
+use Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -38,6 +38,21 @@ var_dump($result->validated()); // List of all the fields that passed validation
 
 ```
 
+### Current validation rules
+
+All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
+
+ - email - Checks for a valid email format
+ - ip -  Checks for a valid IP address
+ - matchFiled - Compares the given field against another field being validated
+ - minLength - Checks if the value is >= a given value
+ - number - Checks if the value is numeric or not
+ - numericBetween - Checks if a numeric value falls between an upper and lower band
+ - numericMax - Checks if the value is less than or equal to a given value
+ - numericMin - Checks if the value is greater than or equal to a given value
+ - required - Checks if the value exists in the data being validated
+ - url - Checks if the given value is a valid url or not
+
 ## Error messages
 
 Messages can be retrieved from the result object after validatoin has been performed
@@ -45,7 +60,7 @@ Messages can be retrieved from the result object after validatoin has been perfo
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
+use Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -89,7 +104,7 @@ The `myCustomRule` rule is now avaliable for use with the `Validator` instance a
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
+use Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -110,7 +125,7 @@ It is possible to replace existing rules simply by calling `addRule()` as in the
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
+use Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -134,8 +149,8 @@ The generator is used by creating a new `Validator`, setting up your config arra
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
-use \Fuel\Validation\Generator\Simple;
+use Fuel\Validation\Validator;
+use Fuel\Validation\Generator\Simple;
 
 // The key is the name of the field that has a value of an array containing the rules
 $config = array(
@@ -167,8 +182,8 @@ The `Generator`s will also be aware of custom rules that are added to the `Valid
 ```php
 <?php
 
-use \Fuel\Validation\Validator;
-use \Fuel\Validation\Generator\Simple;
+use Fuel\Validation\Validator;
+use Fuel\Validation\Generator\Simple;
 
 $config = array(
     'name' => array(
