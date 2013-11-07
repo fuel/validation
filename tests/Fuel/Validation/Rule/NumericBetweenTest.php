@@ -11,24 +11,24 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Tests for ValidUrl
+ * Tests for NumericBetween
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Rule\Url
+ * @covers \Fuel\Validation\Rule\NumericBetween
  */
-class UrlTest extends \PHPUnit_Framework_TestCase
+class NumericBetweenTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Url
+	 * @var NumericMax
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Url;
+		$this->object = new NumericBetween;
 	}
 
 	/**
@@ -38,7 +38,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			 'The field is not a valid url.',
+			'The field is not between the specified values.',
 			 $this->object->getMessage()
 		);
 	}
@@ -48,11 +48,13 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($url, $expected)
+	public function testValidate($value, $lower, $upper, $expected)
 	{
+		$this->object->setParameter(array($lower, $upper));
+
 		$this->assertEquals(
 			$expected,
-			$this->object->validate($url)
+			$this->object->validate($value)
 		);
 	}
 
@@ -64,17 +66,14 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('', false),
-			array(1, false),
-			array(true, false),
-			array(new \stdClass, false),
-			array('512.123.1254.34234', false),
-			array('http://fuelphp.com', true),
-			array('http://fuelphp', true),
-			array('fuelphp.com', false),
-			array('sftp://user:password@fuelphp.com', true),
-			array('http://192.168.0.1', true),
-			array('ftp://FE80::0202:B3FF:FE1E:8329', true),
+			0 => array('', 1, 2, false),
+			1 => array(true, 1, 2, false),
+			2 => array(new \stdClass, 1, 2, false),
+			3 => array(1, 1, 10, false),
+			4 => array(2, 1, 10, true),
+			5 => array(9, 1, 10, true),
+			6 => array(10, 1, 10, false),
+			6 => array(11, 1, 10, false),
 		);
 	}
 
@@ -87,11 +86,22 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 	{
 		$message = 'foobar';
 
-		$object = new Url(null, $message);
+		$object = new NumericBetween(null, $message);
 
 		$this->assertEquals(
 			$message,
 			$object->getMessage()
+		);
+	}
+
+	/**
+	 * @coversDefaultClass validate
+	 * @group              Validation
+	 */
+	public function testValidateWithNoParam()
+	{
+		$this->assertFalse(
+			$this->object->validate(5)
 		);
 	}
 

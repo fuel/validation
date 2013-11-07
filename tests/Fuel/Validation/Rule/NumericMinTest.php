@@ -15,6 +15,8 @@ namespace Fuel\Validation\Rule;
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
+ *
+ * @covers \Fuel\Validation\Rule\NumericMin
  */
 class NumericMinTest extends \PHPUnit_Framework_TestCase
 {
