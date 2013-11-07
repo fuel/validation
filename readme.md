@@ -142,16 +142,16 @@ var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
 
 ## Automatic `Validator` population
-Through the use of `Generator` classes it is possible to automatically create rule sets for a given `Validator` this can be used to automatically create validation for any kind of object from forms to ORM models.
-At the moment only one generator exists to serve as an example that creates rule sets from a config array. In the future Fieldset and ORM will provide their own generators.
+Through the use of `RuleProvider` classes it is possible to automatically create rule sets for a given `Validator` this can be used to automatically create validation for any kind of object from forms to ORM models.
+At the moment only one provider exists to serve as an example that creates rule sets from a config array. In the future Fieldset and ORM will provide their own providers.
 
-The generator is used by creating a new `Validator`, setting up your config array and then populating the `Validator`.
+The provider is used by creating a new `Validator`, setting up your config array and then populating the `Validator`.
 
 ```php
 <?php
 
 use Fuel\Validation\Validator;
-use Fuel\Validation\Generator\Simple;
+use Fuel\Validation\RuleProvider\FromArray;
 
 // The key is the name of the field that has a value of an array containing the rules
 $config = array(
@@ -172,19 +172,19 @@ $config = array(
 
 $v = new Validator;
 
-$generator = new Simple;
+$generator = new FromArray;
 $generator->setData($data)->populateValidator($v);
 
 // $v is now populated with the fields and rules specified in the config array.
 ```
 
-The `Generator`s will also be aware of custom rules that are added to the `Validator` that they are passed.
+The `RuleProvider`s will also be aware of custom rules that are added to the `Validator` that they are passed.
 
 ```php
 <?php
 
 use Fuel\Validation\Validator;
-use Fuel\Validation\Generator\Simple;
+use Fuel\Validation\RuleProvider\FromArray;
 
 $config = array(
     'name' => array(
@@ -196,7 +196,7 @@ $v = new Validator;
 
 $v->addRule('myCustomRule', 'My\App\Rules\CustomRule');
 
-$generator = new Simple;
+$generator = new FromArray;
 $generator->setData($data)->populateValidator($v);
 
 ```
