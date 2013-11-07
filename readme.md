@@ -9,7 +9,7 @@ A flexable library to validate different kinds of data.
 ```php
 <?php
 
-use \Fuel\Validation\Validator
+use \Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -45,7 +45,7 @@ Messages can be retrieved from the result object after validatoin has been perfo
 ```php
 <?php
 
-use \Fuel\Validation\Validator
+use \Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -89,7 +89,7 @@ The `myCustomRule` rule is now avaliable for use with the `Validator` instance a
 ```php
 <?php
 
-use \Fuel\Validation\Validator
+use \Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -110,7 +110,7 @@ It is possible to replace existing rules simply by calling `addRule()` as in the
 ```php
 <?php
 
-use \Fuel\Validation\Validator
+use \Fuel\Validation\Validator;
 
 // Create a new validator instance to play with
 $v = new Validator;
@@ -124,3 +124,24 @@ $v->addField('foobar')
 $instance = $v->getRuleInstance('required');
 var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
+
+## Automatic `Validator` population
+Through the use of `Generator` classes it is possible to automatically create rule sets for a given `Validator` this can be used to automatically create validation for any kind of object from forms to ORM models.
+At the moment only one generator exists to serve as an example that creates rule sets from a config array. In the future Fieldset and ORM will provide their own generators.
+
+The generator is used by creating a new `Validator`, setting up your config array and then populating the `Validator`.
+
+```php
+<?php
+
+use \Fuel\Validation\Validator;
+use \Fuel\Validation\Generator\Simple;
+
+// The key is the name of the field that has a value of an array containing the rules
+$config = array(
+    'name' => array(
+        'required', // Rules with no parameters can be specified like this
+    ),
+);
+```
+
