@@ -10,7 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-
 use Fuel\Validation\AbstractRule;
 
 /**
