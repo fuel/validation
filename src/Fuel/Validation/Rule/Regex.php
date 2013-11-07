@@ -52,12 +52,7 @@ class Regex extends AbstractRule
 	{
 		$regex = $this->getParameter();
 
-		if ( ! is_string($value))
-		{
-			return false;
-		}
-
-		if ($regex === null)
+		if ( ! is_string($value) or $regex === null)
 		{
 			return false;
 		}

@@ -54,6 +54,7 @@ class MinLength extends AbstractRule
 		{
 			return false;
 		}
+
 		return (strlen(( string ) $value) >= $this->getParameter());
 	}
 

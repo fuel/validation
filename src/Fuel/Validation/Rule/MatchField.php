@@ -57,14 +57,9 @@ class MatchField extends AbstractRule
 	{
 		$matchAgainst = $this->getParameter();
 
-		// If any of the needed settings are missing, return false
-		if ($allFields === null or $matchAgainst === null)
-		{
-			return false;
-		}
-
-		// Check if the array key exists, if not nothing to validate against
-		if ( ! array_key_exists($matchAgainst, $allFields))
+		// If any of the needed settings are missing, return false and
+		// check if the array key exists, if not nothing to validate against
+		if ($allFields === null or $matchAgainst === null or ! array_key_exists($matchAgainst, $allFields))
 		{
 			return false;
 		}

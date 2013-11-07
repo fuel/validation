@@ -55,12 +55,7 @@ class NumericBetween extends AbstractRule
 	{
 		$params = $this->getParameter();
 
-		if ( ! $this->paramsValid($params))
-		{
-			return false;
-		}
-
-		if ( ! is_numeric($value))
+		if ( ! $this->paramsValid($params) or ! is_numeric($value))
 		{
 			return false;
 		}
