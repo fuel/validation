@@ -13,13 +13,14 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Performs validation to check that a value is a valid url or not
+ * Validates that a field is a valid IP address. Returns true for both IPv4 and v6.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
- * @since   2.0
+ *
+ * @since 2.0
  */
-class ValidUrl extends AbstractRule
+class Ip extends AbstractRule
 {
 
 	/**
@@ -30,18 +31,20 @@ class ValidUrl extends AbstractRule
 	 */
 	public function __construct($params = null, $message = '')
 	{
-		if (empty($message))
-		{
-			$message = 'The field is not a valid IP address.';
-		}
-
 		parent::__construct($params, $message);
+
+		if ($message == '')
+		{
+			$this->setMessage('The field is not a valid IP address.');
+		}
 	}
 
 	/**
-	 * @param mixed  $value     Value to validate
-	 * @param string $field     Unused by this rule
-	 * @param array  $allFields Unused by this rule
+	 * Returns true if the given value is a valid IP address
+	 *
+	 * @param mixed    $value     Value to validate
+	 * @param string   $field     Unused by this rule
+	 * @param array  & $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
@@ -49,6 +52,7 @@ class ValidUrl extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		return false !== filter_var($value, FILTER_VALIDATE_URL);
+		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}
+
 }

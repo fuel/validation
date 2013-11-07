@@ -11,22 +11,22 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Tests for ValidUrl
+ * Tests for Ip
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  */
-class ValidUrlTest extends \PHPUnit_Framework_TestCase
+class IpTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var ValidUrl
+	 * @var Ip
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new ValidUrl;
+		$this->object = new Ip;
 	}
 
 	/**
@@ -46,11 +46,11 @@ class ValidUrlTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($url, $expected)
+	public function testValidate($ip, $expected)
 	{
 		$this->assertEquals(
 			$expected,
-			$this->object->validate($url)
+			$this->object->validate($ip)
 		);
 	}
 
@@ -67,12 +67,13 @@ class ValidUrlTest extends \PHPUnit_Framework_TestCase
 			array(true, false),
 			array(new \stdClass, false),
 			array('512.123.1254.34234', false),
-			array('http://fuelphp.com', true),
-			array('http://fuelphp', true),
-			array('fuelphp.com', false),
-			array('sftp://user:password@fuelphp.com', true),
-			array('http://192.168.0.1', true),
-			array('ftp://FE80::0202:B3FF:FE1E:8329', true),
+			array('192.168.0.1', true),
+			array('FE80::0202:B3FF:FE1E:8329', true),
+			array('FE80:0000:0000:0000:0202:B3FF:FE1E:8329', true),
+			array('ZZZZ::ZZZZ:ZZZZ', false),
+			array('ZZZZ:ZZZZ', false),
+			array('ZZZZ::ZZZZ:ZZZZ:ZZZZ:ZZZZ', false),
+			array('ZZZZ:ZZZZ:ZZZZ:ZZZZ:ZZZZ:ZZZZ:ZZZZ:ZZZ', false),
 		);
 	}
 
@@ -85,7 +86,7 @@ class ValidUrlTest extends \PHPUnit_Framework_TestCase
 	{
 		$message = 'foobar';
 
-		$object = new ValidUrl(null, $message);
+		$object = new Ip(null, $message);
 
 		$this->assertEquals(
 			$message,
