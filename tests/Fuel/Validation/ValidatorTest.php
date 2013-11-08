@@ -68,16 +68,6 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass getRules
-	 * @expectedException  Fuel\Validation\InvalidFieldException
-	 * @group              Validation
-	 */
-	public function testGetRulesForUnknown()
-	{
-		$this->object->getRules('fake');
-	}
-
-	/**
-	 * @coversDefaultClass getRules
 	 * @coversDefaultClass addField
 	 * @group              Validation
 	 */
@@ -87,39 +77,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->addField($field);
 
-		$this->assertEquals(
-			array(),
-			$this->object->getRules($field)
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getRules
-	 * @coversDefaultClass addRule
-	 * @group              Validation
-	 */
-	public function testGetFieldRules()
-	{
-		$this->addTestRules();
-
-		$this->assertEquals(
-			$this->testFields['email'],
-			$this->object->getRules('email')
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getRules
-	 * @coversDefaultClass addRule
-	 * @group              Validation
-	 */
-	public function testGetAllRules()
-	{
-		$this->addTestRules();
-
-		$this->assertEquals(
-			$this->testFields,
-			$this->object->getRules()
+		$this->assertInstanceOf(
+			'Fuel\Validation\FieldInterface',
+			$this->object->getField($field)
 		);
 	}
 
@@ -213,7 +173,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		$this->object->addField('test')
 			->required();
 
-		$rules = $this->object->getRules('test');
+		$rules = $this->object->getField('test')->getRules();
 
 		$this->assertInstanceOf(
 			'Fuel\Validation\Rule\Required',
@@ -261,7 +221,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 				->required()
 				->matchField('first');
 
-		$firstRules = $this->object->getRules('first magic test');
+		$firstRules = $this->object->getFieldRules('first magic test');
 
 		// Make sure the first rule has been added correctly
 		$this->assertEquals(
@@ -275,7 +235,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 
 		// Make sure the second field's rules are added correctly
-		$testRules = $this->object->getRules('test');
+		$testRules = $this->object->getFieldRules('test');
 
 		// Make sure there are two entries
 		$this->assertEquals(
@@ -292,6 +252,28 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf(
 			'Fuel\Validation\Rule\MatchField',
 			$testRules[1]
+		);
+	}
+
+	/**
+	 * @coversDefaultClass addField
+	 * @expectedException  InvalidArgumentException
+	 * @group              Validation
+	 */
+	public function testAddInvalidField()
+	{
+		$this->object->addField(new \stdClass());
+	}
+
+	/**
+	 * @coversDefaultClass getFieldRules
+	 * @group              Validation
+	 */
+	public function testGetInvalidFieldRules()
+	{
+		$this->assertEquals(
+			array(),
+			$this->object->getFieldRules('fake test field')
 		);
 	}
 

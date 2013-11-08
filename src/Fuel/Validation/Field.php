@@ -18,7 +18,7 @@ namespace Fuel\Validation;
  *
  * @since 2.0
  */
-class Field
+class Field implements FieldInterface
 {
 
 	/**
@@ -35,6 +35,12 @@ class Field
 	 * @var RuleInterface[]
 	 */
 	protected $rules;
+
+	public function __construct($name = null, $friendlyName = null)
+	{
+		$this->setName($name);
+		$this->setFriendlyName($friendlyName);
+	}
 
 	/**
 	 * Sets the friendly name of this field
@@ -61,6 +67,11 @@ class Field
 	 */
 	public function getFriendlyName()
 	{
+		if ($this->friendlyName === null)
+		{
+			return $this->getName();
+		}
+
 		return $this->friendlyName;
 	}
 

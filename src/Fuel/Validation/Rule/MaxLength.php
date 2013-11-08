@@ -42,7 +42,7 @@ class MaxLength extends AbstractRule
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		if($this->getParameter() === null)
 		{

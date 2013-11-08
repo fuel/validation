@@ -10,6 +10,9 @@
 
 namespace Fuel\Validation;
 
+use InvalidArgumentException;
+use LogicException;
+
 /**
  * Main entry point for the validation functionality. Handles registering validation rules and loading validation
  * adaptors.
@@ -22,11 +25,11 @@ class Validator
 {
 
 	/**
-	 * Contains a list of fields and all their rules
+	 * Contains a list of fields to be validated
 	 *
-	 * @var RuleInterface[][]
+	 * @var FieldInterface[]
 	 */
-	protected $rules = array();
+	protected $fields = array();
 
 	/**
 	 * Contains a list of any custom validation rules
@@ -38,14 +41,14 @@ class Validator
 	/**
 	 * Keeps track of the last field added for magic method chaining
 	 *
-	 * @var string
+	 * @var FieldInterface
 	 */
 	protected $lastAddedField;
 
 	/**
 	 * Keeps track of the last rule added for message setting
 	 *
-	 * @var string
+	 * @var RuleInterface
 	 */
 	protected $lastAddedRule;
 
@@ -68,12 +71,21 @@ class Validator
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
-		if ( ! isset($this->rules[$field]))
+		try
 		{
+			$field = $this->getField($field);
+		}
+		catch (InvalidFieldException $ife)
+		{
+			// The field does not exist so create it
 			$this->addField($field);
+			$field = $this->getField($field);
 		}
 
-		$this->rules[$field][] = $this->lastAddedRule = $rule;
+		// We have a valid field now so add the rule
+		$field->addRule($rule);
+
+		$this->lastAddedRule = $rule;
 
 		return $this;
 	}
@@ -81,48 +93,52 @@ class Validator
 	/**
 	 * Adds a new field to the validation object
 	 *
-	 * @param string $field
+	 * @param string|Field $field
+	 * @param string       $friendlyName Field name to use in messages, set to null to use $field
 	 *
 	 * @return $this
 	 *
+	 * @throws InvalidArgumentException
+	 *
 	 * @since 2.0
 	 */
-	public function addField($field)
+	public function addField($field, $friendlyName = null)
 	{
-		$this->rules[$field] = array();
+		if (is_string($field))
+		{
+			$field = new Field($field, $friendlyName);
+		}
+
+		if ( ! $field instanceof FieldInterface)
+		{
+			throw new InvalidArgumentException('VAL-007: Only FieldInterfaces can be added as a field.');
+		}
+
+		$this->fields[$field->getName()] = $field;
 		$this->lastAddedField = $field;
 
 		return $this;
 	}
 
 	/**
-	 * Returns a list of all known validation rules for a given field.
+	 * Returns the given field
 	 *
-	 * @param string $field Name of the field to get rules for, or null for all fields
+	 * @param $name
+	 *
+	 * @return FieldInterface
 	 *
 	 * @throws InvalidFieldException
 	 *
-	 * @return RuleInterface[]|RuleInterface[][]
-	 *
 	 * @since 2.0
 	 */
-	public function getRules($field = null)
+	public function getField($name)
 	{
-		// Check if we are fetching a specific field or all
-		if ($field === null)
+		if ( ! isset($this->fields[$name]))
 		{
-			return $this->rules;
+			throw new InvalidFieldException($name);
 		}
 
-		// Now we know we have a field check that we know about it
-		if ( ! isset($this->rules[$field]))
-		{
-			// If it's not there, throw an exception
-			throw new InvalidFieldException($field);
-		}
-
-		// Return the requested field
-		return $this->rules[$field];
+		return $this->fields[$name];
 	}
 
 	/**
@@ -165,16 +181,16 @@ class Validator
 	 *
 	 * @param string          $field
 	 * @param mixed           $value
-	 * @param mixed[]       & $data
+	 * @param mixed[]         $data
 	 * @param ResultInterface $result
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	protected function validateField($field, $value, &$data, ResultInterface $result)
+	protected function validateField($field, $value, $data, ResultInterface $result)
 	{
-		$rules = $this->getRules($field);
+		$rules = $this->getFieldRules($field);
 
 		foreach ($rules as $rule)
 		{
@@ -194,6 +210,26 @@ class Validator
 	}
 
 	/**
+	 * @param string $fieldName
+	 *
+	 * @return RuleInterface[]
+	 */
+	public function getFieldRules($fieldName)
+	{
+		try
+		{
+			$field = $this->getField($fieldName);
+		}
+		catch (InvalidFieldException $ife)
+		{
+			// No field found so no rules
+			return array();
+		}
+
+		return $field->getRules();
+	}
+
+	/**
 	 * Allows validation rules to be dynamically added using method chaining.
 	 *
 	 * @param string $name
@@ -209,7 +245,7 @@ class Validator
 		// Create and then add the new rule to the last added field
 		$rule = $this->createRuleInstance($name, $arguments);
 
-		$this->addRule($this->lastAddedField, $rule);
+		$this->lastAddedField->addRule($rule);
 
 		return $this;
 	}
@@ -227,7 +263,7 @@ class Validator
 	{
 		if ( ! $this->lastAddedRule)
 		{
-			throw new \LogicException('VAL-006: A rule should be added before setting a message.');
+			throw new LogicException('VAL-006: A rule should be added before setting a message.');
 		}
 
 		$this->lastAddedRule->setMessage($message);

@@ -82,4 +82,42 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getFriendlyName
+	 * @group              Validation
+	 */
+	public function testGetNullFriendlyName()
+	{
+		$name = 'test';
+
+		$this->object->setName($name);
+
+		$this->assertEquals(
+			$name,
+			$this->object->getFriendlyName()
+		);
+	}
+
+	/**
+	 * @coversDefaultClass __construct
+	 * @group              Validation
+	 */
+	public function testConstruct()
+	{
+		$name = 'test';
+		$friendlyName = 'My Awesome Test';
+
+		$object = new Field($name, $friendlyName);
+
+		$this->assertEquals(
+			$name,
+			$object->getName()
+		);
+
+		$this->assertEquals(
+			$friendlyName,
+			$object->getFriendlyName()
+		);
+	}
+
 }
