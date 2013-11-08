@@ -93,6 +93,7 @@ class ExactLengthTest extends \PHPUnit_Framework_TestCase
 			array(null, null, false)
 		);
 	}
+	
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
