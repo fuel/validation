@@ -71,15 +71,18 @@ class Validator
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
-		try
+		if (is_string($field))
 		{
-			$field = $this->getField($field);
-		}
-		catch (InvalidFieldException $ife)
-		{
-			// The field does not exist so create it
-			$this->addField($field);
-			$field = $this->getField($field);
+			try
+			{
+				$field = $this->getField($field);
+			}
+			catch (InvalidFieldException $ife)
+			{
+				// The field does not exist so create it
+				$this->addField($field);
+				$field = $this->getField($field);
+			}
 		}
 
 		// We have a valid field now so add the rule
@@ -197,7 +200,7 @@ class Validator
 			if ( ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
-				$result->setError($field, $rule->getMessage());
+				$result->setError($field, $this->buildMessage($this->getField($field), $rule));
 
 				return false;
 			}
@@ -207,6 +210,46 @@ class Validator
 		$result->setValidated($field);
 
 		return true;
+	}
+
+	/**
+	 * Gets a Rule's message and processes that with various tokens
+	 *
+	 * @param FieldInterface $field
+	 * @param RuleInterface  $rule
+	 *
+	 * @return string
+	 */
+	protected function buildMessage(FieldInterface $field, RuleInterface $rule)
+	{
+		// Build an array with all the token values
+		$tokens = array(
+			'name' => $field->getName(),
+			'label' => $field->getLabel(),
+
+		) + $rule->getMessageParameters();
+
+		return $this->processMessageTokens($tokens, $rule->getMessage());
+	}
+
+	/**
+	 * Replaces any {} tokens with the matching value from $tokens.
+	 *
+	 * @param array $tokens   Associative array of token names and values
+	 * @param string $message
+	 *
+	 * @return string
+	 *
+	 * @since 2.0
+	 */
+	protected function processMessageTokens(array $tokens, $message)
+	{
+		foreach ($tokens as $token => $value)
+		{
+			$message = str_replace('{' . $token . '}', $value, $message);
+		}
+
+		return $message;
 	}
 
 	/**
@@ -245,7 +288,7 @@ class Validator
 		// Create and then add the new rule to the last added field
 		$rule = $this->createRuleInstance($name, $arguments);
 
-		$this->lastAddedField->addRule($rule);
+		$this->addRule($this->lastAddedField, $rule);
 
 		return $this;
 	}

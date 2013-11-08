@@ -65,6 +65,18 @@ abstract class AbstractRule implements RuleInterface
 	}
 
 	/**
+	 * Should return a list of tokens that can be inserted into this rule's error message.
+	 * For example this might be an upper bound for MaxValue or the regex passed to the Regex rule.
+	 * Values should always have a string key so they can be easily identified.
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array();
+	}
+
+	/**
 	 * Sets the failure message for this rule
 	 *
 	 * @param string $message

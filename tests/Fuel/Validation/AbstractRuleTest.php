@@ -125,4 +125,16 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetDefaultMessageParams()
+	{
+		$this->assertEquals(
+			array(),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

@@ -309,6 +309,20 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	public function testMessageReplacement()
+	{
+		$this->object->addField('test', 'My Field')
+			->required()
+			->setMessage('{label} with the data from {name} is required');
+
+		$result = $this->object->run(array('test' => null));
+
+		$this->assertEquals(
+			'My Field with the data from test is required',
+			$result->getError('test')
+		);
+	}
+
 }
 
 /**

@@ -50,6 +50,15 @@ interface RuleInterface
 	public function getMessage();
 
 	/**
+	 * Returns a list of tokens that will be injected into the message before it is returned from getMessage
+	 *
+	 * @return string[]
+	 *
+	 * @since 2.0
+	 */
+	public function getMessageParameters();
+
+	/**
 	 * Sets the failure message for this rule
 	 *
 	 * @param string $message
