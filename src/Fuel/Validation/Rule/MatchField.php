@@ -24,6 +24,7 @@ use Fuel\Validation\AbstractRule;
  */
 class MatchField extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *

@@ -21,6 +21,7 @@ use Fuel\Validation\AbstractRule;
  */
 class NumericMin extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -48,4 +49,5 @@ class NumericMin extends AbstractRule
 
 		return $value >= $min;
 	}
+
 }

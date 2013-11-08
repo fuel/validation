@@ -22,6 +22,7 @@ use Fuel\Validation\AbstractRule;
  */
 class MinLength extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -40,12 +41,8 @@ class MinLength extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		if($this->getParameter() === null)
-		{
-			return false;
-		}
 
-		if ( is_object($value) && ! method_exists($value, '__toString') )
+		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null )
 		{
 			return false;
 		}

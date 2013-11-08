@@ -23,15 +23,12 @@ use Fuel\Validation\AbstractRule;
 class MaxLength extends AbstractRule
 {
 
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field is longer than the allowed maximum length.');
-		}
-	}
+	/**
+	 * Default failure message
+	 *
+	 * @var string
+	 */
+	protected $message = 'The field is longer than the allowed maximum length.';
 
 	/**
 	 * @param mixed  $value
@@ -44,14 +41,9 @@ class MaxLength extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		if($this->getParameter() === null)
+		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null)
 		{
 			return false;
-		}
-
-		if ( is_object($value) && ! method_exists($value, '__toString') )
-		{
-			return true;
 		}
 
 		mb_internal_encoding('UTF-8');

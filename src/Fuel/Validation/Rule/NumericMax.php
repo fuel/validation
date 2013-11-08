@@ -21,6 +21,7 @@ use Fuel\Validation\AbstractRule;
  */
 class NumericMax extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -48,4 +49,5 @@ class NumericMax extends AbstractRule
 
 		return $value <= $max;
 	}
+
 }

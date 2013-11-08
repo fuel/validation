@@ -25,6 +25,7 @@ use Fuel\Validation\AbstractRule;
  */
 class NumericBetween extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -74,4 +75,5 @@ class NumericBetween extends AbstractRule
 
 		return true;
 	}
+
 }

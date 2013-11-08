@@ -22,6 +22,7 @@ use Fuel\Validation\AbstractRule;
  */
 class Ip extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *

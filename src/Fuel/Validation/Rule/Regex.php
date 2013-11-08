@@ -22,6 +22,7 @@ use Fuel\Validation\AbstractRule;
  */
 class Regex extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *

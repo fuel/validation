@@ -22,6 +22,7 @@ use Fuel\Validation\AbstractRule;
  */
 class Number extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -44,4 +45,5 @@ class Number extends AbstractRule
 	{
 		return is_numeric($value);
 	}
+
 }

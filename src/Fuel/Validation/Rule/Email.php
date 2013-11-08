@@ -22,6 +22,7 @@ use Fuel\Validation\AbstractRule;
  */
 class Email extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -44,4 +45,5 @@ class Email extends AbstractRule
 	{
 		return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
+
 }

@@ -21,6 +21,7 @@ use Fuel\Validation\AbstractRule;
  */
 class Url extends AbstractRule
 {
+
 	/**
 	 * Contains the rule failure message
 	 *
@@ -41,4 +42,5 @@ class Url extends AbstractRule
 	{
 		return false !== filter_var($value, FILTER_VALIDATE_URL);
 	}
+
 }

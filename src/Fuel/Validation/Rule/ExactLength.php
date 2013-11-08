@@ -23,15 +23,12 @@ use Fuel\Validation\AbstractRule;
 class ExactLength extends AbstractRule
 {
 
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The length of the field is not exactly equal to the length specified.');
-		}
-	}
+	/**
+	 * Default failure message
+	 *
+	 * @var string
+	 */
+	protected $message = 'The length of the field is not exactly equal to the length specified.';
 
 	/**
 	 * @param mixed  $value
@@ -44,12 +41,7 @@ class ExactLength extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		if($this->getParameter() === null)
-		{
-			return false;
-		}
-
-		if ( is_object($value) && ! method_exists($value, '__toString') )
+		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null )
 		{
 			return false;
 		}
