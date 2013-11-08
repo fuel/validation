@@ -239,6 +239,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @coversDefaultClass setMessage
+	 * @group              Validation
+	 * @expectedException  LogicException
+	 */
+	public function testSetMessageException()
+	{
+		$this->object->setMessage('injected message');
+	}
+
+	/**
 	 * @coversDefaultClass __call
 	 * @group              Validation
 	 */
