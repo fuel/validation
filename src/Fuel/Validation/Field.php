@@ -29,7 +29,7 @@ class Field implements FieldInterface
 	/**
 	 * @var string
 	 */
-	protected $friendlyName;
+	protected $label;
 
 	/**
 	 * @var RuleInterface[]
@@ -39,11 +39,11 @@ class Field implements FieldInterface
 	public function __construct($name = null, $friendlyName = null)
 	{
 		$this->setName($name);
-		$this->setFriendlyName($friendlyName);
+		$this->setLabel($friendlyName);
 	}
 
 	/**
-	 * Sets the friendly name of this field
+	 * Sets the flabel of this field
 	 *
 	 * @param string $friendlyName
 	 *
@@ -51,28 +51,28 @@ class Field implements FieldInterface
 	 *
 	 * @since 2.0
 	 */
-	public function setFriendlyName($friendlyName)
+	public function setLabel($friendlyName)
 	{
-		$this->friendlyName = $friendlyName;
+		$this->label = $friendlyName;
 
 		return $this;
 	}
 
 	/**
-	 * Gets the friendly name of this field
+	 * Gets the label of this field
 	 *
 	 * @return string
 	 *
 	 * @since 2.0
 	 */
-	public function getFriendlyName()
+	public function getLabel()
 	{
-		if ($this->friendlyName === null)
+		if ($this->label === null)
 		{
 			return $this->getName();
 		}
 
-		return $this->friendlyName;
+		return $this->label;
 	}
 
 	/**

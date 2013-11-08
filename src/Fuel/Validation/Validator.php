@@ -94,7 +94,7 @@ class Validator
 	 * Adds a new field to the validation object
 	 *
 	 * @param string|Field $field
-	 * @param string       $friendlyName Field name to use in messages, set to null to use $field
+	 * @param string       $label Field name to use in messages, set to null to use $field
 	 *
 	 * @return $this
 	 *
@@ -102,11 +102,11 @@ class Validator
 	 *
 	 * @since 2.0
 	 */
-	public function addField($field, $friendlyName = null)
+	public function addField($field, $label = null)
 	{
 		if (is_string($field))
 		{
-			$field = new Field($field, $friendlyName);
+			$field = new Field($field, $label);
 		}
 
 		if ( ! $field instanceof FieldInterface)

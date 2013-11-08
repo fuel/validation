@@ -49,19 +49,19 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setFriendlyName
-	 * @coversDefaultClass getFriendlyName
+	 * @coversDefaultClass getLabel
+	 * @coversDefaultClass setLabel
 	 * @group              Validation
 	 */
-	public function testSetGetFriendlyName()
+	public function testSetGetLabel()
 	{
 		$name = 'Joe';
 
-		$this->object->setFriendlyName($name);
+		$this->object->setLabel($name);
 
 		$this->assertEquals(
 			$name,
-			$this->object->getFriendlyName()
+			$this->object->getLabel()
 		);
 	}
 
@@ -83,10 +83,10 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getFriendlyName
+	 * @coversDefaultClass getLabel
 	 * @group              Validation
 	 */
-	public function testGetNullFriendlyName()
+	public function testGetNullLabel()
 	{
 		$name = 'test';
 
@@ -94,7 +94,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals(
 			$name,
-			$this->object->getFriendlyName()
+			$this->object->getLabel()
 		);
 	}
 
@@ -105,9 +105,9 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	public function testConstruct()
 	{
 		$name = 'test';
-		$friendlyName = 'My Awesome Test';
+		$label = 'My Awesome Test';
 
-		$object = new Field($name, $friendlyName);
+		$object = new Field($name, $label);
 
 		$this->assertEquals(
 			$name,
@@ -115,8 +115,8 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$this->assertEquals(
-			$friendlyName,
-			$object->getFriendlyName()
+			$label,
+			$object->getLabel()
 		);
 	}
 

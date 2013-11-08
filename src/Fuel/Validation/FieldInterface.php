@@ -22,13 +22,13 @@ interface FieldInterface
 {
 
 	/**
-	 * Gets the friendly name of this field
+	 * Gets the label of this field
 	 *
 	 * @return string
 	 *
 	 * @since 2.0
 	 */
-	public function getFriendlyName();
+	public function getLabel();
 
 	/**
 	 * Sets a list of rules to validate this field with
@@ -51,7 +51,7 @@ interface FieldInterface
 	public function getName();
 
 	/**
-	 * Sets the friendly name of this field
+	 * Sets the label of this field
 	 *
 	 * @param string $friendlyName
 	 *
@@ -59,7 +59,7 @@ interface FieldInterface
 	 *
 	 * @since 2.0
 	 */
-	public function setFriendlyName($friendlyName);
+	public function setLabel($friendlyName);
 
 	/**
 	 * Returns a list of rules that will be used to validate this field
