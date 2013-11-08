@@ -65,24 +65,24 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			0 => array('admin@test.com', null, true, null),
+			0 => array('admin@test.com', null, false, null),
 			1 => array('', null, false, null),
 			2 => array(array(), null, false, null),
 			3 => array(null, null, false, null),
 			4 => array(false, null, false, null),
 
-			5 => array('test string', 'test', false,
+			5 => array('test string 5', 'test', false,
 				array()
 			),
 
-			6 => array('test string', 'test', false,
+			6 => array('test string 6', 'test', false,
 				array(
 					'foo' => 'bar',
 					'baz' => 'bat',
 				)
 			),
 
-			7 => array('test string', 'test', true,
+			7 => array('test string 7', 'test', true,
 				array(
 					'foo' => 'bar',
 					'test' => 'value',
@@ -92,7 +92,7 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
 
 			8 => array('bla', 'test', true, null),
 			9 => array('', 'test', false, null),
-			10 => array('bla', null, true, array()),
+			10 => array('bla', null, false, array()),
 			11 => array('', null, false, array()),
 		);
 	}
