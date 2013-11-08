@@ -43,6 +43,13 @@ class Validator
 	protected $lastAddedField;
 
 	/**
+	 * Keeps track of the last rule added for message setting
+	 *
+	 * @var string
+	 */
+	protected $lastAddedRule;
+
+	/**
 	 * Adds a rule that can be used to validate a field
 	 *
 	 * @param string        $field
@@ -54,12 +61,12 @@ class Validator
 	 */
 	public function addRule($field, RuleInterface $rule)
 	{
-		if ( ! array_key_exists($field, $this->rules))
+		if ( ! isset($this->rules[$field]))
 		{
 			$this->addField($field);
 		}
 
-		$this->rules[$field][] = $rule;
+		$this->rules[$field][] = $this->lastAddedRule = $rule;
 
 		return $this;
 	}
@@ -101,7 +108,7 @@ class Validator
 		}
 
 		// Now we know we have a field check that we know about it
-		if ( ! array_key_exists($field, $this->rules))
+		if ( ! isset($this->rules[$field]))
 		{
 			// If it's not there, throw an exception
 			throw new InvalidFieldException($field);
@@ -116,7 +123,8 @@ class Validator
 	 * The array is expected to have keys named after fields.
 	 * This function will call reset() before it runs.
 	 *
-	 * @param array $data
+	 * @param array           $data
+	 * @param ResultInterface $result
 	 *
 	 * @return ResultInterface
 	 *
@@ -151,13 +159,13 @@ class Validator
 	 * @param string          $field
 	 * @param mixed           $value
 	 * @param mixed[]       & $data
-	 * @param ResultInterface $resultInterface
+	 * @param ResultInterface $result
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	protected function validateField($field, $value, &$data, ResultInterface $resultInterface)
+	protected function validateField($field, $value, &$data, ResultInterface $result)
 	{
 		$rules = $this->getRules($field);
 
@@ -166,14 +174,14 @@ class Validator
 			if ( ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
-				$resultInterface->setError($field, $rule->getMessage());
+				$result->setError($field, $rule->getMessage());
 
 				return false;
 			}
 		}
 
 		// All is good so make sure the field gets added as one of the validated fields
-		$resultInterface->setValidated($field);
+		$result->setValidated($field);
 
 		return true;
 	}
@@ -195,6 +203,27 @@ class Validator
 		$rule = $this->createRuleInstance($name, $arguments);
 
 		$this->addRule($this->lastAddedField, $rule);
+
+		return $this;
+	}
+
+	/**
+	 * Sets the failure message for the last added rule
+	 *
+	 * @param string $message
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setMessage($message)
+	{
+		if ( ! $this->lastAddedRule)
+		{
+			throw new \LogicException('VAL-006: A rule should be added before setting a message.');
+		}
+
+		$this->lastAddedRule->setMessage($message);
 
 		return $this;
 	}
@@ -235,7 +264,7 @@ class Validator
 	protected function getRuleClassName($name)
 	{
 		// Check if we have a custom rule registered
-		if (array_key_exists($name, $this->customRules))
+		if (isset($this->customRules[$name]))
 		{
 			// We do so grab the class name from the store
 			return $this->customRules[$name];

@@ -42,10 +42,14 @@ abstract class AbstractRule implements RuleInterface
 	 *
 	 * @since 2.0
 	 */
-	public function __construct($params = null, $message = '')
+	public function __construct($params = null, $message = null)
 	{
 		$this->setParameter($params);
-		$this->setMessage($message);
+
+		if ($message)
+		{
+			$this->setMessage($message);
+		}
 	}
 
 	/**

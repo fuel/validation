@@ -11,53 +11,35 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Tests for Number validation rule
+ * Tests for NumericBetween
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Number
+ * @covers Fuel\Validation\Rule\NumericBetween
  */
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumericBetweenTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Number
+	 * @var NumericMax
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Number;
+		$this->object = new NumericBetween;
 	}
 
 	/**
-	 * @coversDefaultClass __construct
 	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field is not valid number.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
+			'The field is not between the specified values.',
+			 $this->object->getMessage()
 		);
 	}
 
@@ -66,8 +48,10 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($value, $expected)
+	public function testValidate($value, $lower, $upper, $expected)
 	{
+		$this->object->setParameter(array($lower, $upper));
+
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($value)
@@ -82,27 +66,42 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('123', true),
-			array('016547', true),
-			array('ghjgsd(*^"36723863*&723', false),
-			array('a', false),
+			0 => array('', 1, 2, false),
+			1 => array(true, 1, 2, false),
+			2 => array(new \stdClass, 1, 2, false),
+			3 => array(1, 1, 10, false),
+			4 => array(2, 1, 10, true),
+			5 => array(9, 1, 10, true),
+			6 => array(10, 1, 10, false),
+			6 => array(11, 1, 10, false),
 		);
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
+	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testCustomMessageOnConstruct()
 	{
-		$message = 'foobarbazbat';
+		$message = 'foobar';
 
-		$object = new Number(null, $message);
+		$object = new NumericBetween(null, $message);
 
 		$this->assertEquals(
 			$message,
 			$object->getMessage()
+		);
+	}
+
+	/**
+	 * @coversDefaultClass validate
+	 * @group              Validation
+	 */
+	public function testValidateWithNoParam()
+	{
+		$this->assertFalse(
+			$this->object->validate(5)
 		);
 	}
 

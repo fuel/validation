@@ -8,7 +8,7 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Generator;
+namespace Fuel\Validation\RuleProvider;
 
 use Fuel\Validation\ValidationAwareInterface;
 use Fuel\Validation\Validator;
@@ -17,11 +17,11 @@ use InvalidArgumentException;
 /**
  * Allows sets of validation rules to be generated from an array structure
  *
- * @package Fuel\Validation\Generator
+ * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  * @since   2.0
  */
-class Simple implements ValidationAwareInterface
+class FromArray implements ValidationAwareInterface
 {
 
 	/**
@@ -67,11 +67,11 @@ class Simple implements ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function populateValidation(Validator $validator)
+	public function populateValidator(Validator $validator)
 	{
 		$data = $this->getData();
 
-		if (is_null($data))
+		if ($data === null)
 		{
 			throw new InvalidArgumentException('VAL-005: No data specified. Please call setData() first.');
 		}

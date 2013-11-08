@@ -14,7 +14,7 @@
  * @package Fuel\Validation
  * @author  Fuel Development Team
  */
-class DummyAbstractRule extends \Fuel\Validation\AbstractRule
+class DummyAbstractRule extends Fuel\Validation\AbstractRule
 {
 
 	/**

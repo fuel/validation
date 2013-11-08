@@ -13,26 +13,26 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Checks that the value is a valid email address
+ * Checks that the given value matches the regex passed to setParameter()
  *
  * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
+ * @author  Fuel Devleopment Team
  *
  * @since 2.0
  */
-class Email extends AbstractRule
+class Regex extends AbstractRule
 {
 	/**
 	 * Contains the rule failure message
 	 *
 	 * @var string
 	 */
-	protected $message = 'The field does not contain a valid email address.';
+	protected $message = 'The field does not match the given pattern.';
 
 	/**
-	 * @param mixed   $value     Value to be validated
-	 * @param null    $field     Unused by this rule
-	 * @param null  & $allFields Unused by this rule
+	 * @param mixed  $value     Value to validate
+	 * @param string $field     Unused by this rule
+	 * @param array  $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
@@ -40,6 +40,14 @@ class Email extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
+		$regex = $this->getParameter();
+
+		if ( ! is_string($value) or $regex === null)
+		{
+			return false;
+		}
+
+		return preg_match($regex, $value) == true;
 	}
+
 }

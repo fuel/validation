@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\InvalidFieldException
+ * @covers  Fuel\Validation\InvalidFieldException
  */
 class InvalidFieldExceptionTest extends \PHPUnit_Framework_TestCase
 {

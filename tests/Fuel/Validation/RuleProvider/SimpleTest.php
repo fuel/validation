@@ -8,7 +8,7 @@
  * @link      http://fuelphp.com
  */
 
-namespace Fuel\Validation\Generator;
+namespace Fuel\Validation\RuleProvider;
 
 use Fuel\Validation\Rule\MinLength;
 use Fuel\Validation\Rule\Required;
@@ -16,22 +16,22 @@ use Fuel\Validation\Rule\Required;
 /**
  * Tests for Simple
  *
- * @package Fuel\Validation\Generator
+ * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Generator\Simple
+ * @covers Fuel\Validation\RuleProvider\FromArray
  */
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Simple
+	 * @var FromArray
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Simple;
+		$this->object = new FromArray;
 	}
 
 	/**
@@ -46,11 +46,16 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 			$this->object->getData()
 		);
 
-		$validator = \Mockery::mock('\Fuel\Validation\Validator');
+		$validator = \Mockery::mock('Fuel\Validation\Validator');
 
-		$this->object->populateValidation($validator);
+		$this->object->populateValidator($validator);
 	}
 
+	/**
+	 * @coversDefaultClass populateValidator
+	 * @coversDefaultClass setData
+	 * @group              Validation
+	 */
 	public function testPopulate()
 	{
 		$data = array(
@@ -60,7 +65,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 			),
 		);
 
-		$validator = \Mockery::mock('\Fuel\Validation\Validator');
+		$validator = \Mockery::mock('Fuel\Validation\Validator');
 
 		// Ensure the field gets added
 		$validator->shouldReceive('addField')->once()->with('test field');
@@ -78,7 +83,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 		$validator->shouldReceive('addRule')->with('test field', $minLengthRule)->once();
 
 		$this->object->setData($data);
-		$this->object->populateValidation($validator);
+		$this->object->populateValidator($validator);
 	}
 
 }

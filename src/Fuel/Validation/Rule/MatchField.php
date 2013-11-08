@@ -24,30 +24,19 @@ use Fuel\Validation\AbstractRule;
  */
 class MatchField extends AbstractRule
 {
-
 	/**
-	 * @param string $params
-	 * @param string $message
+	 * Contains the rule failure message
 	 *
-	 * @since 2.0
+	 * @var string
 	 */
-	public function __construct($params = null, $message = '')
-	{
-		parent::__construct($params, $message);
-
-		if ($message == '')
-		{
-			$this->setMessage('The field does not match the other given field.');
-		}
-	}
-
+	protected $message = 'The field does not match the other given field.';
 
 	/**
 	 * Returns true if $value matches the value of the field specified with setParameter()
 	 *
-	 * @param mixed  $value Value to validate
-	 * @param string $field Name of the field that is being validated
-	 * @param array  $allFields Values of all the other fields being validated
+	 * @param mixed    $value     Value to validate
+	 * @param string   $field     Name of the field that is being validated
+	 * @param array  & $allFields Values of all the other fields being validated
 	 *
 	 * @return bool
 	 *
@@ -57,14 +46,9 @@ class MatchField extends AbstractRule
 	{
 		$matchAgainst = $this->getParameter();
 
-		// If any of the needed settings are missing, return false
-		if (is_null($allFields) or is_null($matchAgainst))
-		{
-			return false;
-		}
-
-		// Check if the array key exists, if not nothing to validate against
-		if ( ! array_key_exists($matchAgainst, $allFields))
+		// If any of the needed settings are missing, return false and
+		// check if the array key exists, if not nothing to validate against
+		if ($allFields === null or $matchAgainst === null or ! isset($allFields[$matchAgainst]))
 		{
 			return false;
 		}

@@ -18,7 +18,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\MinLength
+ * @covers  Fuel\Validation\Rule\MinLength
  */
 class MinLengthTest extends \PHPUnit_Framework_TestCase
 {

@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\InvalidRuleException
+ * @covers  Fuel\Validation\InvalidRuleException
  */
 class InvalidRuleExceptionTest extends \PHPUnit_Framework_TestCase
 {

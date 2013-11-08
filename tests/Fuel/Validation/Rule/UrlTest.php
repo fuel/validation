@@ -11,53 +11,35 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Defines tests for Email
+ * Tests for ValidUrl
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Email
+ * @covers Fuel\Validation\Rule\Url
  */
-class EmailTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Email
+	 * @var Url
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Email;
+		$this->object = new Url;
 	}
 
 	/**
-	 * @coversDefaultClass __construct
 	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field does not contain a valid email address.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
+			 'The field is not a valid url.',
+			 $this->object->getMessage()
 		);
 	}
 
@@ -66,39 +48,46 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($emailValue, $expected)
+	public function testValidate($url, $expected)
 	{
 		$this->assertEquals(
 			$expected,
-			$this->object->validate($emailValue)
+			$this->object->validate($url)
 		);
 	}
 
 	/**
-	 * Provides sample data for testing the email validation
+	 * Provides strings to test and expected results for testValidate
 	 *
 	 * @return array
 	 */
 	public function validateProvider()
 	{
 		return array(
-			array('admin@test.com', true),
 			array('', false),
-			array('@.com', false),
-			array('test.email.user@test.domain.tld', true),
+			array(1, false),
+			array(true, false),
+			array(new \stdClass, false),
+			array('512.123.1254.34234', false),
+			array('http://fuelphp.com', true),
+			array('http://fuelphp', true),
+			array('fuelphp.com', false),
+			array('sftp://user:password@fuelphp.com', true),
+			array('http://192.168.0.1', true),
+			array('ftp://FE80::0202:B3FF:FE1E:8329', true),
 		);
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
+	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testCustomMessageOnConstruct()
 	{
-		$message = 'foobarbazbat';
+		$message = 'foobar';
 
-		$object = new Email(null, $message);
+		$object = new Url(null, $message);
 
 		$this->assertEquals(
 			$message,

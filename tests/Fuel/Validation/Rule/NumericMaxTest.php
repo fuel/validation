@@ -11,53 +11,35 @@
 namespace Fuel\Validation\Rule;
 
 /**
- * Tests for Number validation rule
+ * Tests for NumericMax
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Number
+ * @covers Fuel\Validation\Rule\NumericMax
  */
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumericMaxTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Number
+	 * @var NumericMax
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Number;
+		$this->object = new NumericMax;
 	}
 
 	/**
-	 * @coversDefaultClass __construct
 	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field is not valid number.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
+			 'The field is not equal to or less than the specified value.',
+			 $this->object->getMessage()
 		);
 	}
 
@@ -66,8 +48,10 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($value, $expected)
+	public function testValidate($value, $param, $expected)
 	{
+		$this->object->setParameter($param);
+
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($value)
@@ -82,23 +66,34 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('123', true),
-			array('016547', true),
-			array('ghjgsd(*^"36723863*&723', false),
-			array('a', false),
+			0 => array('', 1, false),
+			1 => array(true, 1, false),
+			2 => array(new \stdClass, 1, false),
+			3 => array(1, 1, true),
+			4 => array(0, 1, true),
+			5 => array(2, 1, false),
+			6 => array(20, 1, false),
+			7 => array(5, 20, true),
+			8 => array(19, 20, true),
+			9 => array(20, 20, true),
+			10 => array(21, 20, false),
+			11 => array(2100, 20, false),
+			12 => array(21, -10, false),
+			13 => array(-20, -10, true),
+			14 => array(-20, null, false),
 		);
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
+	 * @coversDefaultClass getMessage
 	 * @group              Validation
 	 */
 	public function testCustomMessageOnConstruct()
 	{
-		$message = 'foobarbazbat';
+		$message = 'foobar';
 
-		$object = new Number(null, $message);
+		$object = new NumericMax(null, $message);
 
 		$this->assertEquals(
 			$message,

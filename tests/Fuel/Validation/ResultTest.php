@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers \Fuel\Validation\Result
+ * @covers Fuel\Validation\Result
  */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
@@ -86,7 +86,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @coversDefaultClass getError
-	 * @expectedException  \Fuel\Validation\InvalidFieldException
+	 * @expectedException  Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
 	public function testGetInvalidError()

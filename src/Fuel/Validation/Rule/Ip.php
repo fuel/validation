@@ -13,24 +13,26 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Checks that the value is longer than the given minimum length.
+ * Validates that a field is a valid IP address. Returns true for both IPv4 and v6.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @since	2.0
+ * @since 2.0
  */
-class MinLength extends AbstractRule
+class Ip extends AbstractRule
 {
 	/**
 	 * Contains the rule failure message
 	 *
 	 * @var string
 	 */
-	protected $message = 'The field does not satisfy the minimum length requirement.';
+	protected $message = 'The field is not a valid IP address.';
 
 	/**
-	 * @param mixed    $value     Value to be validated
+	 * Returns true if the given value is a valid IP address
+	 *
+	 * @param mixed    $value     Value to validate
 	 * @param string   $field     Unused by this rule
 	 * @param array  & $allFields Unused by this rule
 	 *
@@ -40,19 +42,7 @@ class MinLength extends AbstractRule
 	 */
 	public function validate($value, $field = null, &$allFields = null)
 	{
-		if($this->getParameter() === null)
-		{
-			return false;
-		}
-
-		if ( is_object($value) && ! method_exists($value, '__toString') )
-		{
-			return false;
-		}
-
-		mb_internal_encoding('UTF-8');
-
-		return (mb_strlen(( string ) $value) >= $this->getParameter());
+		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}
 
 }
