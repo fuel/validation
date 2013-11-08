@@ -33,7 +33,7 @@ interface FieldInterface
 	/**
 	 * Sets a list of rules to validate this field with
 	 *
-	 * @param RuleInterface[] $rules
+	 * @param RuleInterface $rules
 	 *
 	 * @return $this
 	 *

@@ -300,6 +300,8 @@ class Validator
 	 *
 	 * @return $this
 	 *
+	 * @throws LogicException
+	 *
 	 * @since 2.0
 	 */
 	public function setMessage($message)

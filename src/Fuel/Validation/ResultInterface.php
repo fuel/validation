@@ -85,7 +85,7 @@ interface ResultInterface
 	/**
 	 * Sets the name of a field that has passed validation
 	 *
-	 * @param string[] $fields
+	 * @param string $field
 	 *
 	 * @return $this
 	 *

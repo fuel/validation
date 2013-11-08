@@ -43,7 +43,7 @@ class Field implements FieldInterface
 	}
 
 	/**
-	 * Sets the flabel of this field
+	 * Sets the label of this field
 	 *
 	 * @param string $friendlyName
 	 *
@@ -104,17 +104,17 @@ class Field implements FieldInterface
 	}
 
 	/**
-	 * Sets a list of rules to validate this field with
+	 * Sets a rule to validate this field with
 	 *
-	 * @param RuleInterface[] $rules
+	 * @param RuleInterface $rule
 	 *
 	 * @return $this
 	 *
 	 * @since 2.0
 	 */
-	public function addRule(RuleInterface $rules)
+	public function addRule(RuleInterface $rule)
 	{
-		$this->rules[] = $rules;
+		$this->rules[] = $rule;
 
 		return $this;
 	}
