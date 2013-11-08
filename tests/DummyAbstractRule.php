@@ -26,7 +26,7 @@ class DummyAbstractRule extends Fuel\Validation\AbstractRule
 	 *
 	 * @return bool
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		return ($value == true);
 	}

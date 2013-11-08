@@ -32,15 +32,15 @@ class Ip extends AbstractRule
 	/**
 	 * Returns true if the given value is a valid IP address
 	 *
-	 * @param mixed    $value     Value to validate
-	 * @param string   $field     Unused by this rule
-	 * @param array  & $allFields Unused by this rule
+	 * @param mixed  $value Value to validate
+	 * @param string $field Unused by this rule
+	 * @param array  $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}

@@ -34,15 +34,15 @@ class MatchField extends AbstractRule
 	/**
 	 * Returns true if $value matches the value of the field specified with setParameter()
 	 *
-	 * @param mixed    $value     Value to validate
-	 * @param string   $field     Name of the field that is being validated
-	 * @param array  & $allFields Values of all the other fields being validated
+	 * @param mixed  $value Value to validate
+	 * @param string $field Name of the field that is being validated
+	 * @param array  $allFields Values of all the other fields being validated
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		$matchAgainst = $this->getParameter();
 

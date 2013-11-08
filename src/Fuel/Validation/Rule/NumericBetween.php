@@ -33,15 +33,15 @@ class NumericBetween extends AbstractRule
 	protected $message = 'The field is not between the specified values.';
 
 	/**
-	 * @param mixed  $value     Value to validate
-	 * @param string $field     Unused by this rule
+	 * @param mixed  $value Value to validate
+	 * @param string $field Unused by this rule
 	 * @param array  $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		$params = $this->getParameter();
 

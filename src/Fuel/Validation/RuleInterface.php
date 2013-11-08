@@ -30,15 +30,15 @@ interface RuleInterface
 	 * If a validation rule requires $field or $allFields but is not passed a value the rule should return false
 	 * rather than throwing an exception.
 	 *
-	 * @param mixed  $value     Value to validate
-	 * @param string $field     Name of the field that is being validated
+	 * @param mixed  $value Value to validate
+	 * @param string $field Name of the field that is being validated
 	 * @param array  $allFields Values of all the other fields being validated
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null);
+	public function validate($value, $field = null, $allFields = null);
 
 	/**
 	 * Gets the failure message for this rule

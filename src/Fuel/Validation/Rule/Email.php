@@ -30,15 +30,17 @@ class Email extends AbstractRule
 	protected $message = 'The field does not contain a valid email address.';
 
 	/**
-	 * @param mixed   $value     Value to be validated
-	 * @param null    $field     Unused by this rule
-	 * @param null  & $allFields Unused by this rule
+	 * @param mixed $value Value to be validated
+	 * @param null  $field Unused by this rule
+	 * @param null  $allFields
+	 *
+	 * @internal param null $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
 	}

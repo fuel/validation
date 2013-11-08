@@ -29,15 +29,15 @@ class NumericMax extends AbstractRule
 	protected $message = 'The field is not equal to or less than the specified value.';
 
 	/**
-	 * @param mixed  $value     Value to validate
-	 * @param string $field     Unused by this rule
+	 * @param mixed  $value Value to validate
+	 * @param string $field Unused by this rule
 	 * @param array  $allFields Unused by this rule
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		$max = $this->getParameter();
 

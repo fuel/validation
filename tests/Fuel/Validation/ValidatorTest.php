@@ -340,8 +340,14 @@ class FakeRule extends AbstractRule
 
 	/**
 	 * Will always return the $value
+	 *
+	 * @param mixed $value
+	 * @param null  $field
+	 * @param null  $allFields
+	 *
+	 * @return bool|mixed
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		return $value;
 	}

@@ -38,7 +38,7 @@ class Required extends AbstractRule
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, &$allFields = null)
+	public function validate($value, $field = null, $allFields = null)
 	{
 		// Make sure the array key exists in the data
 		// This check will only be performed if $field and $allFields are set. Else only the value passed will be tested
