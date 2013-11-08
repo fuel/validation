@@ -13,32 +13,36 @@ namespace Fuel\Validation\Rule;
 use Fuel\Validation\AbstractRule;
 
 /**
- * Checks that the value is longer than the given minimum length.
+ * Checks that the length of a string is exactly equal to a value specified.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @since	2.0
+ * @since 2.0
  */
-class MinLength extends AbstractRule
+class ExactLength extends AbstractRule
 {
-	/**
-	 * Contains the rule failure message
-	 *
-	 * @var string
-	 */
-	protected $message = 'The field does not satisfy the minimum length requirement.';
+
+	public function __construct($params = null, $message = '')
+	{
+		parent::__construct($params, $message);
+
+		if ($message == '')
+		{
+			$this->setMessage('The length of the field is not exactly equal to the length specified.');
+		}
+	}
 
 	/**
-	 * @param mixed  $value Value to be validated
-	 * @param string $field Unused by this rule
-	 * @param array  $allFields Unused by this rule
+	 * @param mixed  $value
+	 * @param string $field
+	 * @param array  $allFields
 	 *
 	 * @return bool
 	 *
 	 * @since 2.0
 	 */
-	public function validate($value, $field = null, $allFields = null)
+	public function validate($value, $field = null, &$allFields = null)
 	{
 		if($this->getParameter() === null)
 		{
@@ -52,7 +56,7 @@ class MinLength extends AbstractRule
 
 		mb_internal_encoding('UTF-8');
 
-		return (mb_strlen(( string ) $value) >= $this->getParameter());
+		return (mb_strlen(( string ) $value) == $this->getParameter());
 	}
 
 }

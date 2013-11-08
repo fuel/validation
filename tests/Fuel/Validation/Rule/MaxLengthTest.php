@@ -8,29 +8,30 @@
  * @link      http://fuelphp.com
  */
 
+
 namespace Fuel\Validation\Rule;
 
 require_once(__DIR__.'/../../../ClassWithToString.php');
 
 /**
- * Defines tests for MinLength
+ * Tests the MaxLength class.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\MinLength
+ * @covers  \Fuel\Validation\Rule\MaxLength
  */
-class MinLengthTest extends \PHPUnit_Framework_TestCase
+class MaxLengthTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var MinLength
+	 * @var MaxLength
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new MinLength;
+		$this->object = new MaxLength;
 	}
 
 	/**
@@ -41,7 +42,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field does not satisfy the minimum length requirement.',
+			'The field is longer than the allowed maximum length.',
 			$this->object->getMessage()
 		);
 	}
@@ -51,9 +52,9 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($stringValue, $minLength, $expected)
+	public function testValidate($stringValue, $maxLength, $expected)
 	{
-		$this->object->setParameter($minLength);
+		$this->object->setParameter($maxLength);
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($stringValue)
@@ -61,33 +62,36 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Provides sample data for testing the minimum length validation
+	 * Provides sample data for testing the maximum length validation
 	 *
 	 * @return array
 	 */
 	public function validateProvider()
 	{
 		return array(
-			0 => array('hello', 1, true),
-			1 => array('', 1, false),
+			0 => array('hello', 1, false),
+			1 => array('', 1, true),
 			2 => array('12345', 5, true),
-			3 => array('test.email.user@test.domain.tld', 500, false),
-			4 => array('ä', 1, true),
-			5 => array('', 0, true),
-			6 => array('', -1, true),
-			7 => array('z', 0, true),
-			8 => array(new \stdClass(), 100, false),
-			9 => array(new \stdClass(), null, false),
-			10 => array(new \ClassWithToString(), 1, true),
-			11 => array(new \ClassWithToString(), null, false),
-			12 => array(new \ClassWithToString(), 100000, false),
-			13 => array(function(){ return false; }, null, false),
-			14 => array('', null, false),
-			15 => array(null, 1, false),
-			16 => array(null, null, false)
+			3 => array('test.email.user@test.domain.tld', 500, true),
+			4 => array('b', 1, true),
+			5 => array('ä', 1, true),
+			6 => array('', 0, true),
+			7 => array('', -1, false),
+			8 => array('z', 0, false),
+			9 => array(new \stdClass(), 100, true),
+			10 => array(new \stdClass(), null, false),
+			11 => array(new \ClassWithToString(), 1, false),
+			12 => array(new \ClassWithToString(), null, false),
+			13 => array(new \ClassWithToString(), 100000, true),
+			14 => array(function(){ return false; }, null, false),
+			15 => array(function(){ return false; }, 100, true),
+			16 => array('', null, false),
+			17 => array(null, 1, true),
+			18 => array("a", null, false),
+			19 => array(null, null, false)
 		);
 	}
-	
+
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
@@ -97,7 +101,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	{
 		$message = 'foobarbazbat';
 
-		$object = new MinLength(null, $message);
+		$object = new MaxLength(null, $message);
 
 		$this->assertEquals(
 			$message,

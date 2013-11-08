@@ -8,29 +8,30 @@
  * @link      http://fuelphp.com
  */
 
+
 namespace Fuel\Validation\Rule;
 
 require_once(__DIR__.'/../../../ClassWithToString.php');
 
 /**
- * Defines tests for MinLength
+ * Tests the ExactLength class.
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\MinLength
+ * @covers  \Fuel\Validation\Rule\ExactLength
  */
-class MinLengthTest extends \PHPUnit_Framework_TestCase
+class ExactLengthTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var MinLength
+	 * @var ExactLength
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new MinLength;
+		$this->object = new ExactLength;
 	}
 
 	/**
@@ -41,7 +42,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field does not satisfy the minimum length requirement.',
+			'The length of the field is not exactly equal to the length specified.',
 			$this->object->getMessage()
 		);
 	}
@@ -51,9 +52,9 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($stringValue, $minLength, $expected)
+	public function testValidate($stringValue, $exactLength, $expected)
 	{
-		$this->object->setParameter($minLength);
+		$this->object->setParameter($exactLength);
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($stringValue)
@@ -61,33 +62,38 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Provides sample data for testing the minimum length validation
+	 * Provides sample data for testing the exact length validation
 	 *
 	 * @return array
 	 */
 	public function validateProvider()
 	{
+
 		return array(
-			0 => array('hello', 1, true),
+			0 => array('hello', 1, false),
 			1 => array('', 1, false),
 			2 => array('12345', 5, true),
 			3 => array('test.email.user@test.domain.tld', 500, false),
-			4 => array('ä', 1, true),
-			5 => array('', 0, true),
-			6 => array('', -1, true),
-			7 => array('z', 0, true),
-			8 => array(new \stdClass(), 100, false),
-			9 => array(new \stdClass(), null, false),
-			10 => array(new \ClassWithToString(), 1, true),
-			11 => array(new \ClassWithToString(), null, false),
-			12 => array(new \ClassWithToString(), 100000, false),
-			13 => array(function(){ return false; }, null, false),
-			14 => array('', null, false),
-			15 => array(null, 1, false),
-			16 => array(null, null, false)
+			4 => array('b', 1, true),
+			5 => array('ä', 1, true),
+			6 => array('', 0, true),
+			7 => array('', -1, false),
+			8 => array('z', 0, false),
+			9 => array(new \stdClass(), 100, false),
+			10 => array(new \stdClass(), null, false),
+			11 => array(new \ClassWithToString(), 1, false),
+			12 => array(new \ClassWithToString(), 10, true),
+			13 => array(new \ClassWithToString(), null, false),
+			14 => array(new \ClassWithToString(), 100000, false),
+			15 => array(function(){ return false; }, null, false),
+			16 => array(function(){ return false; }, 100, false),
+			17 => array('', null, false),
+			18 => array(null, 1, false),
+			19 => array("a", null, false),
+			20 => array(null, null, false)
 		);
 	}
-	
+
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
@@ -97,7 +103,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	{
 		$message = 'foobarbazbat';
 
-		$object = new MinLength(null, $message);
+		$object = new ExactLength(null, $message);
 
 		$this->assertEquals(
 			$message,
