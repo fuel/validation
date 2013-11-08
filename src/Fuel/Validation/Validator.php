@@ -50,6 +50,13 @@ class Validator
 	protected $lastAddedRule;
 
 	/**
+	 * Default namespace to look for rules in when a rule is not known
+	 *
+	 * @var string
+	 */
+	protected $ruleNamespace = 'Fuel\Validation\Rule\\';
+
+	/**
 	 * Adds a rule that can be used to validate a field
 	 *
 	 * @param string        $field
@@ -270,7 +277,7 @@ class Validator
 			return $this->customRules[$name];
 		}
 
-		return 'Fuel\Validation\Rule\\' . ucfirst($name);
+		return $this->ruleNamespace . ucfirst($name);
 	}
 
 	/**
