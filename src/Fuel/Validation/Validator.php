@@ -220,7 +220,7 @@ class Validator
 	{
 		if ( ! $this->lastAddedRule)
 		{
-			throw new \LogicException('A rule should be added before setting a message');
+			throw new \LogicException('VAL-006: A rule should be added before setting a message.');
 		}
 
 		$this->lastAddedRule->setMessage($message);
