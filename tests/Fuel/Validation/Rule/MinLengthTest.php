@@ -68,25 +68,26 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('hello', 1, true),
-			array('', 1, false),
-			array('12345', 5, true),
-			array('test.email.user@test.domain.tld', 500, false),
-			array('ä', 1, true),
-			array('', 0, true),
-			array('', -1, true),
-			array('z', 0, true),
-			array(new \stdClass(), 100, false),
-			array(new \stdClass(), null, false),
-			array(new \ClassWithToString(), 1, true),
-			array(new \ClassWithToString(), null, false),
-			array(new \ClassWithToString(), 100000, false),
-			array(function(){ return false; }, null, false),
-			array('', null, false),
-			array(null, 1, false),
-			array(null, null, false)
+			0 => array('hello', 1, true),
+			1 => array('', 1, false),
+			2 => array('12345', 5, true),
+			3 => array('test.email.user@test.domain.tld', 500, false),
+			4 => array('ä', 1, true),
+			5 => array('', 0, true),
+			6 => array('', -1, true),
+			7 => array('z', 0, true),
+			8 => array(new \stdClass(), 100, false),
+			9 => array(new \stdClass(), null, false),
+			10 => array(new \ClassWithToString(), 1, true),
+			11 => array(new \ClassWithToString(), null, false),
+			12 => array(new \ClassWithToString(), 100000, false),
+			13 => array(function(){ return false; }, null, false),
+			14 => array('', null, false),
+			15 => array(null, 1, false),
+			16 => array(null, null, false)
 		);
 	}
+	
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct

@@ -69,28 +69,29 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('hello', 1, false),
-			array('', 1, true),
-			array('12345', 5, true),
-			array('test.email.user@test.domain.tld', 500, true),
-			array('b', 1, true),
-			array('ä', 1, true),
-			array('', 0, true),
-			array('', -1, false),
-			array('z', 0, false),
-			array(new \stdClass(), 100, true),
-			array(new \stdClass(), null, false),
-			array(new \ClassWithToString(), 1, false),
-			array(new \ClassWithToString(), null, false),
-			array(new \ClassWithToString(), 100000, true),
-			array(function(){ return false; }, null, false),
-			array(function(){ return false; }, 100, true),
-			array('', null, false),
-			array(null, 1, true),
-			array("a", null, false),
-			array(null, null, false)
+			0 => array('hello', 1, false),
+			1 => array('', 1, true),
+			2 => array('12345', 5, true),
+			3 => array('test.email.user@test.domain.tld', 500, true),
+			4 => array('b', 1, true),
+			5 => array('ä', 1, true),
+			6 => array('', 0, true),
+			7 => array('', -1, false),
+			8 => array('z', 0, false),
+			9 => array(new \stdClass(), 100, true),
+			10 => array(new \stdClass(), null, false),
+			11 => array(new \ClassWithToString(), 1, false),
+			12 => array(new \ClassWithToString(), null, false),
+			13 => array(new \ClassWithToString(), 100000, true),
+			14 => array(function(){ return false; }, null, false),
+			15 => array(function(){ return false; }, 100, true),
+			16 => array('', null, false),
+			17 => array(null, 1, true),
+			18 => array("a", null, false),
+			19 => array(null, null, false)
 		);
 	}
+
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct

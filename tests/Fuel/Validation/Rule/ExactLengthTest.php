@@ -70,30 +70,30 @@ class ExactLengthTest extends \PHPUnit_Framework_TestCase
 	{
 
 		return array(
-			array('hello', 1, false),
-			array('', 1, false),
-			array('12345', 5, true),
-			array('test.email.user@test.domain.tld', 500, false),
-			array('b', 1, true),
-			array('ä', 1, true),
-			array('', 0, true),
-			array('', -1, false),
-			array('z', 0, false),
-			array(new \stdClass(), 100, false),
-			array(new \stdClass(), null, false),
-			array(new \ClassWithToString(), 1, false),
-			array(new \ClassWithToString(), 10, true),
-			array(new \ClassWithToString(), null, false),
-			array(new \ClassWithToString(), 100000, false),
-			array(function(){ return false; }, null, false),
-			array(function(){ return false; }, 100, false),
-			array('', null, false),
-			array(null, 1, false),
-			array("a", null, false),
-			array(null, null, false)
+			0 => array('hello', 1, false),
+			1 => array('', 1, false),
+			2 => array('12345', 5, true),
+			3 => array('test.email.user@test.domain.tld', 500, false),
+			4 => array('b', 1, true),
+			5 => array('ä', 1, true),
+			6 => array('', 0, true),
+			7 => array('', -1, false),
+			8 => array('z', 0, false),
+			9 => array(new \stdClass(), 100, false),
+			10 => array(new \stdClass(), null, false),
+			11 => array(new \ClassWithToString(), 1, false),
+			12 => array(new \ClassWithToString(), 10, true),
+			13 => array(new \ClassWithToString(), null, false),
+			14 => array(new \ClassWithToString(), 100000, false),
+			15 => array(function(){ return false; }, null, false),
+			16 => array(function(){ return false; }, 100, false),
+			17 => array('', null, false),
+			18 => array(null, 1, false),
+			19 => array("a", null, false),
+			20 => array(null, null, false)
 		);
 	}
-	
+
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
