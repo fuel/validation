@@ -94,4 +94,20 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = '/.*/';
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			array('pattern' => $parameter),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

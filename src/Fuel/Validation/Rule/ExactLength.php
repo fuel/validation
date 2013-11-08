@@ -51,4 +51,20 @@ class ExactLength extends AbstractRule
 		return (mb_strlen(( string ) $value) == $this->getParameter());
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'length' => <target length>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'length' => $this->getParameter(),
+		);
+	}
+
 }

@@ -51,4 +51,20 @@ class MaxLength extends AbstractRule
 		return (mb_strlen(( string ) $value) <= $this->getParameter());
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'maxLength' => <target length>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'maxLength' => $this->getParameter(),
+		);
+	}
+
 }

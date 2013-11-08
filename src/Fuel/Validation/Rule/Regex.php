@@ -51,4 +51,20 @@ class Regex extends AbstractRule
 		return preg_match($regex, $value) == true;
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'pattern' => <Regex used for matching>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'pattern' => $this->getParameter(),
+		);
+	}
+
 }

@@ -87,7 +87,7 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 			16 => array(null, null, false)
 		);
 	}
-	
+
 	/**
 	 * @coversDefaultClass getMessage
 	 * @coversDefaultClass __construct
@@ -102,6 +102,22 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(
 			$message,
 			$object->getMessage()
+		);
+	}
+
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = 12;
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			array('minLength' => $parameter),
+			$this->object->getMessageParameters()
 		);
 	}
 

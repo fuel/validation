@@ -50,4 +50,20 @@ class NumericMax extends AbstractRule
 		return $value <= $max;
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'maxValue' => <target value>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'maxValue' => $this->getParameter(),
+		);
+	}
+
 }

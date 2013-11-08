@@ -111,4 +111,20 @@ class ExactLengthTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = 12;
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			array('length' => $parameter),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

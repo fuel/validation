@@ -57,4 +57,20 @@ class MatchField extends AbstractRule
 		return $allFields[$matchAgainst] == $value;
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'field' => <field that will be matched against>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'field' => $this->getParameter(),
+		);
+	}
+
 }

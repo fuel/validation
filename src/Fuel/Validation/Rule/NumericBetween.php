@@ -76,4 +76,37 @@ class NumericBetween extends AbstractRule
 		return true;
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'lowerBound' => <lower bound number>,
+	 * 		'upperBound' => <upper bound number>,
+	 * )
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		$upperBound = null;
+		$lowerBound = null;
+
+		$params = $this->getParameter();
+
+		if (isset($params[0]))
+		{
+			$lowerBound = $params[0];
+		}
+
+		if (isset($params[1]))
+		{
+			$upperBound = $params[1];
+		}
+
+		return array(
+			'lowerBound' => $lowerBound,
+			'upperBound' => $upperBound,
+		);
+	}
+
 }

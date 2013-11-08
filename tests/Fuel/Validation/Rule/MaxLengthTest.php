@@ -109,4 +109,20 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = 12;
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			array('maxLength' => $parameter),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

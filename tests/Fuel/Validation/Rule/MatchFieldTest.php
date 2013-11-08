@@ -113,4 +113,20 @@ class MatchFieldTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = 'some other field';
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			array('field' => $parameter),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

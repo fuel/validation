@@ -105,4 +105,36 @@ class NumericBetweenTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$this->object->setParameter(array(1, 10));
+
+		$this->assertEquals(
+			array(
+				'lowerBound' => 1,
+				'upperBound' => 10,
+			),
+			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @coversDefaultClass getMessageParameters
+	 * @group              Validation
+	 */
+	public function testGetMessageParamsEmpty()
+	{
+		$this->assertEquals(
+			array(
+				'lowerBound' => null,
+				'upperBound' => null,
+			),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

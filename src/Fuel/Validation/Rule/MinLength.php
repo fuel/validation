@@ -52,4 +52,20 @@ class MinLength extends AbstractRule
 		return (mb_strlen(( string ) $value) >= $this->getParameter());
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'minLength' => <target length>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'minLength' => $this->getParameter(),
+		);
+	}
+
 }

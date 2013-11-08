@@ -50,4 +50,20 @@ class NumericMin extends AbstractRule
 		return $value >= $min;
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 * 		'minValue' => <target value>
+	 * );
+	 *
+	 * @return string[]
+	 */
+	public function getMessageParameters()
+	{
+		return array(
+			'minValue' => $this->getParameter(),
+		);
+	}
+
 }
