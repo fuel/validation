@@ -39,6 +39,11 @@ class Validator
 	protected $customRules = array();
 
 	/**
+	 * @var string[]
+	 */
+	protected $messages = array();
+
+	/**
 	 * Keeps track of the last field added for magic method chaining
 	 *
 	 * @var FieldInterface
@@ -337,7 +342,18 @@ class Validator
 			throw new InvalidRuleException($name);
 		}
 
-		return new $className($parameters);
+		/* @var RuleInterface */
+		$instance = new $className($parameters);
+
+		// Check if there is a custom message
+		$message = $this->getGlobalMessage($name);
+
+		if ($message !== null)
+		{
+			$instance->setMessage($message);
+		}
+
+		return $instance;
 	}
 
 	/**
@@ -381,6 +397,61 @@ class Validator
 		$this->customRules[$name] = $class;
 
 		return $this;
+	}
+
+	/**
+	 * Sets a custom message for all fields of the given type that are created after the message has been set.
+	 *
+	 * @param string      $ruleName Name of the rule to set a message for, eg, required, number, exactLength
+	 * @param string|null $message  Set to null to disable the custom message
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setGlobalMessage($ruleName, $message)
+	{
+		$this->messages[$ruleName] = $message;
+
+		if ($message === null)
+		{
+			$this->removeGlobalMessage($ruleName);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Removes a global rule message
+	 *
+	 * @param string $ruleName
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function removeGlobalMessage($ruleName)
+	{
+		unset($this->messages[$ruleName]);
+
+		return $this;
+	}
+
+	/**
+	 * Gets the global message set for a rule
+	 *
+	 * @param string $ruleName
+	 *
+	 * @return null|string Will be null if there is no message
+	 */
+	public function getGlobalMessage($ruleName)
+	{
+		if ( ! isset($this->messages[$ruleName]))
+		{
+			return null;
+		}
+
+		return $this->messages[$ruleName];
 	}
 
 }

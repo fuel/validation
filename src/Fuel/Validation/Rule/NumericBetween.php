@@ -85,6 +85,8 @@ class NumericBetween extends AbstractRule
 	 * )
 	 *
 	 * @return string[]
+	 *
+	 * @since 2.0
 	 */
 	public function getMessageParameters()
 	{

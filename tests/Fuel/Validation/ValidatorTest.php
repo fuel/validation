@@ -284,10 +284,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testAddCustomRule()
 	{
-		$this->object->addCustomRule('testRule', 'Fuel\Validation\FakeRule');
+		$this->object->addCustomRule('testRule', '\DummyAbstractRule');
 
 		$this->assertInstanceOf(
-			'Fuel\Validation\FakeRule',
+			'\DummyAbstractRule',
 			$this->object->createRuleInstance('testRule')
 		);
 
@@ -301,14 +301,18 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testAddCoreRuleOverride()
 	{
-		$this->object->addCustomRule('required', 'Fuel\Validation\FakeRule');
+		$this->object->addCustomRule('required', '\DummyAbstractRule');
 
 		$this->assertInstanceOf(
-			'Fuel\Validation\FakeRule',
+			'\DummyAbstractRule',
 			$this->object->createRuleInstance('required')
 		);
 	}
 
+	/**
+	 * @coversDefaultClass setMessage
+	 * @group              Validation
+	 */
 	public function testMessageReplacement()
 	{
 		$this->object->addField('test', 'My Field')
@@ -323,28 +327,56 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-}
+	/**
+	 * @coversDefaultClass setGlobalMessage
+	 * @coversDefaultClass getGlobalMessage
+	 * @coversDefaultClass removeGlobalMessage
+	 * @group              Validation
+	 */
+	public function testGetSetGlobalMessage()
+	{
+		$message = 'Test message';
+		$ruleName = 'test';
 
-/**
- * Fake validation rule to test adding custom rules
- *
- * @package Fuel\Validation
- * @author  Fuel Development Team
- */
-class FakeRule extends AbstractRule
-{
+		$this->assertNull(
+			$this->object->getGlobalMessage($ruleName)
+		);
+
+		$this->object->setGlobalMessage($ruleName, $message);
+
+		$this->assertEquals(
+			$message,
+			$this->object->getGlobalMessage($ruleName)
+		);
+
+		$this->object->setGlobalMessage($ruleName, null);
+
+		$this->assertNull(
+			$this->object->getGlobalMessage($ruleName)
+		);
+	}
 
 	/**
-	 * Will always return the $value
-	 *
-	 * @param mixed $value
-	 * @param null  $field
-	 * @param null  $allFields
-	 *
-	 * @return bool|mixed
+	 * @coversDefaultClass setGlobalMessage
+	 * @coversDefaultClass createRuleInstance
+	 * @group              Validation
 	 */
-	public function validate($value, $field = null, $allFields = null)
+	public function testCreateRuleInstanceWithGlobalMessage()
 	{
-		return $value;
+		$message = 'Test message';
+		$ruleName = 'test';
+		$class = '\DummyAbstractRule';
+
+		$this->object->setGlobalMessage($ruleName, $message);
+
+		$this->object->addCustomRule($ruleName, $class);
+
+		$insatnce = $this->object->createRuleInstance($ruleName);
+
+		$this->assertEquals(
+			$message,
+			$insatnce->getMessage()
+		);
 	}
+
 }
