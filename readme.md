@@ -109,10 +109,26 @@ Now when the `required()` rule fails the custom message will be used.
 
 There are several tokens that can be used as substitutions for various values. As in the example `{label}` will be replaced
 with the field's label and `{name}` will be replaced with the field's name. (`name` in the example above). Rules can also
-provide other values, for instance `NumericBetween` will allow you to use `{upper}` and `{lower}`. Please refer to each rule
+provide other values, for instance `NumericBetween` will allow you to use `{upperBound}` and `{lowerBound}`. Please refer to each rule
 on the custom tokens provided.
 
 If a token in a string is not found then it will simply be ignored and not replaced.
+
+### Default messages
+
+It is possible to change the default message for a given rule by calling `setGlobalMessage()` on the `Validator` object.
+After this method is called any rules created through the `Validatator` via either magic methods or `createRuleInstance()` will
+have the specified message set by default.
+
+```php
+use Fuel\Validation\Validator;
+
+// Create a new validator instance to play with
+$v = new Validator;
+
+$v->setGlobalMessage('required', 'Sorry, my chum, but {label} is a required field and you did not enter anything');
+
+```
 
 ## Manually adding rules and rule overriding
 As well as using the default core rules it is possible to dynamically add your own rules or override existing rules.
