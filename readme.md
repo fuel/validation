@@ -15,12 +15,12 @@ use Fuel\Validation\Validator;
 $v = new Validator;
 
 // Set up our required validation rules
-$v->addField('name')
+$v->addField('name', 'User Name')
     ->required()
-  ->addField('email')
+  ->addField('email', 'Email Address')
     ->required()
     ->email()
-  ->addField('age')
+  ->addField('age', 'Current Age')
     ->number();
 
 // Create some dummy data to validate
@@ -69,7 +69,7 @@ $v = new Validator;
 // Set up our required validation rules
 $v->addField('name', 'User Name')
     ->required()
-  ->addField('email', 'Email Address)
+  ->addField('email', 'Email Address')
     ->required()
     ->email()
   ->addField('age', 'Current Age')
