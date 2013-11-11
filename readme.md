@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/fuelphp/validation.png?branch=master)](https://travis-ci.org/fuelphp/validation)
 
-A flexable library to validate different kinds of data.
+A flexible library to validate different kinds of data.
 
 ##Simple usage
 
@@ -67,12 +67,12 @@ use Fuel\Validation\Validator;
 $v = new Validator;
 
 // Set up our required validation rules
-$v->addField('name')
+$v->addField('name', 'User Name')
     ->required()
-  ->addField('email')
+  ->addField('email', 'Email Address)
     ->required()
     ->email()
-  ->addField('age')
+  ->addField('age', 'Current Age')
     ->number();
 
 // Create some dummy data to validate
@@ -92,7 +92,27 @@ var_dump($result->getError('name')); // Returns the error message for the 'name'
 ```
 
 ### Custom messages
-Currently there is not a way to easily add custom validation messages but this feature is planned. At the moment you will have to manually add new rule instances to set custom messages.
+Messages can be set in two ways, directly on a rule instance or as part of the method chain.
+
+```php
+
+use Fuel\Validation\Validator;
+
+$v = new Validator;
+
+$v->addField('name', 'User Name')
+    ->required()
+    ->setMessage('{label} is required, please enter a value');
+
+```
+Now when the `required()` rule fails the custom message will be used.
+
+There are several tokens that can be used as substitutions for various values. As in the example `{label}` will be replaced
+with the field's label and `{name}` will be replaced with the field's name. (`name` in the example above). Rules can also
+provide other values, for instance `NumericBetween` will allow you to use `{upper}` and `{lower}`. Please refer to each rule
+on the custom tokens provided.
+
+If a token in a string is not found then it will simply be ignored and not replaced.
 
 ## Manually adding rules and rule overriding
 As well as using the default core rules it is possible to dynamically add your own rules or override existing rules.
@@ -100,7 +120,7 @@ As well as using the default core rules it is possible to dynamically add your o
 This is done by calling the `addRule()` function on a `Validator` like so: `$v->addRule('myCustomRule', 'My\App\Rules\CustomRule')`.
 If the class cannot be loaded for any reason a `InvalidRuleException` will be thrown when the rule gets used.
 
-The `myCustomRule` rule is now avaliable for use with the `Validator` instance and can be called via the magic method syntax as well as the `createRuleInstance()` function in `Validator`.
+The `myCustomRule` rule is now available for use with the `Validator` instance and can be called via the magic method syntax as well as the `createRuleInstance()` function in `Validator`.
 
 ```php
 <?php
