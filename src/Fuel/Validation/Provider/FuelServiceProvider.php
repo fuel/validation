@@ -22,13 +22,18 @@ use Fuel\Dependency\ServiceProvider;
 class FuelServiceProvider extends ServiceProvider
 {
 
-	public $provides = array('validator');
+	public $provides = array('validator', 'validation.ruleprovider.array');
 
 	public function provide()
 	{
 		$this->register('validator', function ($dic)
 		{
 			return $dic->resolve('Fuel\Validation\Validator');
+		});
+
+		$this->register('validation.ruleprovider.array', function ($dic)
+		{
+			return $dic->resolve('Fuel\Validation\RuleProvider\FromArray');
 		});
 	}
 
