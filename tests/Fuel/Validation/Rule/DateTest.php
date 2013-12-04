@@ -16,19 +16,19 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Email
+ * @covers  Fuel\Validation\Rule\Date
  */
-class EmailTest extends \PHPUnit_Framework_TestCase
+class DateTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Email
+	 * @var Date
 	 */
 	protected $object;
 
 	protected function setUp()
 	{
-		$this->object = new Email;
+		$this->object = new Date;
 	}
 
 	/**
@@ -39,7 +39,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	public function testGetMessage()
 	{
 		$this->assertEquals(
-			'The field does not contain a valid email address.',
+			'The field does not contain a valid date.',
 			$this->object->getMessage()
 		);
 	}
@@ -66,11 +66,12 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($emailValue, $expected)
+	public function testValidate($dateValue, $format=null, $strict=true, $expected)
 	{
+		$this->object->setParameter(array('format' => $format, 'strict' => $strict));
 		$this->assertEquals(
 			$expected,
-			$this->object->validate($emailValue)
+			$this->object->validate($dateValue)
 		);
 	}
 
@@ -82,10 +83,31 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			array('admin@test.com', true),
-			array('', false),
-			array('@.com', false),
-			array('test.email.user@test.domain.tld', true),
+			0 => array('admin@test.com', 'Y/m/d', true, false),
+			1 => array('admin@test.com', null, true, false),
+			2 => array('admin@test.com', 'Y/m/d', false, false),
+			3 => array('admin@test.com', null, false, false),
+			4 => array('10/41/10', 'Y/m/d', true, false),
+			5 => array('10/41/10', null, true, false),
+			6 => array('10/41/10', 'Y/m/d', false, false),
+			7 => array('10/41/10', null, false, false),
+			8 => array('10/10/10', 'Y/m/d', true, true),
+			9 => array('10/10/10', null, true, false),
+			10 => array('10/10/10', 'Y/m/d', false, true),
+			11 => array('10/10/10', null, false, false),
+			12 => array('2012/10/10', 'Y/m/d', true, true),
+			13 => array('2012/10/10', null, true, false),
+			14 => array('2012/10/10', 'Y/m/d', false, true),
+			15 => array('2012/10/10', 'Y.m.d', false, false),
+			16 => array('2012.10.10', 'Y.m.d', false, true),
+			17 => array('2012/10/10', null, false, false),
+			18 => array(new \stdClass(), "Y/m.d", false, false),
+			19 => array(new \stdClass(), null, true, false),
+			20 => array(new \ClassWithToString("1990/12/12"), "Y/m/d", true, true),
+			21 => array(new \ClassWithToString(), "D/m/Y", true, false),
+			22 => array(new \ClassWithToString(), null, true, false),
+			23 => array(new \ClassWithToString(), 100000, true, false),
+			23 => array(function(){ return "10/10/10"; }, "d/m/y", true, false),
 		);
 	}
 
@@ -98,7 +120,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	{
 		$message = 'foobarbazbat';
 
-		$object = new Email(null, $message);
+		$object = new Date(null, $message);
 
 		$this->assertEquals(
 			$message,

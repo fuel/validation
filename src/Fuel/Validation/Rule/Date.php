@@ -11,16 +11,17 @@
 namespace Fuel\Validation\Rule;
 
 use Fuel\Validation\AbstractRule;
+use Mockery\CountValidator\Exception;
 
 /**
- * Checks that the value is a valid email address
+ * Checks that the value is a valid date
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
  * @since 2.0
  */
-class Email extends AbstractRule
+class Date extends AbstractRule
 {
 
 	/**
@@ -28,7 +29,7 @@ class Email extends AbstractRule
 	 *
 	 * @var string
 	 */
-	protected $message = 'The field does not contain a valid email address.';
+	protected $message = 'The field does not contain a valid date.';
 
 	/**
 	 * @param mixed $value Value to be validated
@@ -43,7 +44,22 @@ class Email extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		return false !== filter_var($value, FILTER_VALIDATE_EMAIL);
+		$parameters = $this->getParameter();
+		$format = $parameters['format'];
+		$strict = $parameters['strict'];
+		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null )
+		{
+			return false;
+		}
+		if( ! $format )
+		{
+			return false;
+		}
+
+		$date = date_parse_from_format($format, (string) $value);
+
+		return ( $date['error_count'] + $date['warning_count'] === 0 );
+
 	}
 
 }

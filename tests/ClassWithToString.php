@@ -16,9 +16,17 @@
 */
 class ClassWithToString
 {
-	function __toString()
+
+	private $returnValue = 0;
+
+	public function __construct($c_returnValue = '1234567890')
 	{
-		return '1234567890';
+		$this->returnValue = $c_returnValue;
+	}
+
+	public function __toString()
+	{
+		return $this->returnValue;
 	}
 
 }
