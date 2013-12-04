@@ -1,6 +1,7 @@
 # FuelPHP Validation library.
 
 [![Build Status](https://travis-ci.org/fuelphp/validation.png?branch=master)](https://travis-ci.org/fuelphp/validation)
+[![Latest Stable Version](https://poser.pugx.org/fuelphp/validation/v/stable.png)](https://packagist.org/packages/fuelphp/validation)
 
 A flexible library to validate different kinds of data.
 
@@ -53,6 +54,7 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - regex - Checks if the value matches against a given regular expression
  - required - Checks if the value exists in the data being validated
  - url - Checks if the given value is a valid url or not
+ - Date - Checks if the given value matches a given date format
 
 ## Error messages
 
