@@ -47,11 +47,13 @@ class Date extends AbstractRule
 		$parameters = $this->getParameter();
 		$format = $parameters['format'];
 		$strict = $parameters['strict'];
+		
 		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null )
 		{
 			return false;
 		}
-		if( ! $format )
+
+		if ( ! $format )
 		{
 			return false;
 		}
