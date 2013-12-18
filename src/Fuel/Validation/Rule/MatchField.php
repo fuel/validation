@@ -47,12 +47,6 @@ class MatchField extends AbstractRule
 	{
 		$matchAgainst = $this->getParameter();
 
-		// Ensure we have only a single thing to match against
-		if (is_array($matchAgainst))
-		{
-			$matchAgainst = array_shift($matchAgainst);
-		}
-
 		// If any of the needed settings are missing, return false and
 		// check if the array key exists, if not nothing to validate against
 		if ($allFields === null or $matchAgainst === null or ! isset($allFields[$matchAgainst]))
@@ -61,6 +55,26 @@ class MatchField extends AbstractRule
 		}
 
 		return $allFields[$matchAgainst] == $value;
+	}
+
+	/**
+	 * Sets the field name to match against
+	 *
+	 * @param string $params If an array the first value will be used
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setParameter($params)
+	{
+		// Ensure we have only a single thing to match against
+		if (is_array($params))
+		{
+			$params = array_shift($params);
+		}
+
+		return parent::setParameter($params);
 	}
 
 	/**
