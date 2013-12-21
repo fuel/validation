@@ -52,6 +52,26 @@ class MaxLength extends AbstractRule
 	}
 
 	/**
+	 * Sets the value to check against
+	 *
+	 * @param string $params If an array the first value will be used
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setParameter($params)
+	{
+		// Ensure we have only a single thing to match against
+		if (is_array($params))
+		{
+			$params = array_shift($params);
+		}
+
+		return parent::setParameter($params);
+	}
+
+	/**
 	 * Returns
 	 *
 	 * array(
