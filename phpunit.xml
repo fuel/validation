@@ -18,6 +18,10 @@
 		<whitelist addUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">./src/</directory>
 		</whitelist>
+        <blacklist>
+            <directory suffix=".php">./vendor/</directory>
+            <directory suffix=".php">./tests/</directory>
+        </blacklist>
 	</filter>
     <logging>
         <log type="coverage-html" target="./coverage" charset="UTF-8" yui="true" highlight="false" lowUpperBound="49" highLowerBound="75"/>
