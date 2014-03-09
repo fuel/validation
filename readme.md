@@ -211,7 +211,7 @@ $config = array(
 $v = new Validator;
 
 $generator = new FromArray;
-$generator->setData($data)->populateValidator($v);
+$generator->setData($config)->populateValidator($v);
 
 // $v is now populated with the fields and rules specified in the config array.
 ```
