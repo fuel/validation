@@ -235,6 +235,6 @@ $v = new Validator;
 $v->addRule('myCustomRule', 'My\App\Rules\CustomRule');
 
 $generator = new FromArray;
-$generator->setData($data)->populateValidator($v);
+$generator->setData($config)->populateValidator($v);
 
 ```
