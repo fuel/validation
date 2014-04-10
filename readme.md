@@ -35,7 +35,7 @@ $data = array(
 $result = $v->run($data);
 
 var_dump($result->isValid()); // true
-var_dump($result->validated()); // List of all the fields that passed validation
+var_dump($result->getValidated()); // List of all the fields that passed validation
 
 ```
 
