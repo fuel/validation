@@ -22,7 +22,7 @@ class NumericBetweenTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var NumericMax
+	 * @var NumericBetween
 	 */
 	protected $object;
 
