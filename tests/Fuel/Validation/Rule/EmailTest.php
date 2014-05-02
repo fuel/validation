@@ -45,23 +45,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
-		);
-	}
-
-	/**
 	 * @coversDefaultClass validate
 	 * @dataProvider       validateProvider
 	 * @group              Validation
