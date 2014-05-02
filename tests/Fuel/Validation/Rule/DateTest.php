@@ -38,9 +38,9 @@ class DateTest extends AbstractTest
 	 */
 	public function testValidate($dateValue, $format = null, $strict = true, $expected)
 	{
-		$this->object->setParameter(array('format' => $format, 'strict' => $strict));
+		$param = array('format' => $format, 'strict' => $strict);
 
-		parent::testValidate($dateValue, $expected);
+		parent::testValidate($dateValue, $expected, $param);
 	}
 
 	/**

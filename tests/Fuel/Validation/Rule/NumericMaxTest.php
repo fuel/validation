@@ -32,18 +32,6 @@ class NumericMaxTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $param, $expected)
-	{
-		$this->object->setParameter($param);
-
-		parent::testValidate($value, $expected);
-	}
-
-	/**
 	 * Provides strings to test and expected results for testValidate
 	 *
 	 * @return array
@@ -51,21 +39,21 @@ class NumericMaxTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', 1, false),
-			1 => array(true, 1, false),
-			2 => array(new \stdClass, 1, false),
-			3 => array(1, 1, true),
-			4 => array(0, 1, true),
-			5 => array(2, 1, false),
-			6 => array(20, 1, false),
-			7 => array(5, 20, true),
-			8 => array(19, 20, true),
-			9 => array(20, 20, true),
-			10 => array(21, 20, false),
-			11 => array(2100, 20, false),
-			12 => array(21, -10, false),
-			13 => array(-20, -10, true),
-			14 => array(-20, null, false),
+			0 => array('', false, 1),
+			1 => array(true, false, 1),
+			2 => array(new \stdClass, false, 1),
+			3 => array(1, true, 1),
+			4 => array(0, true, 1),
+			5 => array(2, false, 1),
+			6 => array(20, false, 1),
+			7 => array(5, true, 20),
+			8 => array(19, true, 20),
+			9 => array(20, true, 20),
+			10 => array(21, false, 20),
+			11 => array(2100, false, 20),
+			12 => array(21, false, -10),
+			13 => array(-20, true, -10),
+			14 => array(-20, false, null),
 		);
 	}
 

@@ -35,18 +35,6 @@ class MaxLengthTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($stringValue, $maxLength, $expected)
-	{
-		$this->object->setParameter($maxLength);
-
-		parent::testValidate($stringValue, $expected);
-	}
-
-	/**
 	 * Provides sample data for testing the maximum length validation
 	 *
 	 * @return array
@@ -54,26 +42,26 @@ class MaxLengthTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('hello', 1, false),
-			1 => array('', 1, true),
-			2 => array('12345', 5, true),
-			3 => array('test.email.user@test.domain.tld', 500, true),
-			4 => array('b', 1, true),
-			5 => array('ä', 1, true),
-			6 => array('', 0, true),
-			7 => array('', -1, false),
-			8 => array('z', 0, false),
-			9 => array(new \stdClass(), 100, false),
-			10 => array(new \stdClass(), null, false),
-			11 => array(new \ClassWithToString(), 1, false),
-			12 => array(new \ClassWithToString(), null, false),
-			13 => array(new \ClassWithToString(), 100000, true),
-			14 => array(function(){ return false; }, null, false),
-			15 => array(function(){ return false; }, 100, false),
-			16 => array('', null, false),
-			17 => array(null, 1, true),
-			18 => array("a", null, false),
-			19 => array(null, null, false)
+			0 => array('hello', false, 1),
+			1 => array('', true, 1),
+			2 => array('12345', true, 5),
+			3 => array('test.email.user@test.domain.tld', true, 500),
+			4 => array('b', true, 1),
+			5 => array('ä', true, 1),
+			6 => array('', true, 0),
+			7 => array('', false, -1),
+			8 => array('z', false, 0),
+			9 => array(new \stdClass(), false, 100),
+			10 => array(new \stdClass(), false, null),
+			11 => array(new \ClassWithToString(), false, 1),
+			12 => array(new \ClassWithToString(), false, null),
+			13 => array(new \ClassWithToString(), true, 100000),
+			14 => array(function(){ return false; }, false, null),
+			15 => array(function(){ return false; }, false, 100),
+			16 => array('', false, null),
+			17 => array(null, true, 1),
+			18 => array("a", false, null),
+			19 => array(null, false, null)
 		);
 	}
 

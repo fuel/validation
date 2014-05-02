@@ -32,18 +32,6 @@ class RegexTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $pattern, $expected)
-	{
-		$this->object->setParameter($pattern);
-
-		parent::testValidate($value, $expected);
-	}
-
-	/**
 	 * Provides strings to test and expected results for testValidate
 	 *
 	 * @return array
@@ -51,14 +39,14 @@ class RegexTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', null, false),
-			1 => array(1, '/.*/', false),
-			2 => array(true, '/.*/', false),
-			3 => array(new \stdClass, '/.*/', false),
-			4 => array('hkjsghfkjgJHga', '/[a-zA-Z]*/', true),
-			5 => array('', '/.*/', true),
-			6 => array('ads123', '/^[a-z]*$/', false),
-			7 => array('ads', '/[a-z]*/', true),
+			0 => array('', false, null),
+			1 => array(1, false, '/.*/'),
+			2 => array(true, false, '/.*/'),
+			3 => array(new \stdClass, false, '/.*/'),
+			4 => array('hkjsghfkjgJHga', true, '/[a-zA-Z]*/'),
+			5 => array('', true, '/.*/'),
+			6 => array('ads123', false, '/^[a-z]*$/'),
+			7 => array('ads', true, '/[a-z]*/'),
 		);
 	}
 

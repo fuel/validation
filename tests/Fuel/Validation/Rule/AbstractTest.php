@@ -49,6 +49,11 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testValidate($value, $expected)
 	{
+		if (func_num_args() > 2)
+		{
+			$this->object->setParameter(func_get_arg(2));
+		}
+
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($value)

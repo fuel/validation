@@ -32,18 +32,6 @@ class TypeTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $type, $expected)
-	{
-		$this->object->setParameter($type);
-
-		parent::testValidate($value, $expected);
-	}
-
-	/**
 	 * Provides sample data for testing the email validation
 	 *
 	 * @return array
@@ -51,18 +39,18 @@ class TypeTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('admin@test.com', 'string', true),
-			1 => array('admin@test.com', 'numeric', false),
-			2 => array('admin@test.com', 'stdClass', false),
-			3 => array('admin@test.com', array('numeric', 'string'), true),
-			4 => array(1, 'numeric', true),
-			5 => array(1, 'int', true),
-			6 => array(1, 'string', false),
-			7 => array(1, 'stdClass', false),
-			8 => array(1, array('string', 'int'), true),
-			9 => array(1, null, false),
-			10 => array(new \stdClass(), 'stdClass', true),
-			11 => array(new \stdClass(), 'string', false),
+			0 => array('admin@test.com', true, 'string'),
+			1 => array('admin@test.com', false, 'numeric'),
+			2 => array('admin@test.com', false, 'stdClass'),
+			3 => array('admin@test.com', true, array('numeric', 'string')),
+			4 => array(1, true, 'numeric'),
+			5 => array(1, true, 'int'),
+			6 => array(1, false, 'string'),
+			7 => array(1, false, 'stdClass'),
+			8 => array(1, true, array('string', 'int')),
+			9 => array(1, false, null),
+			10 => array(new \stdClass(), true, 'stdClass'),
+			11 => array(new \stdClass(), false, 'string'),
 		);
 	}
 

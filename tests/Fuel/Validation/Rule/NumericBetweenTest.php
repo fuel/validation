@@ -32,18 +32,6 @@ class NumericBetweenTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $lower, $upper, $expected)
-	{
-		$this->object->setParameter(array($lower, $upper));
-
-		parent::testValidate($value, $expected);
-	}
-
-	/**
 	 * Provides strings to test and expected results for testValidate
 	 *
 	 * @return array
@@ -51,14 +39,14 @@ class NumericBetweenTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', 1, 2, false),
-			1 => array(true, 1, 2, false),
-			2 => array(new \stdClass, 1, 2, false),
-			3 => array(1, 1, 10, false),
-			4 => array(2, 1, 10, true),
-			5 => array(9, 1, 10, true),
-			6 => array(10, 1, 10, false),
-			6 => array(11, 1, 10, false),
+			0 => array('', false, array(1, 2)),
+			1 => array(true, false, array(1, 2)),
+			2 => array(new \stdClass, false, array(1, 2)),
+			3 => array(1, false, array(1, 10)),
+			4 => array(2, true, array(1, 10)),
+			5 => array(9, true, array(1, 10)),
+			6 => array(10, false, array(1, 10)),
+			6 => array(11, false, array(1, 10)),
 		);
 	}
 

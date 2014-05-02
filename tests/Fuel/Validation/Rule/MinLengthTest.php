@@ -34,18 +34,6 @@ class MinLengthTest extends AbstractTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($stringValue, $minLength, $expected)
-	{
-		$this->object->setParameter($minLength);
-
-		parent::testValidate($stringValue, $expected);
-	}
-
-	/**
 	 * Provides sample data for testing the minimum length validation
 	 *
 	 * @return array
@@ -53,23 +41,23 @@ class MinLengthTest extends AbstractTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('hello', 1, true),
-			1 => array('', 1, false),
-			2 => array('12345', 5, true),
-			3 => array('test.email.user@test.domain.tld', 500, false),
-			4 => array('ä', 1, true),
-			5 => array('', 0, true),
-			6 => array('', -1, true),
-			7 => array('z', 0, true),
-			8 => array(new \stdClass(), 100, false),
-			9 => array(new \stdClass(), null, false),
-			10 => array(new \ClassWithToString(), 1, true),
-			11 => array(new \ClassWithToString(), null, false),
-			12 => array(new \ClassWithToString(), 100000, false),
-			13 => array(function(){ return false; }, null, false),
-			14 => array('', null, false),
-			15 => array(null, 1, false),
-			16 => array(null, null, false)
+			0 => array('hello', true, 1),
+			1 => array('', false, 1),
+			2 => array('12345', true, 5),
+			3 => array('test.email.user@test.domain.tld', false, 500),
+			4 => array('ä', true, 1),
+			5 => array('', true, 0),
+			6 => array('', true, -1),
+			7 => array('z', true, 0),
+			8 => array(new \stdClass(), false, 100),
+			9 => array(new \stdClass(), false, null),
+			10 => array(new \ClassWithToString(), true, 1),
+			11 => array(new \ClassWithToString(), false, null),
+			12 => array(new \ClassWithToString(), false, 100000),
+			13 => array(function(){ return false; }, false, null),
+			14 => array('', false, null),
+			15 => array(null, false, 1),
+			16 => array(null, false, null)
 		);
 	}
 
