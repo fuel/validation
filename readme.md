@@ -55,6 +55,7 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - required - Checks if the value exists in the data being validated
  - url - Checks if the given value is a valid url or not
  - Date - Checks if the given value matches a given date format
+ - Type - Checks if a value is a typeof or instanceof parameter(s)
 
 ## Error messages
 
