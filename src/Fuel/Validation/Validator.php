@@ -67,8 +67,8 @@ class Validator
 	/**
 	 * Adds a rule that can be used to validate a field
 	 *
-	 * @param string        $field
-	 * @param RuleInterface $rule
+	 * @param string|FieldInterface $field
+	 * @param RuleInterface         $rule
 	 *
 	 * @return $this
 	 *
@@ -101,8 +101,8 @@ class Validator
 	/**
 	 * Adds a new field to the validation object
 	 *
-	 * @param string|Field $field
-	 * @param string       $label Field name to use in messages, set to null to use $field
+	 * @param string|FieldInterface $field
+	 * @param string                $label Field name to use in messages, set to null to use $field
 	 *
 	 * @return $this
 	 *
