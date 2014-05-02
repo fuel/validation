@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/fuelphp/validation.png?branch=master)](https://travis-ci.org/fuelphp/validation)
 [![Latest Stable Version](https://poser.pugx.org/fuelphp/validation/v/stable.png)](https://packagist.org/packages/fuelphp/validation)
+[![Code Coverage](https://scrutinizer-ci.com/g/fuelphp/validation/badges/coverage.png?s=5e3f0a0ed61d5d772c9ceb7da8d29046edaa0970)](https://scrutinizer-ci.com/g/fuelphp/validation/)
+[![Code Quality](https://scrutinizer-ci.com/g/fuelphp/validation/badges/quality-score.png?s=b16b5378dd8e42e052a94772477cc5a0279ca944)](https://scrutinizer-ci.com/g/fuelphp/validation/)
 
 A flexible library to validate different kinds of data.
 
