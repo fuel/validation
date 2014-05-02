@@ -36,8 +36,10 @@ class RequiredTest extends AbstractRuleTest
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($value, $field, $expected, $data)
+	public function testValidate()
 	{
+		list($value, $field, $expected, $data) = func_get_args();
+
 		$this->assertEquals(
 			$expected,
 			$this->object->validate($value, $field, $data)

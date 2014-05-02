@@ -47,12 +47,14 @@ abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($value, $expected)
+	public function testValidate()
 	{
 		if (func_num_args() > 2)
 		{
 			$this->object->setParameter(func_get_arg(2));
 		}
+
+		list($value, $expected) = func_get_args();
 
 		$this->assertEquals(
 			$expected,
