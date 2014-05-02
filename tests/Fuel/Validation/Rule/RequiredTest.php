@@ -22,7 +22,7 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var Email
+	 * @var Required
 	 */
 	protected $object;
 
