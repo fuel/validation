@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class TypeTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not one of the given type(s).';
+
 	protected function setUp()
 	{
 		$this->object = new Type;
-		$this->message = 'The field is not one of the given type(s).';
 	}
 
 	/**

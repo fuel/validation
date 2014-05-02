@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class NumberTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not valid number.';
+
 	protected function setUp()
 	{
 		$this->object = new Number;
-		$this->message = 'The field is not valid number.';
 	}
 
 	/**

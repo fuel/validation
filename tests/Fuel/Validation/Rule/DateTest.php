@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class DateTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field does not contain a valid date.';
+
 	protected function setUp()
 	{
 		$this->object = new Date;
-		$this->message = 'The field does not contain a valid date.';
 	}
 
 	/**

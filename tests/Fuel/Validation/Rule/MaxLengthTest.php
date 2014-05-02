@@ -24,10 +24,14 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
 class MaxLengthTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is longer than the allowed maximum length.';
+
 	protected function setUp()
 	{
 		$this->object = new MaxLength;
-		$this->message = 'The field is longer than the allowed maximum length.';
 	}
 
 	/**

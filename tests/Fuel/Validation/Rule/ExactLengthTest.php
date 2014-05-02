@@ -24,10 +24,14 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
 class ExactLengthTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The length of the field is not exactly equal to the length specified.';
+
 	protected function setUp()
 	{
 		$this->object = new ExactLength;
-		$this->message = 'The length of the field is not exactly equal to the length specified.';
 	}
 
 	/**

@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class UrlTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not a valid url.';
+
 	protected function setUp()
 	{
 		$this->object = new Url;
-		$this->message = 'The field is not a valid url.';
 	}
 
 	/**

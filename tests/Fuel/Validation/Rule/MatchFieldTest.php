@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class MatchFieldTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field does not match the other given field.';
+
 	protected function setUp()
 	{
 		$this->object = new MatchField;
-		$this->message = 'The field does not match the other given field.';
 	}
 
 	/**

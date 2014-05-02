@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class NumericBetweenTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not between the specified values.';
+
 	protected function setUp()
 	{
 		$this->object = new NumericBetween;
-		$this->message = 'The field is not between the specified values.';
 	}
 
 	/**

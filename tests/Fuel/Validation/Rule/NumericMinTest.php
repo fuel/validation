@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class NumericMinTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not equal to or greater than the specified value.';
+
 	protected function setUp()
 	{
 		$this->object = new NumericMin;
-		$this->message = 'The field is not equal to or greater than the specified value.';
 	}
 
 	/**

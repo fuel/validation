@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class EmailTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field does not contain a valid email address.';
+
 	protected function setUp()
 	{
 		$this->object = new Email;
-		$this->message = 'The field does not contain a valid email address.';
 	}
 
 	/**

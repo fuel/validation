@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class RequiredTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is required and has not been specified.';
+
 	protected function setUp()
 	{
 		$this->object = new Required;
-		$this->message = 'The field is required and has not been specified.';
 	}
 
 	/**

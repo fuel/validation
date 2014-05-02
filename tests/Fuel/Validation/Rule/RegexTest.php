@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class RegexTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field does not match the given pattern.';
+
 	protected function setUp()
 	{
 		$this->object = new Regex;
-		$this->message = 'The field does not match the given pattern.';
 	}
 
 	/**

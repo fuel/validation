@@ -21,10 +21,14 @@ namespace Fuel\Validation\Rule;
 class IpTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field is not a valid IP address.';
+
 	protected function setUp()
 	{
 		$this->object = new Ip;
-		$this->message = 'The field is not a valid IP address.';
 	}
 
 	/**

@@ -23,10 +23,14 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
 class MinLengthTest extends AbstractTest
 {
 
+	/**
+	 * {@inheritdocs}
+	 */
+	protected $message = 'The field does not satisfy the minimum length requirement.';
+
 	protected function setUp()
 	{
 		$this->object = new MinLength;
-		$this->message = 'The field does not satisfy the minimum length requirement.';
 	}
 
 	/**
