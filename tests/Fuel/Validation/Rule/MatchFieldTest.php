@@ -60,8 +60,10 @@ class MatchFieldTest extends AbstractRuleTest
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($fieldA, $fieldB, $expected, $data)
+	public function testValidate()
 	{
+		list($fieldA, $fieldB, $expected, $data) = func_get_args();
+
 		$this->object->setParameter($fieldB);
 
 		$this->assertEquals(

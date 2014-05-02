@@ -36,8 +36,10 @@ class DateTest extends AbstractRuleTest
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($dateValue, $format = null, $strict = true, $expected)
+	public function testValidate()
 	{
+		list($dateValue, $format, $strict, $expected) = func_get_args();
+
 		$param = array('format' => $format, 'strict' => $strict);
 
 		parent::testValidate($dateValue, $expected, $param);
