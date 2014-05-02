@@ -20,7 +20,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var mixed
+	 * @var AbstractRule
 	 */
 	protected $object;
 
