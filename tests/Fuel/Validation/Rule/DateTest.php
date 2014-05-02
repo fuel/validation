@@ -94,21 +94,4 @@ class DateTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Date(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
-		);
-	}
-
 }

@@ -72,21 +72,4 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Email(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
-		);
-	}
-
 }

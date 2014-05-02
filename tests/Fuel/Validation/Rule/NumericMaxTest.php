@@ -85,23 +85,6 @@ class NumericMaxTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobar';
-
-		$object = new NumericMax(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
-		);
-	}
-
-	/**
 	 * @coversDefaultClass getMessageParameters
 	 * @group              Validation
 	 */

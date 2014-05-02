@@ -78,21 +78,4 @@ class UrlTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobar';
-
-		$object = new Url(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
-		);
-	}
-
 }

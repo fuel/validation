@@ -95,23 +95,6 @@ class ExactLengthTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new ExactLength(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
-		);
-	}
-
-	/**
 	 * @coversDefaultClass getMessageParameters
 	 * @group              Validation
 	 */
