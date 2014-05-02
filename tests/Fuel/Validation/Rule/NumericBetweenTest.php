@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericBetween
  */
-class NumericBetweenTest extends AbstractTest
+class NumericBetweenTest extends AbstractRuleTest
 {
 
 	/**

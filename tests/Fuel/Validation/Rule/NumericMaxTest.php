@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericMax
  */
-class NumericMaxTest extends AbstractTest
+class NumericMaxTest extends AbstractRuleTest
 {
 
 	/**

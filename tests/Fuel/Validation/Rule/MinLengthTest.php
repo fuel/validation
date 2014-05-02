@@ -20,7 +20,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  Fuel\Validation\Rule\MinLength
  */
-class MinLengthTest extends AbstractTest
+class MinLengthTest extends AbstractRuleTest
 {
 
 	/**

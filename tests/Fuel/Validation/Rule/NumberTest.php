@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Number
  */
-class NumberTest extends AbstractTest
+class NumberTest extends AbstractRuleTest
 {
 
 	/**

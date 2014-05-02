@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Regex
  */
-class RegexTest extends AbstractTest
+class RegexTest extends AbstractRuleTest
 {
 
 	/**

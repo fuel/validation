@@ -21,7 +21,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  \Fuel\Validation\Rule\MaxLength
  */
-class MaxLengthTest extends AbstractTest
+class MaxLengthTest extends AbstractRuleTest
 {
 
 	/**

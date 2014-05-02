@@ -21,7 +21,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  \Fuel\Validation\Rule\ExactLength
  */
-class ExactLengthTest extends AbstractTest
+class ExactLengthTest extends AbstractRuleTest
 {
 
 	/**

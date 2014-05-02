@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  */
-abstract class AbstractTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**

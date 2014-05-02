@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Date
  */
-class DateTest extends AbstractTest
+class DateTest extends AbstractRuleTest
 {
 
 	/**

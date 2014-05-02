@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Url
  */
-class UrlTest extends AbstractTest
+class UrlTest extends AbstractRuleTest
 {
 
 	/**

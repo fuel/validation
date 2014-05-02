@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Email
  */
-class EmailTest extends AbstractTest
+class EmailTest extends AbstractRuleTest
 {
 
 	/**

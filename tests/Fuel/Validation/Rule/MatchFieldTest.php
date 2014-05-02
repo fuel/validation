@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\MatchField
  */
-class MatchFieldTest extends AbstractTest
+class MatchFieldTest extends AbstractRuleTest
 {
 
 	/**

@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Required
  */
-class RequiredTest extends AbstractTest
+class RequiredTest extends AbstractRuleTest
 {
 
 	/**

@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Ip
  */
-class IpTest extends AbstractTest
+class IpTest extends AbstractRuleTest
 {
 
 	/**

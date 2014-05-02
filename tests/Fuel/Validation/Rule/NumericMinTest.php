@@ -18,7 +18,7 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericMin
  */
-class NumericMinTest extends AbstractTest
+class NumericMinTest extends AbstractRuleTest
 {
 
 	/**
