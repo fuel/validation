@@ -18,13 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Date
  */
-class DateTest extends \PHPUnit_Framework_TestCase
+class DateTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var Date
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field does not contain a valid date.';
 
 	protected function setUp()
 	{
@@ -32,47 +32,15 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not contain a valid date.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
-		);
-	}
-
-	/**
 	 * @coversDefaultClass validate
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($dateValue, $format=null, $strict=true, $expected)
+	public function testValidate($dateValue, $format = null, $strict = true, $expected)
 	{
-		$this->object->setParameter(array('format' => $format, 'strict' => $strict));
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($dateValue)
-		);
+		$param = array('format' => $format, 'strict' => $strict);
+
+		parent::testValidate($dateValue, $expected, $param);
 	}
 
 	/**
@@ -108,23 +76,6 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			22 => array(new \ClassWithToString(), null, true, false),
 			23 => array(new \ClassWithToString(), 100000, true, false),
 			23 => array(function(){ return "10/10/10"; }, "d/m/y", true, false),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Date(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
 		);
 	}
 

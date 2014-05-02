@@ -18,60 +18,17 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Number
  */
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumberTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var Number
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field is not valid number.';
 
 	protected function setUp()
 	{
 		$this->object = new Number;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is not valid number.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
 	}
 
 	/**
@@ -86,23 +43,6 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 			array('016547', true),
 			array('ghjgsd(*^"36723863*&723', false),
 			array('a', false),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Number(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
 		);
 	}
 

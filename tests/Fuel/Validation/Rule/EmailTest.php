@@ -18,60 +18,17 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Email
  */
-class EmailTest extends \PHPUnit_Framework_TestCase
+class EmailTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var Email
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field does not contain a valid email address.';
 
 	protected function setUp()
 	{
 		$this->object = new Email;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not contain a valid email address.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($emailValue, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($emailValue)
-		);
 	}
 
 	/**
@@ -86,23 +43,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 			array('', false),
 			array('@.com', false),
 			array('test.email.user@test.domain.tld', true),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Email(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
 		);
 	}
 

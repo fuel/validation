@@ -18,44 +18,17 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericMin
  */
-class NumericMinTest extends \PHPUnit_Framework_TestCase
+class NumericMinTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var NumericMin
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field is not equal to or greater than the specified value.';
 
 	protected function setUp()
 	{
 		$this->object = new NumericMin;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field is not equal to or greater than the specified value.',
-			 $this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $param, $expected)
-	{
-		$this->object->setParameter($param);
-
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
 	}
 
 	/**
@@ -66,38 +39,21 @@ class NumericMinTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', 1, false),
-			1 => array(true, 1, false),
-			2 => array(new \stdClass, 1, false),
-			3 => array(1, 1, true),
-			4 => array(0, 1, false),
-			5 => array(2, 1, true),
-			6 => array(20, 1, true),
-			7 => array(5, 20, false),
-			8 => array(19, 20, false),
-			9 => array(20, 20, true),
-			10 => array(21, 20, true),
-			11 => array(2100, 20, true),
-			12 => array(21, -10, true),
-			13 => array(-20, -10, false),
-			14 => array(-20, null, false),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobar';
-
-		$object = new NumericMin(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
+			0 => array('', false, 1),
+			1 => array(true, false, 1),
+			2 => array(new \stdClass, false, 1),
+			3 => array(1, true, 1),
+			4 => array(0, false, 1),
+			5 => array(2, true, 1),
+			6 => array(20, true, 1),
+			7 => array(5, false, 20),
+			8 => array(19, false, 20),
+			9 => array(20, true, 20),
+			10 => array(21, true, 20),
+			11 => array(2100, true, 20),
+			12 => array(21, true, -10),
+			13 => array(-20, false, -10),
+			14 => array(-20, false, null),
 		);
 	}
 

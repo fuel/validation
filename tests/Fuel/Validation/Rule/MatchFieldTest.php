@@ -18,30 +18,17 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\MatchField
  */
-class MatchFieldTest extends \PHPUnit_Framework_TestCase
+class MatchFieldTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var MatchField
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field does not match the other given field.';
 
 	protected function setUp()
 	{
 		$this->object = new MatchField;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not match the other given field.',
-			$this->object->getMessage()
-		);
 	}
 
 	/**

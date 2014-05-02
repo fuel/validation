@@ -18,44 +18,17 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Regex
  */
-class RegexTest extends \PHPUnit_Framework_TestCase
+class RegexTest extends AbstractRuleTest
 {
 
 	/**
-	 * @var Regex
+	 * {@inheritdocs}
 	 */
-	protected $object;
+	protected $message = 'The field does not match the given pattern.';
 
 	protected function setUp()
 	{
 		$this->object = new Regex;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field does not match the given pattern.',
-			 $this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $pattern, $expected)
-	{
-		$this->object->setParameter($pattern);
-
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
 	}
 
 	/**
@@ -66,31 +39,14 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', null, false),
-			1 => array(1, '/.*/', false),
-			2 => array(true, '/.*/', false),
-			3 => array(new \stdClass, '/.*/', false),
-			4 => array('hkjsghfkjgJHga', '/[a-zA-Z]*/', true),
-			5 => array('', '/.*/', true),
-			6 => array('ads123', '/^[a-z]*$/', false),
-			7 => array('ads', '/[a-z]*/', true),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobar';
-
-		$object = new Regex(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
+			0 => array('', false, null),
+			1 => array(1, false, '/.*/'),
+			2 => array(true, false, '/.*/'),
+			3 => array(new \stdClass, false, '/.*/'),
+			4 => array('hkjsghfkjgJHga', true, '/[a-zA-Z]*/'),
+			5 => array('', true, '/.*/'),
+			6 => array('ads123', false, '/^[a-z]*$/'),
+			7 => array('ads', true, '/[a-z]*/'),
 		);
 	}
 
