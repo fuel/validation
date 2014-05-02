@@ -5,10 +5,13 @@ php:
   - 5.4
 
 before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - composer install
 
-script: phpunit --coverage-text
+script: phpunit --coverage-text --coverage-clover=coverage.clover
 
+after_script:
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover 
+ 
 notifications:
   irc: "irc.freenode.org#fuelphp-status"
