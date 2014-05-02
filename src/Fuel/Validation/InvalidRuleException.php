@@ -35,11 +35,6 @@ class InvalidRuleException extends InvalidArgumentException
 	{
 		$error = 'VAL-004: The rule ['.$message.'] is not known.';
 
-		if (empty($message))
-		{
-			$error = 'VAL-003: The specified rule is not known.';
-		}
-
 		parent::__construct($error, $code, $previous);
 	}
 

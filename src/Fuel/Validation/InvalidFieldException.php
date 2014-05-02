@@ -35,11 +35,6 @@ class InvalidFieldException extends InvalidArgumentException
 	{
 		$error = 'VAL-002: The field ['.$message.'] is not known.';
 
-		if (empty($message))
-		{
-			$error = 'VAL-001: The specified field is not known.';
-		}
-
 		parent::__construct($error, $code, $previous);
 	}
 
