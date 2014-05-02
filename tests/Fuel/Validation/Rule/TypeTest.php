@@ -45,23 +45,6 @@ class TypeTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 */
-	public function testSetGetMessage()
-	{
-		$message = 'This is a message used for testing.';
-
-		$this->object->setMessage($message);
-
-		$this->assertEquals(
-			$message,
-			$this->object->getMessage()
-		);
-	}
-
-	/**
 	 * @coversDefaultClass validate
 	 * @dataProvider       validateProvider
 	 * @group              Validation
@@ -95,23 +78,6 @@ class TypeTest extends \PHPUnit_Framework_TestCase
 			9 => array(1, null, false),
 			10 => array(new \stdClass(), 'stdClass', true),
 			11 => array(new \stdClass(), 'string', false),
-		);
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass __construct
-	 * @group              Validation
-	 */
-	public function testCustomMessageOnConstruct()
-	{
-		$message = 'foobarbazbat';
-
-		$object = new Type(null, $message);
-
-		$this->assertEquals(
-			$message,
-			$object->getMessage()
 		);
 	}
 
