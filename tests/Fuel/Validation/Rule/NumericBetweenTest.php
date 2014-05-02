@@ -18,29 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericBetween
  */
-class NumericBetweenTest extends \PHPUnit_Framework_TestCase
+class NumericBetweenTest extends AbstractTest
 {
-
-	/**
-	 * @var NumericBetween
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new NumericBetween;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is not between the specified values.',
-			 $this->object->getMessage()
-		);
+		$this->message = 'The field is not between the specified values.';
 	}
 
 	/**
@@ -52,10 +36,7 @@ class NumericBetweenTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->setParameter(array($lower, $upper));
 
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
+		parent::testValidate($value, $expected);
 	}
 
 	/**

@@ -18,30 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Required
  */
-class RequiredTest extends \PHPUnit_Framework_TestCase
+class RequiredTest extends AbstractTest
 {
-
-	/**
-	 * @var Required
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Required;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is required and has not been specified.',
-			$this->object->getMessage()
-		);
+		$this->message = 'The field is required and has not been specified.';
 	}
 
 	/**

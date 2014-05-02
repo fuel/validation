@@ -18,29 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Regex
  */
-class RegexTest extends \PHPUnit_Framework_TestCase
+class RegexTest extends AbstractTest
 {
-
-	/**
-	 * @var Regex
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Regex;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field does not match the given pattern.',
-			 $this->object->getMessage()
-		);
+		$this->message = 'The field does not match the given pattern.';
 	}
 
 	/**
@@ -52,10 +36,7 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->setParameter($pattern);
 
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
+		parent::testValidate($value, $expected);
 	}
 
 	/**

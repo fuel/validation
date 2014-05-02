@@ -18,43 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Number
  */
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumberTest extends AbstractTest
 {
-
-	/**
-	 * @var Number
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Number;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is not valid number.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($value, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
+		$this->message = 'The field is not valid number.';
 	}
 
 	/**

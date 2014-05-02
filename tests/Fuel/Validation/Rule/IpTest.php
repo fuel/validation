@@ -18,42 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Ip
  */
-class IpTest extends \PHPUnit_Framework_TestCase
+class IpTest extends AbstractTest
 {
-
-	/**
-	 * @var Ip
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Ip;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field is not a valid IP address.',
-			 $this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($ip, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($ip)
-		);
+		$this->message = 'The field is not a valid IP address.';
 	}
 
 	/**

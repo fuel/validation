@@ -18,30 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Date
  */
-class DateTest extends \PHPUnit_Framework_TestCase
+class DateTest extends AbstractTest
 {
-
-	/**
-	 * @var Date
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Date;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not contain a valid date.',
-			$this->object->getMessage()
-		);
+		$this->message = 'The field does not contain a valid date.';
 	}
 
 	/**
@@ -49,13 +32,11 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider       validateProvider
 	 * @group              Validation
 	 */
-	public function testValidate($dateValue, $format=null, $strict=true, $expected)
+	public function testValidate($dateValue, $format = null, $strict = true, $expected)
 	{
 		$this->object->setParameter(array('format' => $format, 'strict' => $strict));
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($dateValue)
-		);
+
+		parent::testValidate($dateValue, $expected);
 	}
 
 	/**

@@ -18,42 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\Url
  */
-class UrlTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends AbstractTest
 {
-
-	/**
-	 * @var Url
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Url;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field is not a valid url.',
-			 $this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($url, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($url)
-		);
+		$this->message = 'The field is not a valid url.';
 	}
 
 	/**

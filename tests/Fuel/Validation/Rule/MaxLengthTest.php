@@ -21,30 +21,13 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  \Fuel\Validation\Rule\MaxLength
  */
-class MaxLengthTest extends \PHPUnit_Framework_TestCase
+class MaxLengthTest extends AbstractTest
 {
-
-	/**
-	 * @var MaxLength
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new MaxLength;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is longer than the allowed maximum length.',
-			$this->object->getMessage()
-		);
+		$this->message = 'The field is longer than the allowed maximum length.';
 	}
 
 	/**
@@ -55,10 +38,8 @@ class MaxLengthTest extends \PHPUnit_Framework_TestCase
 	public function testValidate($stringValue, $maxLength, $expected)
 	{
 		$this->object->setParameter($maxLength);
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($stringValue)
-		);
+
+		parent::testValidate($stringValue, $expected);
 	}
 
 	/**

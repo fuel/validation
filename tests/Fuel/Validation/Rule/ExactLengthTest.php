@@ -21,30 +21,13 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  \Fuel\Validation\Rule\ExactLength
  */
-class ExactLengthTest extends \PHPUnit_Framework_TestCase
+class ExactLengthTest extends AbstractTest
 {
-
-	/**
-	 * @var ExactLength
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new ExactLength;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The length of the field is not exactly equal to the length specified.',
-			$this->object->getMessage()
-		);
+		$this->message = 'The length of the field is not exactly equal to the length specified.';
 	}
 
 	/**
@@ -55,10 +38,8 @@ class ExactLengthTest extends \PHPUnit_Framework_TestCase
 	public function testValidate($stringValue, $exactLength, $expected)
 	{
 		$this->object->setParameter($exactLength);
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($stringValue)
-		);
+
+		parent::testValidate($stringValue, $expected);
 	}
 
 	/**

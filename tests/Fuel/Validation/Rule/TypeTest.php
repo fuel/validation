@@ -18,30 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Type
  */
-class TypeTest extends \PHPUnit_Framework_TestCase
+class TypeTest extends AbstractTest
 {
-
-	/**
-	 * @var Type
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Type;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field is not one of the given type(s).',
-			$this->object->getMessage()
-		);
+		$this->message = 'The field is not one of the given type(s).';
 	}
 
 	/**
@@ -52,10 +35,8 @@ class TypeTest extends \PHPUnit_Framework_TestCase
 	public function testValidate($value, $type, $expected)
 	{
 		$this->object->setParameter($type);
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
+
+		parent::testValidate($value, $expected);
 	}
 
 	/**

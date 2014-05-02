@@ -18,29 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers Fuel\Validation\Rule\NumericMax
  */
-class NumericMaxTest extends \PHPUnit_Framework_TestCase
+class NumericMaxTest extends AbstractTest
 {
-
-	/**
-	 * @var NumericMax
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new NumericMax;
-	}
-
-	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			 'The field is not equal to or less than the specified value.',
-			 $this->object->getMessage()
-		);
+		$this->message = 'The field is not equal to or less than the specified value.';
 	}
 
 	/**
@@ -52,10 +36,7 @@ class NumericMaxTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->object->setParameter($param);
 
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($value)
-		);
+		parent::testValidate($value, $expected);
 	}
 
 	/**

@@ -18,43 +18,13 @@ namespace Fuel\Validation\Rule;
  *
  * @covers  Fuel\Validation\Rule\Email
  */
-class EmailTest extends \PHPUnit_Framework_TestCase
+class EmailTest extends AbstractTest
 {
-
-	/**
-	 * @var Email
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new Email;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not contain a valid email address.',
-			$this->object->getMessage()
-		);
-	}
-
-	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
-	 */
-	public function testValidate($emailValue, $expected)
-	{
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($emailValue)
-		);
+		$this->message = 'The field does not contain a valid email address.';
 	}
 
 	/**

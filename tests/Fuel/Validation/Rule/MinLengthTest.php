@@ -20,30 +20,13 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  *
  * @covers  Fuel\Validation\Rule\MinLength
  */
-class MinLengthTest extends \PHPUnit_Framework_TestCase
+class MinLengthTest extends AbstractTest
 {
-
-	/**
-	 * @var MinLength
-	 */
-	protected $object;
 
 	protected function setUp()
 	{
 		$this->object = new MinLength;
-	}
-
-	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
-	 */
-	public function testGetMessage()
-	{
-		$this->assertEquals(
-			'The field does not satisfy the minimum length requirement.',
-			$this->object->getMessage()
-		);
+		$this->message = 'The field does not satisfy the minimum length requirement.';
 	}
 
 	/**
@@ -54,10 +37,8 @@ class MinLengthTest extends \PHPUnit_Framework_TestCase
 	public function testValidate($stringValue, $minLength, $expected)
 	{
 		$this->object->setParameter($minLength);
-		$this->assertEquals(
-			$expected,
-			$this->object->validate($stringValue)
-		);
+
+		parent::testValidate($stringValue, $expected);
 	}
 
 	/**
