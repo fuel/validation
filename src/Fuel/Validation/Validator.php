@@ -185,6 +185,46 @@ class Validator
 	}
 
 	/**
+	 * Takes a field name and an array of data and validates the field against the assigned rules.
+	 * The array is expected to have keys named after fields.
+	 * This function will call reset() before it runs.
+	 *
+	 * @param string          $field
+	 * @param array           $data
+	 * @param ResultInterface $result
+	 *
+	 * @return ResultInterface
+	 *
+	 * @since 2.0
+	 */
+	public function runField($field, array $data, ResultInterface $result = null)
+	{
+		if ($result === null)
+		{
+			$result = new Result;
+		}
+
+		$result->setResult(true);
+
+		if ( ! isset($data[$field]))
+		{
+			throw new InvalidFieldException('VAL-008: Field cannot be found in the given dataset.');
+		}
+
+		$value = $data[$field];
+
+		$fieldResult = $this->validateField($field, $value, $data, $result);
+
+		if ( ! $fieldResult)
+		{
+			// There was a failure so log it to the result object
+			$result->setResult(false);
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Validates a single field
 	 *
 	 * @param string          $field
