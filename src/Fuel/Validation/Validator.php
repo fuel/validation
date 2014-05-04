@@ -185,6 +185,39 @@ class Validator
 	}
 
 	/**
+	 * Takes a field name and an array of data and validates the field against the assigned rules.
+	 * The array is expected to have keys named after fields.
+	 * This function will call reset() before it runs.
+	 *
+	 * @param string          $field
+	 * @param array           $data
+	 * @param ResultInterface $result
+	 *
+	 * @return ResultInterface
+	 *
+	 * @since 2.0
+	 */
+	public function runField($field, array $data, ResultInterface $result = null)
+	{
+		if ($result === null)
+		{
+			$result = new Result;
+		}
+
+		$fieldResult = false;
+
+		if (isset($data[$field]))
+		{
+			$fieldResult = $this->validateField($field, $data[$field], $data, $result);
+		}
+
+		// Log the result
+		$result->setResult($fieldResult);
+
+		return $result;
+	}
+
+	/**
 	 * Validates a single field
 	 *
 	 * @param string          $field
