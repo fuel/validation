@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Rule\NumericBetween
+ * @coversDefaultClass \Fuel\Validation\Rule\NumericBetween
  */
 class NumericBetweenTest extends AbstractRuleTest
 {
@@ -51,8 +51,9 @@ class NumericBetweenTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @group              Validation
+	 * @covers ::validate
+	 * @covers ::paramsValid
+	 * @group  Validation
 	 */
 	public function testValidateWithNoParam()
 	{
@@ -62,8 +63,8 @@ class NumericBetweenTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -79,8 +80,8 @@ class NumericBetweenTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParamsEmpty()
 	{

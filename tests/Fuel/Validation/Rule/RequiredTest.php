@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Required
+ * @coversDefaultClass \Fuel\Validation\Rule\Required
  */
 class RequiredTest extends AbstractRuleTest
 {
@@ -32,9 +32,9 @@ class RequiredTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
+	 * @covers       ::validate
+	 * @dataProvider validateProvider
+	 * @group        Validation
 	 */
 	public function testValidate()
 	{

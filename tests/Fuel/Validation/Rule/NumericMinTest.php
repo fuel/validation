@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Rule\NumericMin
+ * @coversDefaultClass \Fuel\Validation\Rule\NumericMin
  */
 class NumericMinTest extends AbstractRuleTest
 {
@@ -58,8 +58,8 @@ class NumericMinTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -70,6 +70,22 @@ class NumericMinTest extends AbstractRuleTest
 		$this->assertEquals(
 			array('minValue' => $parameter),
 			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array(12);
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			12,
+			$this->object->getParameter()
 		);
 	}
 

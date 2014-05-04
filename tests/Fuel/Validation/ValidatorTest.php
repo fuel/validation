@@ -10,6 +10,7 @@
 
 namespace Fuel\Validation;
 
+use Fuel\Validation\Field;
 use Fuel\Validation\Rule\Email;
 use Fuel\Validation\Rule\Number;
 
@@ -83,8 +84,58 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers ::addField
+	 * @covers ::getField
+	 * @group  Validation
+	 */
+	public function testGetField()
+	{
+		$field = new Field('field');
+
+		$this->object->addField($field);
+
+		$this->assertSame(
+			$field,
+			$this->object->getField('field')
+		);
+	}
+
+	/**
+	 * @covers            ::getField
+	 * @covers            \Fuel\Validation\InvalidFieldException
+	 * @expectedException \Fuel\Validation\InvalidFieldException
+	 * @group             Validation
+	 */
+	public function testGetFieldFailure()
+	{
+		$this->object->getField('field');
+	}
+
+	/**
+	 * @covers ::addRule
+	 * @covers ::getFieldRules
+	 * @group  Validation
+	 */
+	public function testAddRule()
+	{
+		$field = 'field';
+		$rule = new Email();
+
+		$this->assertInstanceOf(
+			'Fuel\Validation\Validator',
+			$this->object->addRule($field, $rule)
+		);
+
+		$rules = $this->object->getFieldRules($field);
+
+		$this->assertEquals(reset($rules), $rule);
+	}
+
+	/**
 	 * @covers ::run
 	 * @covers ::validateField
+	 * @covers ::buildMessage
+	 * @covers ::processMessageTokens
 	 * @group  Validation
 	 */
 	public function testRun()
@@ -104,6 +155,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::runField
 	 * @covers ::validateField
+	 * @covers ::buildMessage
+	 * @covers ::processMessageTokens
 	 * @group  Validation
 	 */
 	public function testRunField()
@@ -134,6 +187,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::run
 	 * @covers ::validateField
+	 * @covers ::buildMessage
+	 * @covers ::processMessageTokens
 	 * @group  Validation
 	 */
 	public function testRunFailure()
@@ -153,6 +208,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::runField
 	 * @covers ::validateField
+	 * @covers ::buildMessage
+	 * @covers ::processMessageTokens
 	 * @group  Validation
 	 */
 	public function testRunFieldFailure()
@@ -166,8 +223,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::      run
-	 * @covers ::      validateField
+	 * @covers       ::run
+	 * @covers       ::validateField
+	 * @covers       ::buildMessage
+	 * @covers       ::processMessageTokens
 	 * @dataProvider runMultipleFieldsData
 	 * @group        Validation
 	 */
@@ -199,7 +258,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           __call
+	 * @covers            ::__call
+	 * @covers            \Fuel\Validation\InvalidRuleException
 	 * @expectedException \Fuel\Validation\InvalidRuleException
 	 * @group             Validation
 	 */
@@ -243,9 +303,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           setMessage
-	 * @group             Validation
+	 * @covers            ::setMessage
 	 * @expectedException \LogicException
+	 * @group             Validation
 	 */
 	public function testSetMessageException()
 	{
@@ -300,7 +360,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           addField
+	 * @covers            ::addField
 	 * @expectedException \InvalidArgumentException
 	 * @group             Validation
 	 */
@@ -324,6 +384,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::addCustomRule
 	 * @covers ::createRuleInstance
+	 * @covers ::getRuleClassName
 	 * @group  Validation
 	 */
 	public function testAddCustomRule()
@@ -336,6 +397,18 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 		);
 
 		// Check that our magic methods are working
+	}
+
+	/**
+	 * @covers            ::createRuleInstance
+	 * @covers            ::getRuleClassName
+	 * @covers            \Fuel\Validation\InvalidRuleException
+	 * @expectedException \Fuel\Validation\InvalidRuleException
+	 * @group             Validation
+	 */
+	public function testCreateRuleInstanceFailure()
+	{
+		$this->object->createRuleInstance('testRule');
 	}
 
 	/**

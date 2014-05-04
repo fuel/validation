@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\MatchField
+ * @coversDefaultClass  \Fuel\Validation\Rule\MatchField
  */
 class MatchFieldTest extends AbstractRuleTest
 {
@@ -32,8 +32,8 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @group              Validation
+	 * @covers ::validate
+	 * @group  Validation
 	 */
 	public function testRequiredParameters()
 	{
@@ -43,8 +43,8 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @group              Validation
+	 * @covers ::validate
+	 * @group  Validation
 	 */
 	public function testNoParameter()
 	{
@@ -56,9 +56,9 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
+	 * @covers       ::validate
+	 * @dataProvider validateProvider
+	 * @group        Validation
 	 */
 	public function testValidate()
 	{
@@ -103,8 +103,8 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -115,6 +115,22 @@ class MatchFieldTest extends AbstractRuleTest
 		$this->assertEquals(
 			array('field' => $parameter),
 			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array('some other field');
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			'some other field',
+			$this->object->getParameter()
 		);
 	}
 

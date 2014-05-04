@@ -19,7 +19,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\MaxLength
+ * @coversDefaultClass  \Fuel\Validation\Rule\MaxLength
  */
 class MaxLengthTest extends AbstractRuleTest
 {
@@ -66,8 +66,8 @@ class MaxLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -78,6 +78,22 @@ class MaxLengthTest extends AbstractRuleTest
 		$this->assertEquals(
 			array('maxLength' => $parameter),
 			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array(12);
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			12,
+			$this->object->getParameter()
 		);
 	}
 

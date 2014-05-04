@@ -19,7 +19,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  \Fuel\Validation\Rule\ExactLength
+ * @coversDefaultClass  \Fuel\Validation\Rule\ExactLength
  */
 class ExactLengthTest extends AbstractRuleTest
 {
@@ -67,8 +67,8 @@ class ExactLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -79,6 +79,22 @@ class ExactLengthTest extends AbstractRuleTest
 		$this->assertEquals(
 			array('length' => $parameter),
 			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array(12);
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			12,
+			$this->object->getParameter()
 		);
 	}
 

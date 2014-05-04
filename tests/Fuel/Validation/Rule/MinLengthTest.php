@@ -18,7 +18,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\MinLength
+ * @coversDefaultClass  \Fuel\Validation\Rule\MinLength
  */
 class MinLengthTest extends AbstractRuleTest
 {
@@ -62,8 +62,8 @@ class MinLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
@@ -74,6 +74,22 @@ class MinLengthTest extends AbstractRuleTest
 		$this->assertEquals(
 			array('minLength' => $parameter),
 			$this->object->getMessageParameters()
+		);
+	}
+
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array(12);
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			12,
+			$this->object->getParameter()
 		);
 	}
 
