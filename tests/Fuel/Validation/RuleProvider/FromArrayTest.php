@@ -53,6 +53,8 @@ class FromArrayTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers ::populateValidator
+	 * @covers ::addFieldRule
+	 * @covers ::addFieldRules
 	 * @covers ::setData
 	 * @group  Validation
 	 */
