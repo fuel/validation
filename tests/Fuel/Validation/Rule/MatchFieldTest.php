@@ -118,4 +118,20 @@ class MatchFieldTest extends AbstractRuleTest
 		);
 	}
 
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array('some other field');
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			'some other field',
+			$this->object->getParameter()
+		);
+	}
+
 }
