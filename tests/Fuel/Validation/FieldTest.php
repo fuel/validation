@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Field
+ * @coversDefaultClass \Fuel\Validation\Field
  */
 class FieldTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,9 +32,9 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setName
-	 * @coversDefaultClass getName
-	 * @group              Validation
+	 * @covers ::setName
+	 * @covers ::getName
+	 * @group  Validation
 	 */
 	public function testSetGetName()
 	{
@@ -49,9 +49,9 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getLabel
-	 * @coversDefaultClass setLabel
-	 * @group              Validation
+	 * @covers ::getLabel
+	 * @covers ::setLabel
+	 * @group  Validation
 	 */
 	public function testSetGetLabel()
 	{
@@ -66,9 +66,9 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass addRule
-	 * @coversDefaultClass getRules
-	 * @group              Validation
+	 * @covers ::addRule
+	 * @covers ::getRules
+	 * @group  Validation
 	 */
 	public function testAddGetRules()
 	{
@@ -83,8 +83,8 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getLabel
-	 * @group              Validation
+	 * @covers ::getLabel
+	 * @group  Validation
 	 */
 	public function testGetNullLabel()
 	{
@@ -99,8 +99,8 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __construct
-	 * @group              Validation
+	 * @covers ::__construct
+	 * @group  Validation
 	 */
 	public function testConstruct()
 	{

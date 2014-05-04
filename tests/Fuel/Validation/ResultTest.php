@@ -16,7 +16,7 @@ namespace Fuel\Validation;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Result
+ * @coversDefaultClass \Fuel\Validation\Result
  */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,8 +32,8 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setResult
-	 * @coversDefaultClass isValid
+	 * @covers ::setResult
+	 * @covers ::isValid
 	 * @group              Validation
 	 */
 	public function testSetGetResult()
@@ -46,9 +46,9 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getError
-	 * @coversDefaultClass getErrors
-	 * @coversDefaultClass setError
+	 * @covers ::getError
+	 * @covers ::getErrors
+	 * @covers ::setError
 	 * @group              Validation
 	 */
 	public function testSetGetErrors()
@@ -85,7 +85,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getError
+	 * @covers ::getError
 	 * @expectedException  Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
@@ -95,8 +95,8 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getValidated
-	 * @coversDefaultClass setValidated
+	 * @covers ::getValidated
+	 * @covers ::setValidated
 	 * @group              Validation
 	 */
 	public function testSetGetValidated()

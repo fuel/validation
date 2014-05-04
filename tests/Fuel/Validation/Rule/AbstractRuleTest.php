@@ -20,7 +20,7 @@ abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @var AbstractRule
+	 * @var \Fuel\Validation\AbstractRule
 	 */
 	protected $object;
 
@@ -30,9 +30,7 @@ abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	protected $message;
 
 	/**
-	 * @coversDefaultClass __construct
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
+	 * @group  Validation
 	 */
 	public function testGetMessage()
 	{
@@ -43,9 +41,8 @@ abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
+	 * @dataProvider validateProvider
+	 * @group        Validation
 	 */
 	public function testValidate()
 	{

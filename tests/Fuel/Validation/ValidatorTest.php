@@ -19,7 +19,7 @@ use Fuel\Validation\Rule\Number;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Validator
+ * @coversDefaultClass \Fuel\Validation\Validator
  */
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -67,9 +67,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getRules
-	 * @coversDefaultClass addField
-	 * @group              Validation
+	 * @covers ::addField
+	 * @group  Validation
 	 */
 	public function testAddField()
 	{
@@ -84,9 +83,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass run
-	 * @coversDefaultClass validateField
-	 * @group              Validation
+	 * @covers ::run
+	 * @covers ::validateField
+	 * @group  Validation
 	 */
 	public function testRun()
 	{
@@ -103,9 +102,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass run
-	 * @coversDefaultClass validateField
-	 * @group              Validation
+	 * @covers ::run
+	 * @covers ::validateField
+	 * @group  Validation
 	 */
 	public function testRunFailure()
 	{
@@ -122,10 +121,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass run
-	 * @coversDefaultClass validateField
-	 * @dataProvider       runMultipleFieldsData
-	 * @group              Validation
+	 * @covers ::      run
+	 * @covers ::      validateField
+	 * @dataProvider runMultipleFieldsData
+	 * @group        Validation
 	 */
 	public function testRunMultipleFields($expected, $data)
 	{
@@ -155,9 +154,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __call
-	 * @expectedException  Fuel\Validation\InvalidRuleException
-	 * @group              Validation
+	 * @covers ::           __call
+	 * @expectedException \Fuel\Validation\InvalidRuleException
+	 * @group             Validation
 	 */
 	public function testMagicRuleInvalid()
 	{
@@ -165,8 +164,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __call
-	 * @group              Validation
+	 * @covers ::__call
+	 * @group  Validation
 	 */
 	public function testAddMagicRule()
 	{
@@ -182,8 +181,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
+	 * @covers ::setMessage
+	 * @group  Validation
 	 */
 	public function testSetMessage()
 	{
@@ -199,9 +198,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
-	 * @expectedException  LogicException
+	 * @covers ::           setMessage
+	 * @group             Validation
+	 * @expectedException \LogicException
 	 */
 	public function testSetMessageException()
 	{
@@ -209,8 +208,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __call
-	 * @group              Validation
+	 * @covers ::__call
+	 * @group  Validation
 	 */
 	public function testMagicChain()
 	{
@@ -256,9 +255,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass addField
-	 * @expectedException  InvalidArgumentException
-	 * @group              Validation
+	 * @covers ::           addField
+	 * @expectedException \InvalidArgumentException
+	 * @group             Validation
 	 */
 	public function testAddInvalidField()
 	{
@@ -266,8 +265,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getFieldRules
-	 * @group              Validation
+	 * @covers ::getFieldRules
+	 * @group  Validation
 	 */
 	public function testGetInvalidFieldRules()
 	{
@@ -278,9 +277,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass addCustomRule
-	 * @coversDefaultClass createRuleInstance
-	 * @group              Validation
+	 * @covers ::addCustomRule
+	 * @covers ::createRuleInstance
+	 * @group  Validation
 	 */
 	public function testAddCustomRule()
 	{
@@ -295,9 +294,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass addCustomRule
-	 * @coversDefaultClass createRuleInstance
-	 * @group              Validation
+	 * @covers ::addCustomRule
+	 * @covers ::createRuleInstance
+	 * @group  Validation
 	 */
 	public function testAddCoreRuleOverride()
 	{
@@ -310,8 +309,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
+	 * @covers ::setMessage
+	 * @group  Validation
 	 */
 	public function testMessageReplacement()
 	{
@@ -328,10 +327,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setGlobalMessage
-	 * @coversDefaultClass getGlobalMessage
-	 * @coversDefaultClass removeGlobalMessage
-	 * @group              Validation
+	 * @covers ::setGlobalMessage
+	 * @covers ::getGlobalMessage
+	 * @covers ::removeGlobalMessage
+	 * @group  Validation
 	 */
 	public function testGetSetGlobalMessage()
 	{
@@ -357,9 +356,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass setGlobalMessage
-	 * @coversDefaultClass createRuleInstance
-	 * @group              Validation
+	 * @covers ::setGlobalMessage
+	 * @covers ::createRuleInstance
+	 * @group  Validation
 	 */
 	public function testCreateRuleInstanceWithGlobalMessage()
 	{
