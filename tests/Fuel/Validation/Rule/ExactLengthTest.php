@@ -82,4 +82,20 @@ class ExactLengthTest extends AbstractRuleTest
 		);
 	}
 
+	/**
+	 * @covers ::setParameter
+	 * @group  Validation
+	 */
+	public function testSetParameter()
+	{
+		$parameter = array(12);
+
+		$this->object->setParameter($parameter);
+
+		$this->assertEquals(
+			12,
+			$this->object->getParameter()
+		);
+	}
+
 }
