@@ -10,6 +10,7 @@
 
 namespace Fuel\Validation;
 
+use Fuel\Validation\Field;
 use Fuel\Validation\Rule\Email;
 use Fuel\Validation\Rule\Number;
 
@@ -80,6 +81,53 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 			'Fuel\Validation\FieldInterface',
 			$this->object->getField($field)
 		);
+	}
+
+	/**
+	 * @covers ::addField
+	 * @covers ::getField
+	 * @group  Validation
+	 */
+	public function testGetField()
+	{
+		$field = new Field('field');
+
+		$this->object->addField($field);
+
+		$this->assertSame(
+			$field,
+			$this->object->getField('field')
+		);
+	}
+
+	/**
+	 * @covers            ::getField
+	 * @expectedException \Fuel\Validation\InvalidFieldException
+	 * @group             Validation
+	 */
+	public function testGetFieldFailure()
+	{
+		$this->object->getField('field');
+	}
+
+	/**
+	 * @covers ::addRule
+	 * @covers ::getFieldRules
+	 * @group  Validation
+	 */
+	public function testAddRule()
+	{
+		$field = 'field';
+		$rule = new Email();
+
+		$this->assertInstanceOf(
+			'Fuel\Validation\Validator',
+			$this->object->addRule($field, $rule)
+		);
+
+		$rules = $this->object->getFieldRules($field);
+
+		$this->assertEquals(reset($rules), $rule);
 	}
 
 	/**
