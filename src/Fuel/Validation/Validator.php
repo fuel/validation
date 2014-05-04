@@ -204,22 +204,15 @@ class Validator
 			$result = new Result;
 		}
 
-		$result->setResult(true);
+		$fieldResult = false;
 
-		if ( ! isset($data[$field]))
+		if (isset($data[$field]))
 		{
-			throw new InvalidFieldException('VAL-008: Field cannot be found in the given dataset.');
+			$fieldResult = $this->validateField($field, $data[$field], $data, $result);
 		}
 
-		$value = $data[$field];
-
-		$fieldResult = $this->validateField($field, $value, $data, $result);
-
-		if ( ! $fieldResult)
-		{
-			// There was a failure so log it to the result object
-			$result->setResult(false);
-		}
+		// Log the result
+		$result->setResult($fieldResult);
 
 		return $result;
 	}
