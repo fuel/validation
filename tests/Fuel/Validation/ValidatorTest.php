@@ -200,6 +200,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers            ::__call
+	 * @covers            \Fuel\Validation\InvalidRuleException
 	 * @expectedException \Fuel\Validation\InvalidRuleException
 	 * @group             Validation
 	 */

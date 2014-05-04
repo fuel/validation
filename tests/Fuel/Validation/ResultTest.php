@@ -86,6 +86,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers             ::getError
+	 * @covers             \Fuel\Validation\InvalidFieldException
 	 * @expectedException  \Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
