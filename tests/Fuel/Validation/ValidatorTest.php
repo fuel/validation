@@ -102,6 +102,36 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers ::runField
+	 * @covers ::validateField
+	 * @group  Validation
+	 */
+	public function testRunField()
+	{
+		$fieldName = 'email';
+
+		$this->object->addRule($fieldName, new Email());
+
+		$this->assertTrue(
+			$this->object->runField(
+				$fieldName,
+				array(
+					$fieldName => 'user@domain.example',
+				)
+			)->isValid()
+		);
+
+		$this->assertFalse(
+			$this->object->runField(
+				$fieldName,
+				array(
+					$fieldName => 'example',
+				)
+			)->isValid()
+		);
+	}
+
+	/**
 	 * @covers ::run
 	 * @covers ::validateField
 	 * @group  Validation
@@ -116,6 +146,21 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 			$this->object->run(array(
 					$fieldName => 'example',
 				)
+			)->isValid()
+		);
+	}
+
+	/**
+	 * @covers ::runField
+	 * @covers ::validateField
+	 * @group  Validation
+	 */
+	public function testRunFieldFailure()
+	{
+		$this->assertFalse(
+			$this->object->runField(
+				'email',
+				array()
 			)->isValid()
 		);
 	}
