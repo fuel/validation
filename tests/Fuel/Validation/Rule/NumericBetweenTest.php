@@ -52,6 +52,7 @@ class NumericBetweenTest extends AbstractRuleTest
 
 	/**
 	 * @covers ::validate
+	 * @covers ::paramsValid
 	 * @group  Validation
 	 */
 	public function testValidateWithNoParam()
