@@ -18,7 +18,7 @@ require_once(__DIR__.'/../../DummyAbstractRule.php');
  * @package Fuel\Validation
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\AbstractRule
+ * @coversDefaultClass \Fuel\Validation\AbstractRule
  */
 class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,8 +34,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass __construct
-	 * @group              Validation
+	 * @covers ::__construct
+	 * @group  Validation
 	 */
 	public function testConstruct()
 	{
@@ -56,8 +56,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
-	 * @group              Validation
+	 * @covers ::getMessage
+	 * @group  Validation
 	 */
 	public function testDefaultMessage()
 	{
@@ -68,9 +68,9 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessage
-	 * @coversDefaultClass setMessage
-	 * @group              Validation
+	 * @covers ::getMessage
+	 * @covers ::setMessage
+	 * @group  Validation
 	 */
 	public function testGetSetMessage()
 	{
@@ -85,8 +85,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getParameter
-	 * @group              Validation
+	 * @covers ::getParameter
+	 * @group  Validation
 	 */
 	public function testGetParam()
 	{
@@ -96,10 +96,10 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getParameter
-	 * @coversDefaultClass setParameter
-	 * @dataProvider       paramDataProvider
-	 * @group              Validation
+	 * @covers        ::getParameter
+	 * @covers        ::setParameter
+	 * @dataProvider  paramDataProvider
+	 * @group         Validation
 	 */
 	public function testSetGetParam($param)
 	{
@@ -126,8 +126,8 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetDefaultMessageParams()
 	{

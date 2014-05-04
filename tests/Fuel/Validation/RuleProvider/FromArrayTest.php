@@ -14,14 +14,14 @@ use Fuel\Validation\Rule\MinLength;
 use Fuel\Validation\Rule\Required;
 
 /**
- * Tests for Simple
+ * Tests for FromArray
  *
  * @package Fuel\Validation\RuleProvider
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\RuleProvider\FromArray
+ * @coversDefaultClass \Fuel\Validation\RuleProvider\FromArray
  */
-class SimpleTest extends \PHPUnit_Framework_TestCase
+class FromArrayTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
@@ -35,10 +35,10 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass populateValidation
-	 * @coversDefaultClass getData
-	 * @expectedException  \InvalidArgumentException
-	 * @group              Validation
+	 * @covers            ::populateValidator
+	 * @covers            ::getData
+	 * @expectedException \InvalidArgumentException
+	 * @group             Validation
 	 */
 	public function testNoData()
 	{
@@ -52,9 +52,9 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @coversDefaultClass populateValidator
-	 * @coversDefaultClass setData
-	 * @group              Validation
+	 * @covers ::populateValidator
+	 * @covers ::setData
+	 * @group  Validation
 	 */
 	public function testPopulate()
 	{
