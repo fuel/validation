@@ -34,7 +34,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::setResult
 	 * @covers ::isValid
-	 * @group              Validation
+	 * @group  Validation
 	 */
 	public function testSetGetResult()
 	{
@@ -49,7 +49,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	 * @covers ::getError
 	 * @covers ::getErrors
 	 * @covers ::setError
-	 * @group              Validation
+	 * @group  Validation
 	 */
 	public function testSetGetErrors()
 	{
@@ -85,8 +85,8 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::getError
-	 * @expectedException  Fuel\Validation\InvalidFieldException
+	 * @covers             ::getError
+	 * @expectedException  \Fuel\Validation\InvalidFieldException
 	 * @group              Validation
 	 */
 	public function testGetInvalidError()
@@ -97,7 +97,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @covers ::getValidated
 	 * @covers ::setValidated
-	 * @group              Validation
+	 * @group  Validation
 	 */
 	public function testSetGetValidated()
 	{

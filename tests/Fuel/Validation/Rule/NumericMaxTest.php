@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Rule\NumericMax
+ * @coversDefaultClass \Fuel\Validation\Rule\NumericMax
  */
 class NumericMaxTest extends AbstractRuleTest
 {
@@ -58,8 +58,8 @@ class NumericMaxTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{

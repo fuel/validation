@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Rule\Regex
+ * @coversDefaultClass \Fuel\Validation\Rule\Regex
  */
 class RegexTest extends AbstractRuleTest
 {
@@ -51,8 +51,8 @@ class RegexTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{

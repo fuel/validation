@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\Date
+ * @coversDefaultClass  \Fuel\Validation\Rule\Date
  */
 class DateTest extends AbstractRuleTest
 {
@@ -32,9 +32,9 @@ class DateTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass validate
-	 * @dataProvider       validateProvider
-	 * @group              Validation
+	 * @covers       ::validate
+	 * @dataProvider validateProvider
+	 * @group        Validation
 	 */
 	public function testValidate()
 	{

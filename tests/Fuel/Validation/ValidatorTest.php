@@ -166,8 +166,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::      run
-	 * @covers ::      validateField
+	 * @covers       ::run
+	 * @covers       ::validateField
 	 * @dataProvider runMultipleFieldsData
 	 * @group        Validation
 	 */
@@ -199,7 +199,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           __call
+	 * @covers            ::__call
 	 * @expectedException \Fuel\Validation\InvalidRuleException
 	 * @group             Validation
 	 */
@@ -243,9 +243,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           setMessage
-	 * @group             Validation
+	 * @covers            ::setMessage
 	 * @expectedException \LogicException
+	 * @group             Validation
 	 */
 	public function testSetMessageException()
 	{
@@ -300,7 +300,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers ::           addField
+	 * @covers            ::addField
 	 * @expectedException \InvalidArgumentException
 	 * @group             Validation
 	 */

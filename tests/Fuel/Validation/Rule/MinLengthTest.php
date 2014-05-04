@@ -18,7 +18,7 @@ require_once(__DIR__.'/../../../ClassWithToString.php');
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers  Fuel\Validation\Rule\MinLength
+ * @coversDefaultClass  \Fuel\Validation\Rule\MinLength
  */
 class MinLengthTest extends AbstractRuleTest
 {
@@ -62,8 +62,8 @@ class MinLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{

@@ -16,7 +16,7 @@ namespace Fuel\Validation\Rule;
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  *
- * @covers Fuel\Validation\Rule\NumericMin
+ * @coversDefaultClass \Fuel\Validation\Rule\NumericMin
  */
 class NumericMinTest extends AbstractRuleTest
 {
@@ -58,8 +58,8 @@ class NumericMinTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @coversDefaultClass getMessageParameters
-	 * @group              Validation
+	 * @covers ::getMessageParameters
+	 * @group  Validation
 	 */
 	public function testGetMessageParams()
 	{
