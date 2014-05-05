@@ -124,8 +124,19 @@ class FromArray implements ValidationAwareInterface
 
 		if ( ! empty($this->labelKey))
 		{
-			$label = array_key_exists($this->labelKey, $rules) ? $rules[$this->labelKey] : null;
-			$rules = array_key_exists($this->ruleKey, $rules) ? $rules[$this->ruleKey] : array();
+			if (array_key_exists($this->labelKey, $rules))
+			{
+				$label = $rules[$this->labelKey];
+			}
+
+			if (array_key_exists($this->ruleKey, $rules))
+			{
+				$rules = $rules[$this->ruleKey];
+			}
+			else
+			{
+				$rules = array();
+			}
 		}
 
 		$validator->addField($field, $label);
