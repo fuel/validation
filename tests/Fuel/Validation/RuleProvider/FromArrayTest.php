@@ -70,7 +70,7 @@ class FromArrayTest extends \PHPUnit_Framework_TestCase
 		$validator = \Mockery::mock('Fuel\Validation\Validator');
 
 		// Ensure the field gets added
-		$validator->shouldReceive('addField')->once()->with('test field');
+		$validator->shouldReceive('addField')->once()->with('test field', null);
 
 		// Create some expected rules
 		$requiredRule = new Required;
@@ -86,6 +86,49 @@ class FromArrayTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->setData($data);
 		$this->object->populateValidator($validator);
+	}
+
+	/**
+	 * @covers ::__construct
+	 * @covers ::populateValidator
+	 * @covers ::addFieldRule
+	 * @covers ::addFieldRules
+	 * @covers ::setData
+	 * @group  Validation
+	 */
+	public function testLabel()
+	{
+		$object = new FromArray('label');
+
+		$data = array(
+			'test field' => array(
+				'label' => 'Test field',
+				'rules' => array(
+					'required',
+					'minLength' => 12,
+				),
+			),
+		);
+
+		$validator = \Mockery::mock('Fuel\Validation\Validator');
+
+		// Ensure the field gets added
+		$validator->shouldReceive('addField')->once()->with('test field', 'Test field');
+
+		// Create some expected rules
+		$requiredRule = new Required;
+		$minLengthRule = new MinLength(12);
+
+		// Make sure the mocked object knows that the rules need to be created
+		$validator->shouldReceive('createRuleInstance')->with('required', null)->once()->andReturn($requiredRule);
+		$validator->shouldReceive('createRuleInstance')->with('minLength', 12)->once()->andReturn($minLengthRule);
+
+		// Finally make sure the addRule function is called
+		$validator->shouldReceive('addRule')->with('test field', $requiredRule)->once();
+		$validator->shouldReceive('addRule')->with('test field', $minLengthRule)->once();
+
+		$object->setData($data);
+		$object->populateValidator($validator);
 	}
 
 }

@@ -241,3 +241,45 @@ $generator = new FromArray;
 $generator->setData($config)->populateValidator($v);
 
 ```
+
+You can also add a config with your custom structure.
+
+```php
+<?php
+
+use Fuel\Validation\Validator;
+use Fuel\Validation\RuleProvider\FromArray;
+
+// The key is the name of the field that has a value of an array containing the rules
+$config = array(
+    'name' => array(
+        'label' => 'Name'
+        'validation' => array(
+            'required',
+        ),
+    ),
+    'email' => array(
+        'label' => 'Email address',
+        'validation' => array(
+            'required',
+            'email',
+        ),
+    ),
+    'age' => array(
+        'label' => 'Age',
+        'validation' => array(
+            'number',
+            'numericMin' => 18,
+        ),
+    ),
+);
+
+$v = new Validator;
+
+// First parameter: label key, default: disabled
+// Second parameter: rules key, default: rules
+$generator = new FromArray(true, 'validation'); // same as new FromArray('label', 'validation');
+$generator->setData($config)->populateValidator($v);
+
+// $v is now populated with the fields and rules specified in the config array.
+```
