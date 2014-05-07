@@ -17,3 +17,4 @@ nbproject/
 *.sublime-workspace
 index.php
 composer.phar
+tests/_log/*
