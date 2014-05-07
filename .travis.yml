@@ -10,7 +10,6 @@ before_script:
   - composer install
 
 script:
-  - chmod 0777 tests/_log
   - vendor/bin/codecept run unit --coverage --xml
 
 after_script:
