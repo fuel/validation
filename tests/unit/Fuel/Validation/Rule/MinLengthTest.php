@@ -10,8 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-require_once(__DIR__.'/../../../ClassWithToString.php');
-
 /**
  * Defines tests for MinLength
  *

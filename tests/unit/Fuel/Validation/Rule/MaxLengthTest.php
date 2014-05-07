@@ -11,8 +11,6 @@
 
 namespace Fuel\Validation\Rule;
 
-require_once(__DIR__.'/../../../ClassWithToString.php');
-
 /**
  * Tests the MaxLength class.
  *
