@@ -30,6 +30,30 @@ class FromArray implements ValidationAwareInterface
 	protected $data;
 
 	/**
+	 * The key of label
+	 *
+	 * @var string
+	 */
+	protected $labelKey = 'label';
+
+	/**
+	 * The key of rules
+	 *
+	 * @var string
+	 */
+	protected $ruleKey = 'rules';
+
+	public function __construct($labelKey = null, $ruleKey = 'rules')
+	{
+		if ($labelKey !== true)
+		{
+			$this->labelKey = $labelKey;
+		}
+
+		$this->ruleKey = $ruleKey;
+	}
+
+	/**
 	 * Sets the array that will be used to generate
 	 *
 	 * @param array $data
@@ -96,7 +120,26 @@ class FromArray implements ValidationAwareInterface
 	 */
 	protected function addFieldRules($field, $rules, Validator $validator)
 	{
-		$validator->addField($field);
+		$label = null;
+
+		if ( ! empty($this->labelKey))
+		{
+			if (array_key_exists($this->labelKey, $rules))
+			{
+				$label = $rules[$this->labelKey];
+			}
+
+			if (array_key_exists($this->ruleKey, $rules))
+			{
+				$rules = $rules[$this->ruleKey];
+			}
+			else
+			{
+				$rules = array();
+			}
+		}
+
+		$validator->addField($field, $label);
 
 		// Add each of the rules
 		foreach ($rules as $ruleName => $params)
