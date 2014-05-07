@@ -26,7 +26,7 @@ class ValueTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not one of the given value(s).';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Value;
 	}

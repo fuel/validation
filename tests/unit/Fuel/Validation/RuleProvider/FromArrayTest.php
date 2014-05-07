@@ -10,6 +10,7 @@
 
 namespace Fuel\Validation\RuleProvider;
 
+use Codeception\TestCase\Test;
 use Fuel\Validation\Rule\MinLength;
 use Fuel\Validation\Rule\Required;
 
@@ -21,7 +22,7 @@ use Fuel\Validation\Rule\Required;
  *
  * @coversDefaultClass \Fuel\Validation\RuleProvider\FromArray
  */
-class FromArrayTest extends \PHPUnit_Framework_TestCase
+class FromArrayTest extends Test
 {
 
 	/**
@@ -29,7 +30,7 @@ class FromArrayTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $object;
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new FromArray;
 	}

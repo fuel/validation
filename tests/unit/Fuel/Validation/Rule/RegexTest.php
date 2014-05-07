@@ -26,7 +26,7 @@ class RegexTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field does not match the given pattern.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Regex;
 	}

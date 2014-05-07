@@ -26,7 +26,7 @@ class UrlTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not a valid url.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Url;
 	}

@@ -26,7 +26,7 @@ class IpTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not a valid IP address.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Ip;
 	}

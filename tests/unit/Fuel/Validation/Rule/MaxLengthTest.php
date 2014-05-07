@@ -29,7 +29,7 @@ class MaxLengthTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is longer than the allowed maximum length.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new MaxLength;
 	}

@@ -29,7 +29,7 @@ class ExactLengthTest extends AbstractRuleTest
 	 */
 	protected $message = 'The length of the field is not exactly equal to the length specified.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new ExactLength;
 	}

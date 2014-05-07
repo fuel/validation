@@ -26,7 +26,7 @@ class MatchFieldTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field does not match the other given field.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new MatchField;
 	}

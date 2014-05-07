@@ -26,7 +26,7 @@ class NumericBetweenTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not between the specified values.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new NumericBetween;
 	}

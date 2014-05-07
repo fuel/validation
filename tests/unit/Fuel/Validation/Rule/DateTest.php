@@ -26,7 +26,7 @@ class DateTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field does not contain a valid date.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Date;
 	}

@@ -26,7 +26,7 @@ class EmailTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field does not contain a valid email address.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Email;
 	}

@@ -10,7 +10,7 @@
 
 namespace Fuel\Validation;
 
-require_once(__DIR__.'/../../DummyAbstractRule.php');
+use Codeception\TestCase\Test;
 
 /**
  * Tests for AbstractRule
@@ -20,7 +20,7 @@ require_once(__DIR__.'/../../DummyAbstractRule.php');
  *
  * @coversDefaultClass \Fuel\Validation\AbstractRule
  */
-class AbstractRuleTest extends \PHPUnit_Framework_TestCase
+class AbstractRuleTest extends Test
 {
 
 	/**
@@ -28,7 +28,7 @@ class AbstractRuleTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $object;
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new \DummyAbstractRule;
 	}

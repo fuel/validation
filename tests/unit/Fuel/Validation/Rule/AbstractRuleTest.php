@@ -10,13 +10,15 @@
 
 namespace Fuel\Validation\Rule;
 
+use Codeception\TestCase\Test;
+
 /**
  * Defines tests for Rules
  *
  * @package Fuel\Validation\Rule
  * @author  Fuel Development Team
  */
-abstract class AbstractRuleTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractRuleTest extends Test
 {
 
 	/**

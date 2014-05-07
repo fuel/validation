@@ -10,7 +10,7 @@
 
 namespace Fuel\Validation;
 
-use Fuel\Validation\Field;
+use Codeception\TestCase\Test;
 use Fuel\Validation\Rule\Email;
 use Fuel\Validation\Rule\Number;
 
@@ -22,7 +22,7 @@ use Fuel\Validation\Rule\Number;
  *
  * @coversDefaultClass \Fuel\Validation\Validator
  */
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends Test
 {
 
 	/**
@@ -37,7 +37,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $testFields;
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Validator;
 

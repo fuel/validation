@@ -26,7 +26,7 @@ class TypeTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not one of the given type(s).';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Type;
 	}

@@ -26,7 +26,7 @@ class NumericMaxTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not equal to or less than the specified value.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new NumericMax;
 	}

@@ -28,7 +28,7 @@ class MinLengthTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field does not satisfy the minimum length requirement.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new MinLength;
 	}

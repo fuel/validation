@@ -26,7 +26,7 @@ class RequiredTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is required and has not been specified.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Required;
 	}

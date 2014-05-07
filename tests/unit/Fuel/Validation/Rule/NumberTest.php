@@ -26,7 +26,7 @@ class NumberTest extends AbstractRuleTest
 	 */
 	protected $message = 'The field is not valid number.';
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Number;
 	}

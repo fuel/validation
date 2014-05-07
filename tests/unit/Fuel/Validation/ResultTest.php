@@ -10,6 +10,8 @@
 
 namespace Fuel\Validation;
 
+use Codeception\TestCase\Test;
+
 /**
  * Tests for Result
  *
@@ -18,7 +20,7 @@ namespace Fuel\Validation;
  *
  * @coversDefaultClass \Fuel\Validation\Result
  */
-class ResultTest extends \PHPUnit_Framework_TestCase
+class ResultTest extends Test
 {
 
 	/**
@@ -26,7 +28,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $object;
 
-	protected function setUp()
+	protected function _before()
 	{
 		$this->object = new Result();
 	}

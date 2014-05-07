@@ -10,6 +10,8 @@
 
 namespace Fuel\Validation;
 
+use CodeCeption\TestCase\Test;
+
 /**
  * Tests for Field
  *
@@ -18,7 +20,7 @@ namespace Fuel\Validation;
  *
  * @coversDefaultClass \Fuel\Validation\Field
  */
-class FieldTest extends \PHPUnit_Framework_TestCase
+class FieldTest extends Test
 {
 
 	/**
@@ -26,7 +28,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected $object;
 
-	public function setUp()
+	public function _before()
 	{
 		$this->object = new Field;
 	}
