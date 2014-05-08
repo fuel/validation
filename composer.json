@@ -12,9 +12,11 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.3.3",
+		"codeception/mockery-module": "dev-master"
 	},
 	"require-dev": {
+        "codeception/codeception": "1.8.*",
 		"mockery/mockery": "0.7.*"
 	},
 	"autoload": {

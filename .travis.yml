@@ -9,10 +9,11 @@ before_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - composer install
 
-script: phpunit --coverage-text --coverage-clover=coverage.clover
+script:
+  - vendor/bin/codecept run unit --coverage --xml
 
 after_script:
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover 
- 
+  - php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml
+
 notifications:
   irc: "irc.freenode.org#fuelphp-status"
