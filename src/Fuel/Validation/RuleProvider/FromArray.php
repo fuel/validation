@@ -81,7 +81,6 @@ class FromArray implements ValidationAwareInterface
 
 	/**
 	 * Should populate the given validator with the needed rules.
-	 * If the validator is null one should be created.
 	 *
 	 * @param Validator $validator
 	 *
