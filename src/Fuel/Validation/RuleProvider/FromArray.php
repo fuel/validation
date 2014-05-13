@@ -62,7 +62,7 @@ class FromArray implements ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function setData($data)
+	public function setData(array $data)
 	{
 		$this->data = $data;
 
