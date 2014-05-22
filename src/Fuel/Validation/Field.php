@@ -34,7 +34,7 @@ class Field implements FieldInterface
 	/**
 	 * @var RuleInterface[]
 	 */
-	protected $rules;
+	protected $rules = [];
 
 	public function __construct($name = null, $friendlyName = null)
 	{
