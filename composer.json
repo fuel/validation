@@ -15,8 +15,8 @@
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
-        	"codeception/codeception": "1.8.*",
-        	"codeception/mockery-module": "dev-master",
+		"codeception/codeception": "1.8.*",
+		"codeception/mockery-module": "dev-master",
 		"mockery/mockery": "0.7.*"
 	},
 	"autoload": {
