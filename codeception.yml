@@ -22,4 +22,4 @@ coverage:
         include:
             - src/*
         exclude:
-            - src/Fuel/Validation/Provider/
+            - src/Provider/*

@@ -30,6 +30,8 @@ class Required extends AbstractRule
 	 */
 	protected $message = 'The field is required and has not been specified.';
 
+	protected $alwaysRun = true;
+
 	/**
 	 * @param mixed $value
 	 * @param null  $field

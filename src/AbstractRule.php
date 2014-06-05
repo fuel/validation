@@ -35,6 +35,13 @@ abstract class AbstractRule implements RuleInterface
 	protected $params;
 
 	/**
+	 * Set to true to always run the rule when validating, regardless of if the data exists.
+	 *
+	 * @var bool
+	 */
+	protected $alwaysRun = false;
+
+	/**
 	 * Creates a new validation rule
 	 *
 	 * @param mixed  $params
@@ -120,6 +127,11 @@ abstract class AbstractRule implements RuleInterface
 	public function getParameter()
 	{
 		return $this->params;
+	}
+
+	public function canAlwaysRun()
+	{
+		return $this->alwaysRun;
 	}
 
 }

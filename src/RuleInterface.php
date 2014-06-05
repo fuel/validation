@@ -91,4 +91,11 @@ interface RuleInterface
 	 */
 	public function getParameter();
 
+	/**
+	 * TODO: Docblock
+	 *
+	 * @return bool
+	 */
+	public function canAlwaysRun();
+
 }

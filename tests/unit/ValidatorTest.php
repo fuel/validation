@@ -225,8 +225,6 @@ class ValidatorTest extends Test
 	/**
 	 * @covers       ::run
 	 * @covers       ::validateField
-	 * @covers       ::buildMessage
-	 * @covers       ::processMessageTokens
 	 * @dataProvider runMultipleFieldsData
 	 * @group        Validation
 	 */
@@ -493,6 +491,27 @@ class ValidatorTest extends Test
 		$this->assertEquals(
 			$message,
 			$insatnce->getMessage()
+		);
+	}
+
+	/**
+	 * The required rule was not being run if the data did not contain the required field, resulting in a false positive
+	 * @link https://github.com/fuelphp/validation/issues/30
+	 *
+	 * @covers ::run
+	 * @group  Validation
+	 */
+	public function testRequired()
+	{
+		$this->object->addField('foobar')
+			->required();
+
+		$data = [];
+
+		$result = $this->object->run($data);
+
+		$this->assertFalse(
+			$result->isValid()
 		);
 	}
 

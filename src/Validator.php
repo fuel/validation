@@ -20,6 +20,21 @@ use LogicException;
  * @package Fuel\Validation
  * @author  Fuel Development Team
  * @since   2.0
+ *
+ * @method email
+ * @method ip
+ * @method matchField
+ * @method minLength
+ * @method number
+ * @method numericBetween
+ * @method numericMax
+ * @method numericMin
+ * @method regex
+ * @method required
+ * @method url
+ * @method date
+ * @method type
+ * @method value
  */
 class Validator
 {
@@ -170,9 +185,9 @@ class Validator
 
 		$result->setResult(true);
 
-		foreach ($data as $fieldName => $value)
+		foreach ($this->fields as $fieldName => $rules)
 		{
-			$fieldResult = $this->validateField($fieldName, $value, $data, $result);
+			$fieldResult = $this->validateField($fieldName, $data, $result);
 
 			if ( ! $fieldResult)
 			{
@@ -208,7 +223,7 @@ class Validator
 
 		if (isset($data[$field]))
 		{
-			$fieldResult = $this->validateField($field, $data[$field], $data, $result);
+			$fieldResult = $this->validateField($field, $data, $result);
 		}
 
 		// Log the result
@@ -221,7 +236,6 @@ class Validator
 	 * Validates a single field
 	 *
 	 * @param string          $field
-	 * @param mixed           $value
 	 * @param mixed[]         $data
 	 * @param ResultInterface $result
 	 *
@@ -229,13 +243,23 @@ class Validator
 	 *
 	 * @since 2.0
 	 */
-	protected function validateField($field, $value, $data, ResultInterface $result)
+	protected function validateField($field, $data, ResultInterface $result)
 	{
+		$value = null;
+		$dataPresent = false;
+
+		if (array_key_exists($field, $data))
+		{
+			//Set a flag if the data does not exist
+			$dataPresent = true;
+			$value = $data[$field];
+		}
+
 		$rules = $this->getFieldRules($field);
 
 		foreach ($rules as $rule)
 		{
-			if ( ! $rule->validate($value, $field, $data))
+			if (($dataPresent || $rule->canAlwaysRun()) && ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
 				$result->setError($field, $this->buildMessage($this->getField($field), $rule));
@@ -375,7 +399,7 @@ class Validator
 			throw new InvalidRuleException($name);
 		}
 
-		/* @var RuleInterface */
+		/* @var RuleInterface $instance */
 		$instance = new $className($parameters);
 
 		// Check if there is a custom message
