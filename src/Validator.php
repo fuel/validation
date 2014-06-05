@@ -246,12 +246,10 @@ class Validator
 	protected function validateField($field, $data, ResultInterface $result)
 	{
 		$value = null;
-		$dataPresent = false;
+		$dataPresent = array_key_exists($field, $data);
 
-		if (array_key_exists($field, $data))
+		if ($dataPresent)
 		{
-			//Set a flag if the data does not exist
-			$dataPresent = true;
 			$value = $data[$field];
 		}
 
