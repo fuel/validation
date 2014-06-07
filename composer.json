@@ -16,8 +16,7 @@
 	},
 	"require-dev": {
 		"codeception/codeception": "1.8.*",
-		"codeception/mockery-module": "dev-master",
-		"mockery/mockery": "0.7.*"
+		"codeception/mockery-module": "dev-master"
 	},
 	"autoload": {
 		"psr-4": { "Fuel\\Validation\\": "src/" }
