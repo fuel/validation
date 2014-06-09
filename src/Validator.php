@@ -477,6 +477,25 @@ class Validator
 	}
 
 	/**
+	 * Sets custom messages for one or more rules. Setting the value to "null" will remove the message
+	 *
+	 * @param string[] $messages
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function setGlobalMessages($messages)
+	{
+		foreach ($messages as $name => $value)
+		{
+			$this->setGlobalMessage($name, $value);
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Removes a global rule message
 	 *
 	 * @param string $ruleName
