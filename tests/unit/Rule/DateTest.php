@@ -81,4 +81,20 @@ class DateTest extends AbstractRuleTest
 		);
 	}
 
+	/**
+	 * @covers ::getMessageParameters
+	 * @group  Validation
+	 */
+	public function testGetMessageParams()
+	{
+		$parameter = 'YYYY/MM/DD';
+
+		$this->object->setParameter(array('format' => $parameter));
+
+		$this->assertEquals(
+			array('format' => $parameter),
+			$this->object->getMessageParameters()
+		);
+	}
+
 }

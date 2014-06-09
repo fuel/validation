@@ -63,4 +63,23 @@ class Date extends AbstractRule
 
 	}
 
+	/**
+	 * Returns
+	 *
+	 * array(
+	 *      'format' => <format value>
+	 * );
+	 *
+	 * @return array
+	 */
+	public function getMessageParameters()
+	{
+		$parameters = $this->getParameter();
+		$format = $parameters['format'];
+
+		return array(
+			'format' => $format,
+		);
+	}
+
 }
