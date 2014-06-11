@@ -3,7 +3,7 @@ language: php
 php:
   - 5.4
   - 5.5
-  - HHVM
+  - hhvm
 
 before_script:
   - wget https://scrutinizer-ci.com/ocular.phar
