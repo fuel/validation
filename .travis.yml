@@ -6,14 +6,15 @@ php:
   - hhvm
 
 before_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then wget https://scrutinizer-ci.com/ocular.phar
   - composer install
 
 script:
-  - vendor/bin/codecept run unit --coverage --xml
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then vendor/bin/codecept run unit --coverage --xml
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then vendor/bin/codecept run unit
 
 after_script:
-  - php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml
 
 notifications:
   irc: "irc.freenode.org#fuelphp-status"
