@@ -139,8 +139,8 @@ $v->setGlobalMessage('required', 'Sorry, my chum, but {label} is a required fiel
 ## Manually adding rules and rule overriding
 As well as using the default core rules it is possible to dynamically add your own rules or override existing rules.
 
-This is done by calling the `addRule()` function on a `Validator` like so: `$v->addRule('myCustomRule', 'My\App\Rules\CustomRule')`.
-If the class cannot be loaded for any reason a `InvalidRuleException` will be thrown when the rule gets used.
+This is done by calling the `addCustomRule()` function on a `Validator` like so: `$v->addCustomRule('myCustomRule', 'My\App\Rules\CustomRule')`.
+If the class cannot be loaded for any reason an `InvalidRuleException` will be thrown when the rule gets used.
 
 The `myCustomRule` rule is now available for use with the `Validator` instance and can be called via the magic method syntax as well as the `createRuleInstance()` function in `Validator`.
 
@@ -152,7 +152,7 @@ use Fuel\Validation\Validator;
 // Create a new validator instance to play with
 $v = new Validator;
 
-$v->addRule('myCustomRule', 'My\App\Rules\CustomRule');
+$v->addCustomRule('myCustomRule', 'My\App\Rules\CustomRule');
 
 // Example of adding the new rule via magic method syntax
 $v->addField('foobar')
@@ -163,7 +163,7 @@ var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
 
 ### Overriding existing rules
-It is possible to replace existing rules simply by calling `addRule()` as in the previous example and passing the name of an existing rule
+It is possible to replace existing rules simply by calling `addCustomRule()` as in the previous example and passing the name of an existing rule
 
 ```php
 <?php
@@ -173,7 +173,7 @@ use Fuel\Validation\Validator;
 // Create a new validator instance to play with
 $v = new Validator;
 
-$v->addRule('required', 'My\App\Rules\CustomRule');
+$v->addCustomRule('required', 'My\App\Rules\CustomRule');
 
 // Example of adding the new rule via magic method syntax
 $v->addField('foobar')
