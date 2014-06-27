@@ -66,12 +66,13 @@ interface ResultInterface
 	 *
 	 * @param string $field
 	 * @param string $message
+	 * @param string $rule
 	 *
 	 * @return $this
 	 *
 	 * @since 2.0
 	 */
-	public function setError($field, $message);
+	public function setError($field, $message, $rule);
 
 	/**
 	 * Returns a list of fields that where successfully validated.

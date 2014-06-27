@@ -36,6 +36,13 @@ class Result implements ResultInterface
 	protected $errors = array();
 
 	/**
+	 * Contains the rule that caused a given field to fail
+	 *
+	 * @var RuleInterface[]
+	 */
+	protected $failedRules = array();
+
+	/**
 	 * Contains a list of fields that passed validation
 	 *
 	 * @var string[]
@@ -99,14 +106,16 @@ class Result implements ResultInterface
 	 *
 	 * @param string $field
 	 * @param string $message
+	 * @param string $rule
 	 *
 	 * @return $this
 	 *
 	 * @since 2.0
 	 */
-	public function setError($field, $message)
+	public function setError($field, $message, $rule)
 	{
 		$this->errors[$field] = $message;
+		$this->failedRules[$field] = $rule;
 
 		return $this;
 	}
@@ -134,4 +143,17 @@ class Result implements ResultInterface
 
 		return $this;
 	}
+
+	/**
+	 * Returns a list of rules that caused fields to fail, indexed by the field name.
+	 *
+	 * @return RuleInterface[]
+	 *
+	 * @since 2.0
+	 */
+	public function getFailedRules()
+	{
+		return $this->failedRules;
+	}
+
 }

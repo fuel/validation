@@ -260,7 +260,7 @@ class Validator
 			if (($dataPresent || $rule->canAlwaysRun()) && ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
-				$result->setError($field, $this->buildMessage($this->getField($field), $rule));
+				$result->setError($field, $this->buildMessage($this->getField($field), $rule), $rule);
 
 				return false;
 			}

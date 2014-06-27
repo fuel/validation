@@ -51,13 +51,14 @@ class ResultTest extends Test
 	 * @covers ::getError
 	 * @covers ::getErrors
 	 * @covers ::setError
+	 * @covers ::getFailedRules
 	 * @group  Validation
 	 */
 	public function testSetGetErrors()
 	{
-		$this->object->setError('field1', 'msg1');
-		$this->object->setError('field2', 'msg2');
-		$this->object->setError('field3', 'msg3');
+		$this->object->setError('field1', 'msg1', 'one');
+		$this->object->setError('field2', 'msg2', 'two');
+		$this->object->setError('field3', 'msg3', 'three');
 
 		$this->assertEquals(
 			'msg1',
@@ -74,15 +75,22 @@ class ResultTest extends Test
 			$this->object->getError('field3')
 		);
 
-		$expected = array(
-			'field1' => 'msg1',
-			'field2' => 'msg2',
-			'field3' => 'msg3',
+		$this->assertEquals(
+			array(
+				'field1' => 'msg1',
+				'field2' => 'msg2',
+				'field3' => 'msg3',
+			),
+			$this->object->getErrors()
 		);
 
 		$this->assertEquals(
-			$expected,
-			$this->object->getErrors()
+			array(
+				'field1' => 'one',
+				'field2' => 'two',
+				'field3' => 'three',
+			),
+			$this->object->getFailedRules()
 		);
 	}
 
