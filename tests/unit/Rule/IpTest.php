@@ -32,9 +32,7 @@ class IpTest extends AbstractRuleTest
 	}
 
 	/**
-	 * Provides strings to test and expected results for testValidate
-	 *
-	 * @return array
+	 * {@inheritdocs}
 	 */
 	public function validateProvider()
 	{
