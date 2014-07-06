@@ -33,9 +33,7 @@ class MaxLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * Provides sample data for testing the maximum length validation
-	 *
-	 * @return array
+	 * {@inheritdocs}
 	 */
 	public function validateProvider()
 	{

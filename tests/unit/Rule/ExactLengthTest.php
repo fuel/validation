@@ -33,9 +33,7 @@ class ExactLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * Provides sample data for testing the exact length validation
-	 *
-	 * @return array
+	 * {@inheritdocs}
 	 */
 	public function validateProvider()
 	{

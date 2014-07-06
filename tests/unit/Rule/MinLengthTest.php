@@ -32,9 +32,7 @@ class MinLengthTest extends AbstractRuleTest
 	}
 
 	/**
-	 * Provides sample data for testing the minimum length validation
-	 *
-	 * @return array
+	 * {@inheritdocs}
 	 */
 	public function validateProvider()
 	{

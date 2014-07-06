@@ -73,9 +73,7 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * Provides sample data for testing the email validation
-	 *
-	 * @return array
+	 * {@inheritdocs}
 	 */
 	public function validateProvider()
 	{
