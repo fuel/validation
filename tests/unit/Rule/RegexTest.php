@@ -37,14 +37,14 @@ class RegexTest extends AbstractRuleTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('', false, null),
-			1 => array(1, false, '/.*/'),
-			2 => array(true, false, '/.*/'),
-			3 => array(new \stdClass, false, '/.*/'),
-			4 => array('hkjsghfkjgJHga', true, '/[a-zA-Z]*/'),
-			5 => array('', true, '/.*/'),
-			6 => array('ads123', false, '/^[a-z]*$/'),
-			7 => array('ads', true, '/[a-z]*/'),
+			array('', false, null),
+			array(1, false, '/.*/'),
+			array(true, false, '/.*/'),
+			array(new \stdClass, false, '/.*/'),
+			array('hkjsghfkjgJHga', true, '/[a-zA-Z]*/'),
+			array('', true, '/.*/'),
+			array('ads123', false, '/^[a-z]*$/'),
+			array('ads', true, '/[a-z]*/'),
 		);
 	}
 
