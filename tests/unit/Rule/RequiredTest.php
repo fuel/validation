@@ -54,24 +54,24 @@ class RequiredTest extends AbstractRuleTest
 	public function validateProvider()
 	{
 		return array(
-			0 => array('admin@test.com', null, false, null),
-			1 => array('', null, false, null),
-			2 => array(array(), null, false, null),
-			3 => array(null, null, false, null),
-			4 => array(false, null, false, null),
+			array('admin@test.com', null, false, null),
+			array('', null, false, null),
+			array(array(), null, false, null),
+			array(null, null, false, null),
+			array(false, null, false, null),
 
-			5 => array('test string 5', 'test', false,
+			array('test string 5', 'test', false,
 				array()
 			),
 
-			6 => array('test string 6', 'test', false,
+			array('test string 6', 'test', false,
 				array(
 					'foo' => 'bar',
 					'baz' => 'bat',
 				)
 			),
 
-			7 => array('test string 7', 'test', true,
+			array('test string 7', 'test', true,
 				array(
 					'foo' => 'bar',
 					'test' => 'value',
@@ -79,23 +79,23 @@ class RequiredTest extends AbstractRuleTest
 				)
 			),
 
-			8 => array('bla', 'test', true, null),
-			9 => array('', 'test', false, null),
-			10 => array('bla', null, false, array()),
-			11 => array('', null, false, array()),
+			array('bla', 'test', true, null),
+			array('', 'test', false, null),
+			array('bla', null, false, array()),
+			array('', null, false, array()),
 
-			12 => array(false, 'foo', true,
+			array(false, 'foo', true,
 				array(
 					'foo' => false,
 				)
 			),
-			13 => array(true, 'foo', true,
+			array(true, 'foo', true,
 				array(
 					'foo' => true,
 				)
 			),
 
-			14 => array(0, 'bar', true,
+			array(0, 'bar', true,
 				array(
 					'bar' => false,
 				)
