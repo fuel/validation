@@ -62,8 +62,13 @@ class FromArray implements ValidationAwareInterface
 	 *
 	 * @since 2.0
 	 */
-	public function setData(array $data)
+	public function setData($data)
 	{
+		if ( ! is_array($data) && ! $data instanceof ArrayAccess)
+		{
+			throw new InvalidArguementException('VAL-008: $data must be an array or implement the ArrayAccess interface.');
+		}
+
 		$this->data = $data;
 
 		return $this;
