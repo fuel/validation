@@ -1,9 +1,8 @@
 .DS_Store
-vendor
+/vendor
 coverage
 cache
 composer.lock
-*~
 *.bak
 Thumbs.db
 desktop.ini
@@ -17,4 +16,5 @@ nbproject/
 *.sublime-workspace
 index.php
 composer.phar
-tests/_log/*
+/tests/_log/*
+/codeception.yml
