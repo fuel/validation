@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests for Regex
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Rule\Regex
- */
 class RegexTest extends AbstractRuleTest
 {
 
@@ -48,10 +40,6 @@ class RegexTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = '/.*/';
@@ -64,10 +52,6 @@ class RegexTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array(12);

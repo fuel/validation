@@ -11,15 +11,8 @@
 namespace Fuel\Validation;
 
 use CodeCeption\TestCase\Test;
+use Mockery;
 
-/**
- * Tests for Field
- *
- * @package Fuel\Validation
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Field
- */
 class FieldTest extends Test
 {
 
@@ -28,16 +21,11 @@ class FieldTest extends Test
 	 */
 	protected $object;
 
-	public function _before()
+	protected function _before()
 	{
 		$this->object = new Field;
 	}
 
-	/**
-	 * @covers ::setName
-	 * @covers ::getName
-	 * @group  Validation
-	 */
 	public function testSetGetName()
 	{
 		$name = 'fieldName';
@@ -50,11 +38,6 @@ class FieldTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getLabel
-	 * @covers ::setLabel
-	 * @group  Validation
-	 */
 	public function testSetGetLabel()
 	{
 		$name = 'Joe';
@@ -67,14 +50,9 @@ class FieldTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::addRule
-	 * @covers ::getRules
-	 * @group  Validation
-	 */
 	public function testAddGetRules()
 	{
-		$rule = \Mockery::mock('Fuel\Validation\RuleInterface');
+		$rule = Mockery::mock('Fuel\Validation\RuleInterface');
 
 		$this->object->addRule($rule);
 
@@ -84,10 +62,6 @@ class FieldTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getLabel
-	 * @group  Validation
-	 */
 	public function testGetNullLabel()
 	{
 		$name = 'test';
@@ -100,10 +74,6 @@ class FieldTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @group  Validation
-	 */
 	public function testConstruct()
 	{
 		$name = 'test';

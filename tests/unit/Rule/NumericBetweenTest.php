@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests for NumericBetween
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Rule\NumericBetween
- */
 class NumericBetweenTest extends AbstractRuleTest
 {
 
@@ -44,15 +36,10 @@ class NumericBetweenTest extends AbstractRuleTest
 			4 => array(2, true, array(1, 10)),
 			5 => array(9, true, array(1, 10)),
 			6 => array(10, false, array(1, 10)),
-			6 => array(11, false, array(1, 10)),
+			7 => array(11, false, array(1, 10)),
 		);
 	}
 
-	/**
-	 * @covers ::validate
-	 * @covers ::paramsValid
-	 * @group  Validation
-	 */
 	public function testValidateWithNoParam()
 	{
 		$this->assertFalse(
@@ -60,10 +47,6 @@ class NumericBetweenTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$this->object->setParameter(array(1, 10));
@@ -77,10 +60,6 @@ class NumericBetweenTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParamsEmpty()
 	{
 		$this->assertEquals(

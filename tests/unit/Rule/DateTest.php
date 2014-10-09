@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Defines tests for Email
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\Date
- */
 class DateTest extends AbstractRuleTest
 {
 
@@ -32,9 +24,7 @@ class DateTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @covers       ::validate
 	 * @dataProvider validateProvider
-	 * @group        Validation
 	 */
 	public function testValidate()
 	{
@@ -75,14 +65,10 @@ class DateTest extends AbstractRuleTest
 			21 => array(new \ClassWithToString(), "D/m/Y", true, false),
 			22 => array(new \ClassWithToString(), null, true, false),
 			23 => array(new \ClassWithToString(), 100000, true, false),
-			23 => array(function(){ return "10/10/10"; }, "d/m/y", true, false),
+			24 => array(function(){ return "10/10/10"; }, "d/m/y", true, false),
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 'YYYY/MM/DD';

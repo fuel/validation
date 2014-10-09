@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests for RequiredWith
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Rule\RequiredWith
- */
 class RequiredWithTest extends RequiredTest
 {
 

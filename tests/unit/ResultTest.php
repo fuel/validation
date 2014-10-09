@@ -12,14 +12,6 @@ namespace Fuel\Validation;
 
 use Codeception\TestCase\Test;
 
-/**
- * Tests for Result
- *
- * @package Fuel\Validation
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Result
- */
 class ResultTest extends Test
 {
 
@@ -33,11 +25,6 @@ class ResultTest extends Test
 		$this->object = new Result();
 	}
 
-	/**
-	 * @covers ::setResult
-	 * @covers ::isValid
-	 * @group  Validation
-	 */
 	public function testSetGetResult()
 	{
 		$this->object->setResult(true);
@@ -47,13 +34,6 @@ class ResultTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getError
-	 * @covers ::getErrors
-	 * @covers ::setError
-	 * @covers ::getFailedRules
-	 * @group  Validation
-	 */
 	public function testSetGetErrors()
 	{
 		$this->object->setError('field1', 'msg1', 'one');
@@ -95,21 +75,13 @@ class ResultTest extends Test
 	}
 
 	/**
-	 * @covers             ::getError
-	 * @covers             \Fuel\Validation\InvalidFieldException
-	 * @expectedException  \Fuel\Validation\InvalidFieldException
-	 * @group              Validation
+	 * @expectedException \Fuel\Validation\InvalidFieldException
 	 */
 	public function testGetInvalidError()
 	{
 		$this->object->getError('test');
 	}
 
-	/**
-	 * @covers ::getValidated
-	 * @covers ::setValidated
-	 * @group  Validation
-	 */
 	public function testSetGetValidated()
 	{
 		$this->object->setValidated('test');

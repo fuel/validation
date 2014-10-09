@@ -11,14 +11,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests the ExactLength class.
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\ExactLength
- */
 class ExactLengthTest extends AbstractRuleTest
 {
 
@@ -62,10 +54,6 @@ class ExactLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 12;
@@ -78,10 +66,6 @@ class ExactLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array(12);

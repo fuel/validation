@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Defines tests for Type
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\Type
- */
 class TypeTest extends AbstractRuleTest
 {
 

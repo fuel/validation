@@ -11,8 +11,7 @@ settings:
     log: true
 coverage:
     enabled: true
-    whitelist:
-        include:
-            - src/*
-        exclude:
-            - src/Provider/*
+    include:
+        - src/*
+    exclude:
+        - src/Provider/*

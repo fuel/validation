@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests for ValidUrl
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Rule\Url
- */
 class UrlTest extends AbstractRuleTest
 {
 

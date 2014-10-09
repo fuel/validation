@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Defines tests for MinLength
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\MinLength
- */
 class MinLengthTest extends AbstractRuleTest
 {
 
@@ -57,10 +49,6 @@ class MinLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 12;
@@ -73,10 +61,6 @@ class MinLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array(12);

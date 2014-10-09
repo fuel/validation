@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Defines tests for Value
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\Value
- */
 class ValueTest extends AbstractRuleTest
 {
 
@@ -48,12 +40,6 @@ class ValueTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::isStrict
-	 * @covers ::setParameter
-	 * @covers ::setStrict
-	 * @group  Validation
-	 */
 	public function testStrict()
 	{
 		$this->assertFalse($this->object->isStrict());
@@ -70,10 +56,6 @@ class ValueTest extends AbstractRuleTest
 		$this->assertFalse($this->object->isStrict());
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$this->object->setParameter('test value');

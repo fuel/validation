@@ -14,14 +14,6 @@ use Codeception\TestCase\Test;
 use Fuel\Validation\Rule\MinLength;
 use Fuel\Validation\Rule\Required;
 
-/**
- * Tests for FromArray
- *
- * @package Fuel\Validation\RuleProvider
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\RuleProvider\FromArray
- */
 class FromArrayTest extends Test
 {
 
@@ -36,10 +28,7 @@ class FromArrayTest extends Test
 	}
 
 	/**
-	 * @covers            ::populateValidator
-	 * @covers            ::getData
 	 * @expectedException \InvalidArgumentException
-	 * @group             Validation
 	 */
 	public function testNoData()
 	{
@@ -52,13 +41,6 @@ class FromArrayTest extends Test
 		$this->object->populateValidator($validator);
 	}
 
-	/**
-	 * @covers ::populateValidator
-	 * @covers ::addFieldRule
-	 * @covers ::addFieldRules
-	 * @covers ::setData
-	 * @group  Validation
-	 */
 	public function testPopulate()
 	{
 		$data = array(
@@ -89,14 +71,6 @@ class FromArrayTest extends Test
 		$this->object->populateValidator($validator);
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::populateValidator
-	 * @covers ::addFieldRule
-	 * @covers ::addFieldRules
-	 * @covers ::setData
-	 * @group  Validation
-	 */
 	public function testLabel()
 	{
 		$object = new FromArray('label');

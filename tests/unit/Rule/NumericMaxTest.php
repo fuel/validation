@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests for NumericMax
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Rule\NumericMax
- */
 class NumericMaxTest extends AbstractRuleTest
 {
 
@@ -55,10 +47,6 @@ class NumericMaxTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 12;
@@ -71,10 +59,6 @@ class NumericMaxTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array(12);

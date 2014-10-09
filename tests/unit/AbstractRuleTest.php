@@ -11,15 +11,8 @@
 namespace Fuel\Validation;
 
 use Codeception\TestCase\Test;
+use DummyAbstractRule;
 
-/**
- * Tests for AbstractRule
- *
- * @package Fuel\Validation
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\AbstractRule
- */
 class AbstractRuleTest extends Test
 {
 
@@ -30,19 +23,15 @@ class AbstractRuleTest extends Test
 
 	protected function _before()
 	{
-		$this->object = new \DummyAbstractRule;
+		$this->object = new DummyAbstractRule;
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @group  Validation
-	 */
 	public function testConstruct()
 	{
 		$params = 'foobar';
 		$message = 'test message';
 
-		$abstractRule = new \DummyAbstractRule($params, $message);
+		$abstractRule = new DummyAbstractRule($params, $message);
 
 		$this->assertEquals(
 			$params,
@@ -55,10 +44,6 @@ class AbstractRuleTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getMessage
-	 * @group  Validation
-	 */
 	public function testDefaultMessage()
 	{
 		$this->assertEquals(
@@ -67,11 +52,6 @@ class AbstractRuleTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getMessage
-	 * @covers ::setMessage
-	 * @group  Validation
-	 */
 	public function testGetSetMessage()
 	{
 		$message = 'This is a test message';
@@ -84,10 +64,6 @@ class AbstractRuleTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getParameter
-	 * @group  Validation
-	 */
 	public function testGetParam()
 	{
 		$this->assertNull(
@@ -96,10 +72,7 @@ class AbstractRuleTest extends Test
 	}
 
 	/**
-	 * @covers        ::getParameter
-	 * @covers        ::setParameter
-	 * @dataProvider  paramDataProvider
-	 * @group         Validation
+	 * @dataProvider paramDataProvider
 	 */
 	public function testSetGetParam($param)
 	{
@@ -125,10 +98,6 @@ class AbstractRuleTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetDefaultMessageParams()
 	{
 		$this->assertEquals(

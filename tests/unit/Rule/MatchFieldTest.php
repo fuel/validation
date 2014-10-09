@@ -10,14 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Defines tests for MatchField
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\MatchField
- */
 class MatchFieldTest extends AbstractRuleTest
 {
 
@@ -31,10 +23,6 @@ class MatchFieldTest extends AbstractRuleTest
 		$this->object = new MatchField;
 	}
 
-	/**
-	 * @covers ::validate
-	 * @group  Validation
-	 */
 	public function testRequiredParameters()
 	{
 		$this->assertFalse(
@@ -42,10 +30,6 @@ class MatchFieldTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::validate
-	 * @group  Validation
-	 */
 	public function testNoParameter()
 	{
 		$data = array();
@@ -56,9 +40,7 @@ class MatchFieldTest extends AbstractRuleTest
 	}
 
 	/**
-	 * @covers       ::validate
 	 * @dataProvider validateProvider
-	 * @group        Validation
 	 */
 	public function testValidate()
 	{
@@ -100,10 +82,6 @@ class MatchFieldTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 'some other field';
@@ -116,10 +94,6 @@ class MatchFieldTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array('some other field');

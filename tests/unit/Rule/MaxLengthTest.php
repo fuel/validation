@@ -11,14 +11,6 @@
 
 namespace Fuel\Validation\Rule;
 
-/**
- * Tests the MaxLength class.
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- *
- * @coversDefaultClass  \Fuel\Validation\Rule\MaxLength
- */
 class MaxLengthTest extends AbstractRuleTest
 {
 
@@ -61,10 +53,6 @@ class MaxLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::getMessageParameters
-	 * @group  Validation
-	 */
 	public function testGetMessageParams()
 	{
 		$parameter = 12;
@@ -77,10 +65,6 @@ class MaxLengthTest extends AbstractRuleTest
 		);
 	}
 
-	/**
-	 * @covers ::setParameter
-	 * @group  Validation
-	 */
 	public function testSetParameter()
 	{
 		$parameter = array(12);

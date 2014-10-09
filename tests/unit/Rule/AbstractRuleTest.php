@@ -12,12 +12,6 @@ namespace Fuel\Validation\Rule;
 
 use Codeception\TestCase\Test;
 
-/**
- * Defines tests for Rules
- *
- * @package Fuel\Validation\Rule
- * @author  Fuel Development Team
- */
 abstract class AbstractRuleTest extends Test
 {
 
@@ -31,9 +25,6 @@ abstract class AbstractRuleTest extends Test
 	 */
 	protected $message;
 
-	/**
-	 * @group  Validation
-	 */
 	public function testGetMessage()
 	{
 		$this->assertEquals(
@@ -44,7 +35,6 @@ abstract class AbstractRuleTest extends Test
 
 	/**
 	 * @dataProvider validateProvider
-	 * @group        Validation
 	 */
 	public function testValidate()
 	{

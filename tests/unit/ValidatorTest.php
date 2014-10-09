@@ -14,14 +14,6 @@ use Codeception\TestCase\Test;
 use Fuel\Validation\Rule\Email;
 use Fuel\Validation\Rule\Number;
 
-/**
- * Tests for the Validation class
- *
- * @package Fuel\Validation
- * @author  Fuel Development Team
- *
- * @coversDefaultClass \Fuel\Validation\Validator
- */
 class ValidatorTest extends Test
 {
 
@@ -67,10 +59,6 @@ class ValidatorTest extends Test
 		}
 	}
 
-	/**
-	 * @covers ::addField
-	 * @group  Validation
-	 */
 	public function testAddField()
 	{
 		$field = 'test field';
@@ -83,11 +71,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::addField
-	 * @covers ::getField
-	 * @group  Validation
-	 */
 	public function testGetField()
 	{
 		$field = new Field('field');
@@ -101,21 +84,13 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers            ::getField
-	 * @covers            \Fuel\Validation\InvalidFieldException
 	 * @expectedException \Fuel\Validation\InvalidFieldException
-	 * @group             Validation
 	 */
 	public function testGetFieldFailure()
 	{
 		$this->object->getField('field');
 	}
 
-	/**
-	 * @covers ::addRule
-	 * @covers ::getFieldRules
-	 * @group  Validation
-	 */
 	public function testAddRule()
 	{
 		$field = 'field';
@@ -131,13 +106,6 @@ class ValidatorTest extends Test
 		$this->assertEquals(reset($rules), $rule);
 	}
 
-	/**
-	 * @covers ::run
-	 * @covers ::validateField
-	 * @covers ::buildMessage
-	 * @covers ::processMessageTokens
-	 * @group  Validation
-	 */
 	public function testRun()
 	{
 		$fieldName = 'email';
@@ -152,13 +120,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::runField
-	 * @covers ::validateField
-	 * @covers ::buildMessage
-	 * @covers ::processMessageTokens
-	 * @group  Validation
-	 */
 	public function testRunField()
 	{
 		$fieldName = 'email';
@@ -184,13 +145,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::run
-	 * @covers ::validateField
-	 * @covers ::buildMessage
-	 * @covers ::processMessageTokens
-	 * @group  Validation
-	 */
 	public function testRunFailure()
 	{
 		$fieldName = 'email';
@@ -205,13 +159,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::runField
-	 * @covers ::validateField
-	 * @covers ::buildMessage
-	 * @covers ::processMessageTokens
-	 * @group  Validation
-	 */
 	public function testRunFieldFailure()
 	{
 		$this->assertFalse(
@@ -223,10 +170,7 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers       ::run
-	 * @covers       ::validateField
 	 * @dataProvider runMultipleFieldsData
-	 * @group        Validation
 	 */
 	public function testRunMultipleFields($expected, $data)
 	{
@@ -256,20 +200,13 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers            ::__call
-	 * @covers            \Fuel\Validation\InvalidRuleException
 	 * @expectedException \Fuel\Validation\InvalidRuleException
-	 * @group             Validation
 	 */
 	public function testMagicRuleInvalid()
 	{
 		$this->object->fakeTestRule();
 	}
 
-	/**
-	 * @covers ::__call
-	 * @group  Validation
-	 */
 	public function testAddMagicRule()
 	{
 		$this->object->addField('test')
@@ -283,10 +220,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::setMessage
-	 * @group  Validation
-	 */
 	public function testSetMessage()
 	{
 		$rule = new Number;
@@ -301,19 +234,13 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers            ::setMessage
 	 * @expectedException \LogicException
-	 * @group             Validation
 	 */
 	public function testSetMessageException()
 	{
 		$this->object->setMessage('injected message');
 	}
 
-	/**
-	 * @covers ::__call
-	 * @group  Validation
-	 */
 	public function testMagicChain()
 	{
 		$this->object
@@ -358,19 +285,13 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers            ::addField
 	 * @expectedException \InvalidArgumentException
-	 * @group             Validation
 	 */
 	public function testAddInvalidField()
 	{
 		$this->object->addField(new \stdClass());
 	}
 
-	/**
-	 * @covers ::getFieldRules
-	 * @group  Validation
-	 */
 	public function testGetInvalidFieldRules()
 	{
 		$this->assertEquals(
@@ -379,12 +300,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::addCustomRule
-	 * @covers ::createRuleInstance
-	 * @covers ::getRuleClassName
-	 * @group  Validation
-	 */
 	public function testAddCustomRule()
 	{
 		$this->object->addCustomRule('testRule', '\DummyAbstractRule');
@@ -398,22 +313,13 @@ class ValidatorTest extends Test
 	}
 
 	/**
-	 * @covers            ::createRuleInstance
-	 * @covers            ::getRuleClassName
-	 * @covers            \Fuel\Validation\InvalidRuleException
 	 * @expectedException \Fuel\Validation\InvalidRuleException
-	 * @group             Validation
 	 */
 	public function testCreateRuleInstanceFailure()
 	{
 		$this->object->createRuleInstance('testRule');
 	}
 
-	/**
-	 * @covers ::addCustomRule
-	 * @covers ::createRuleInstance
-	 * @group  Validation
-	 */
 	public function testAddCoreRuleOverride()
 	{
 		$this->object->addCustomRule('required', '\DummyAbstractRule');
@@ -424,10 +330,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::setMessage
-	 * @group  Validation
-	 */
 	public function testMessageReplacement()
 	{
 		$this->object->addField('test', 'My Field')
@@ -442,12 +344,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::setGlobalMessage
-	 * @covers ::getGlobalMessage
-	 * @covers ::removeGlobalMessage
-	 * @group  Validation
-	 */
 	public function testGetSetGlobalMessage()
 	{
 		$message = 'Test message';
@@ -471,11 +367,6 @@ class ValidatorTest extends Test
 		);
 	}
 
-	/**
-	 * @covers ::setGlobalMessage
-	 * @covers ::createRuleInstance
-	 * @group  Validation
-	 */
 	public function testCreateRuleInstanceWithGlobalMessage()
 	{
 		$message = 'Test message';
@@ -497,9 +388,6 @@ class ValidatorTest extends Test
 	/**
 	 * The required rule was not being run if the data did not contain the required field, resulting in a false positive
 	 * @link https://github.com/fuelphp/validation/issues/30
-	 *
-	 * @covers ::run
-	 * @group  Validation
 	 */
 	public function testRequired()
 	{
