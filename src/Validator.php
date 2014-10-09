@@ -176,7 +176,7 @@ class Validator
 	 *
 	 * @since 2.0
 	 */
-	public function run(array $data, ResultInterface $result = null)
+	public function run($data, ResultInterface $result = null)
 	{
 		if ($result === null)
 		{
