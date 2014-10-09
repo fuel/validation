@@ -36,6 +36,10 @@ class Field implements FieldInterface
 	 */
 	protected $rules = [];
 
+	/**
+	 * @param string $name
+	 * @param string $friendlyName
+	 */
 	public function __construct($name = null, $friendlyName = null)
 	{
 		$this->setName($name);

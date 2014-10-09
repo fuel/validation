@@ -11,7 +11,6 @@
 namespace Fuel\Validation\Rule;
 
 use Fuel\Validation\AbstractRule;
-use Mockery\CountValidator\Exception;
 
 /**
  * Checks that the value is a valid date

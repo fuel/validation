@@ -10,8 +10,6 @@
 
 namespace Fuel\Validation\Rule;
 
-use Fuel\Validation\AbstractRule;
-
 /**
  * Checks that the given field exists if the conditional field is passed as well
  *

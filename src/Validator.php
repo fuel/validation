@@ -414,7 +414,7 @@ class Validator
 	/**
 	 * Returns the full class name for the given validation rule
 	 *
-	 * @param $name
+	 * @param string $name
 	 *
 	 * @return string
 	 *

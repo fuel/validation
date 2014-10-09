@@ -76,7 +76,7 @@ class Result implements ResultInterface
 	/**
 	 * @param string $field
 	 *
-	 * @return null|string
+	 * @return string
 	 * @throws InvalidFieldException
 	 *
 	 * @since 2.0
