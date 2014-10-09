@@ -47,7 +47,7 @@ class Field implements FieldInterface
 	 *
 	 * @param string $friendlyName
 	 *
-	 * @return $this;
+	 * @return $this
 	 *
 	 * @since 2.0
 	 */
