@@ -388,7 +388,7 @@ class Validator
 	 *
 	 * @since 2.0
 	 */
-	public function createRuleInstance($name, $parameters = null)
+	public function createRuleInstance($name, $parameters = [])
 	{
 		$className = $this->getRuleClassName($name);
 
@@ -398,7 +398,8 @@ class Validator
 		}
 
 		/* @var RuleInterface $instance */
-		$instance = new $className($parameters);
+		$reflection = new \ReflectionClass($className);
+		$instance = $reflection->newInstanceArgs($parameters);
 
 		// Check if there is a custom message
 		$message = $this->getGlobalMessage($name);

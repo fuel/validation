@@ -70,7 +70,7 @@ class Date extends AbstractRule
 	 * );
 	 *
 	 * @return array
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	public function getMessageParameters()

@@ -403,4 +403,19 @@ class ValidatorTest extends Test
 		);
 	}
 
+	public function testBuildWithArrayParameter()
+	{
+		$this->object->addField('date')
+			->date(['format' => 'Y-m-d']);
+
+		$data = [
+			'date' => '2014-10-11',
+		];
+
+		$result = $this->object->run($data);
+
+		$this->assertTrue($result->isValid());
+	}
+
+
 }
