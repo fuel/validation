@@ -10,6 +10,7 @@
 
 namespace Fuel\Validation\RuleProvider;
 
+use ArrayAccess;
 use Fuel\Validation\ValidationAwareInterface;
 use Fuel\Validation\Validator;
 use InvalidArgumentException;
@@ -60,13 +61,15 @@ class FromArray implements ValidationAwareInterface
 	 *
 	 * @return $this
 	 *
+	 * @throws InvalidArgumentException
+	 *
 	 * @since 2.0
 	 */
 	public function setData($data)
 	{
 		if ( ! is_array($data) && ! $data instanceof ArrayAccess)
 		{
-			throw new InvalidArguementException('VAL-008: $data must be an array or implement the ArrayAccess interface.');
+			throw new InvalidArgumentException('VAL-008: $data must be an array or implement the ArrayAccess interface.');
 		}
 
 		$this->data = $data;
@@ -91,7 +94,7 @@ class FromArray implements ValidationAwareInterface
 	 *
 	 * @return Validator
 	 *
-	 * @throws \InvalidArgumentException
+	 * @throws InvalidArgumentException
 	 *
 	 * @since 2.0
 	 */
@@ -170,7 +173,7 @@ class FromArray implements ValidationAwareInterface
 		if (is_numeric($ruleName))
 		{
 			$ruleName = $params;
-			$params = null;
+			$params = [];
 		}
 
 		// Create and add the rule
