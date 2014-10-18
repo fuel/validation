@@ -25,6 +25,7 @@ use LogicException;
  * @method ip
  * @method matchField
  * @method minLength
+ * @method maxLangth
  * @method number
  * @method numericBetween
  * @method numericMax
