@@ -49,6 +49,7 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - ip -  Checks for a valid IP address
  - matchField - Compares the given field against another field being validated
  - minLength - Checks if the value is >= a given value
+ - maxLength - Checks if the value is <= a given value
  - number - Checks if the value is numeric or not
  - numericBetween - Checks if a numeric value falls between an upper and lower band
  - numericMax - Checks if the value is less than or equal to a given value
