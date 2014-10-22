@@ -247,7 +247,10 @@ class Validator
 	protected function validateField($field, $data, ResultInterface $result)
 	{
 		$value = null;
-		$dataPresent = array_key_exists($field, $data);
+
+		// If there is data, and the data is not empty and not numeric. This allows for strings such as '0' to be passed
+		// as valid values.
+		$dataPresent = isset($data[$field]) && ! (empty($data[$field]) && ! is_numeric($data[$field]));
 
 		if ($dataPresent)
 		{

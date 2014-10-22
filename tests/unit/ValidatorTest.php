@@ -377,11 +377,11 @@ class ValidatorTest extends Test
 
 		$this->object->addCustomRule($ruleName, $class);
 
-		$insatnce = $this->object->createRuleInstance($ruleName);
+		$instance = $this->object->createRuleInstance($ruleName);
 
 		$this->assertEquals(
 			$message,
-			$insatnce->getMessage()
+			$instance->getMessage()
 		);
 	}
 
@@ -417,5 +417,27 @@ class ValidatorTest extends Test
 		$this->assertTrue($result->isValid());
 	}
 
+	public function testValidateFieldWithEmptyString()
+	{
+		$this->object
+			->addField('tel_no')
+			->number();
+
+		$data = array(
+			'tel_no' => '',
+		);
+
+		$result = $this->object->run($data);
+
+		$this->assertTrue($result->isValid());
+
+		$data = array(
+			'tel_no' => '0',
+		);
+
+		$result = $this->object->run($data);
+
+		$this->assertTrue($result->isValid());
+	}
 
 }
