@@ -50,7 +50,7 @@ class Required extends AbstractRule
 			return false;
 		}
 
-		return ($value === false or $value === null or $value === '' or $value === array());
+		return ($value === 0 or $value === false or ! empty($value));
 	}
 
 }
