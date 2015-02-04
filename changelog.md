@@ -1,5 +1,5 @@
 # Change Log
-All notable changes to this package wil be docuented in this file.
+All notable changes to this package will be documented in this file.
 
 ## [Unreleased][unreleased]
 

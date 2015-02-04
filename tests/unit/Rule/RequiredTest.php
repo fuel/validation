@@ -83,11 +83,19 @@ class RequiredTest extends AbstractRuleTest
 				)
 			),
 
-			14 => array(0, 'bar', true,
+			14 => array(false, 'bar', true,
 				array(
 					'bar' => false,
 				)
 			),
+			15 => array(0, 'test', true,
+				array(
+					'foo' => 'bar',
+					'test' => 0,
+					'baz' => 'bat',
+				)
+			),
+			16 => array(0, 'test', true, array('test' => 0)),
 		);
 	}
 
