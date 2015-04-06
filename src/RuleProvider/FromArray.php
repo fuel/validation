@@ -180,5 +180,21 @@ class FromArray implements ValidationAwareInterface
 		$ruleInstance = $validator->createRuleInstance($ruleName, $params);
 		$validator->addRule($fieldName, $ruleInstance);
 	}
+	
+	/**
+	 * @return string
+	 */
+	public function getLabelKey()
+	{
+		return $this->labelKey;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getRuleKey()
+	{
+		return $this->ruleKey;
+	}
 
 }
