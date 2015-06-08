@@ -21,21 +21,21 @@ use LogicException;
  * @author  Fuel Development Team
  * @since   2.0
  *
- * @method email
- * @method ip
- * @method matchField
- * @method minLength
- * @method maxLangth
- * @method number
- * @method numericBetween
- * @method numericMax
- * @method numericMin
- * @method regex
- * @method required
- * @method url
- * @method date
- * @method type
- * @method value
+ * @method $this email()
+ * @method $this ip()
+ * @method $this matchField(string $matchAgainst)
+ * @method $this minLength(integer $minLength)
+ * @method $this maxLength(integer $maxLength)
+ * @method $this number()
+ * @method $this numericBetween(integer $min, integer $max)
+ * @method $this numericMax(integer $max)
+ * @method $this numericMin(integer $min)
+ * @method $this regex(string $regex)
+ * @method $this required()
+ * @method $this url()
+ * @method $this date(string $format)
+ * @method $this type(string $type)
+ * @method $this value(array $values)
  */
 class Validator
 {
