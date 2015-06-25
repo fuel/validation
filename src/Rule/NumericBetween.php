@@ -54,7 +54,7 @@ class NumericBetween extends AbstractRule
 		// We know the params are valid at this point so pull them out
 		list($lower, $upper) = $params;
 
-		return ($value > $lower and $value < $upper);
+		return ($value >= $lower and $value <= $upper);
 	}
 
 	/**

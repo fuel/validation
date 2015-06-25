@@ -32,11 +32,12 @@ class NumericBetweenTest extends AbstractRuleTest
 			0 => array('', false, array(1, 2)),
 			1 => array(true, false, array(1, 2)),
 			2 => array(new \stdClass, false, array(1, 2)),
-			3 => array(1, false, array(1, 10)),
-			4 => array(2, true, array(1, 10)),
-			5 => array(9, true, array(1, 10)),
-			6 => array(10, false, array(1, 10)),
-			7 => array(11, false, array(1, 10)),
+			3 => array(0, false, array(1, 10)),
+			4 => array(1, true, array(1, 10)),
+			5 => array(2, true, array(1, 10)),
+			6 => array(9, true, array(1, 10)),
+			7 => array(10, true, array(1, 10)),
+			8 => array(11, false, array(1, 10)),
 		);
 	}
 
