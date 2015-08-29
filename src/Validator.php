@@ -264,7 +264,7 @@ class Validator
 			if (($dataPresent || $rule->canAlwaysRun()) && ! $rule->validate($value, $field, $data))
 			{
 				// Don't allow any others to run if this one failed
-				$result->setError($field, $this->buildMessage($this->getField($field), $rule), $rule);
+				$result->setError($field, $this->buildMessage($this->getField($field), $rule, $value), $rule);
 
 				return false;
 			}
@@ -284,12 +284,13 @@ class Validator
 	 *
 	 * @return string
 	 */
-	protected function buildMessage(FieldInterface $field, RuleInterface $rule)
+	protected function buildMessage(FieldInterface $field, RuleInterface $rule, $value)
 	{
 		// Build an array with all the token values
 		$tokens = array(
 			'name' => $field->getName(),
 			'label' => $field->getLabel(),
+			'value' => $value,
 
 		) + $rule->getMessageParameters();
 

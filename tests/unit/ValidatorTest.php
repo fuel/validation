@@ -333,13 +333,13 @@ class ValidatorTest extends Test
 	public function testMessageReplacement()
 	{
 		$this->object->addField('test', 'My Field')
-			->required()
-			->setMessage('{label} with the data from {name} is required');
+			->number()
+			->setMessage('{label} with the data from {name} must be a number but I got {value}!');
 
-		$result = $this->object->run(array('test' => null));
+		$result = $this->object->run(array('test' => 'abc'));
 
 		$this->assertEquals(
-			'My Field with the data from test is required',
+			'My Field with the data from test must be a number but I got abc!',
 			$result->getError('test')
 		);
 	}
