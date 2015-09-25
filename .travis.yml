@@ -5,8 +5,10 @@ sudo: false
 php:
   - 7.0
 
-before_script:
+install:
   - pecl install xdebug
+
+before_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - composer install
 
