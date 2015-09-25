@@ -287,12 +287,14 @@ class Validator
 	protected function buildMessage(FieldInterface $field, RuleInterface $rule, $value)
 	{
 		// Build an array with all the token values
-		$tokens = array(
-			'name' => $field->getName(),
-			'label' => $field->getLabel(),
-			'value' => $value,
-
-		) + $rule->getMessageParameters();
+		$tokens = array_merge(
+			array(
+				'name' => $field->getName(),
+				'label' => $field->getLabel(),
+				'value' => $value,
+			),
+			$rule->getMessageParameters()
+		);
 
 		return $this->processMessageTokens($tokens, $rule->getMessage());
 	}
