@@ -1,21 +1,18 @@
 language: php
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
+  - 7.0
 
 before_script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
+  - wget https://scrutinizer-ci.com/ocular.phar
   - composer install
 
 script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then vendor/bin/codecept run unit --coverage-xml; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then vendor/bin/codecept run unit; fi;'
+  - vendor/bin/codecept run unit --coverage-xml
+  - vendor/bin/codecept run unit
 
 after_script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml; fi;'
+  - php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml
 
 notifications:
   irc: "irc.freenode.org#fuelphp-status"
