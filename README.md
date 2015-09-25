@@ -285,3 +285,15 @@ $generator->setData($config)->populateValidator($v);
 
 // $v is now populated with the fields and rules specified in the config array.
 ```
+
+## Running tests
+
+Tests can be run through docker using the commands below. The first time you run `docker build` it may take a while to complete.
+
+```bash
+docker build -t fueltests .
+docker run fueltests
+```
+
+The name `fueltests` can be whatever you want to use to identify the docker container.
+

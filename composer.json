@@ -11,9 +11,6 @@
 			"email": "team@fuelphp.com"
 		}
 	],
-	"require": {
-		"php": ">=7.0"
-	},
 	"require-dev": {
 		"codeception/codeception": "~2.0",
 		"codeception/mockery-module": "dev-master"

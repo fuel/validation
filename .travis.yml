@@ -5,18 +5,11 @@ sudo: false
 php:
   - 7.0
 
-install:
-  - pecl install xdebug
-
 before_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
   - composer install
 
 script:
-  - vendor/bin/codecept run unit --coverage-xml
-
-after_script:
-  - php ocular.phar code-coverage:upload --format=php-clover tests/_log/coverage.xml
+  - vendor/bin/codecept run unit
 
 notifications:
   irc: "irc.freenode.org#fuelphp-status"
