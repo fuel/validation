@@ -7,8 +7,8 @@ RUN docker-php-ext-install mbstring
 # Make sure our files exist
 RUN mkdir -p /fuel
 WORKDIR /fuel
-ADD . ./
+ADD . /fuel
 
 # Set the default entry point so tests will run automatically
-ENTRYPOINT ./vendor/bin/codecept run unit
+ENTRYPOINT /fuel/vendor/bin/codecept run unit
 
