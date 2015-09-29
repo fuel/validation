@@ -288,12 +288,21 @@ $generator->setData($config)->populateValidator($v);
 
 ## Running tests
 
-Tests can be run through docker using the commands below. The first time you run `docker build` it may take a while to complete.
+Tests can be run through docker using the commands below.
+
+The first time you need to run `docker build` it may take a while to complete.
+The name `fueltests` can be whatever you want to use to identify the docker container.
 
 ```bash
 docker build -t fueltests .
-docker run fueltests
 ```
 
-The name `fueltests` can be whatever you want to use to identify the docker container.
+Once the image is built the tests can be run in the container using the command below.
+Please note that the first path after `-v` should be the absolute path to your working
+directory and should always be post-fixed with `:/fuel`. For more information on this
+then please consult the docker documentation on data volumes.
+
+```bash
+docker run -v /absolute/path/to/repo:/fuel fueltests
+```
 

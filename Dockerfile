@@ -5,10 +5,7 @@ MAINTAINER team@fuelphp.com
 RUN docker-php-ext-install mbstring
 
 # Make sure our files exist
-RUN mkdir -p /fuel
 WORKDIR /fuel
-ADD . /fuel
 
 # Set the default entry point so tests will run automatically
 ENTRYPOINT /fuel/vendor/bin/codecept run unit
-
