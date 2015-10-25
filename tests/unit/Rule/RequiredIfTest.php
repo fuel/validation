@@ -10,7 +10,7 @@
 
 namespace Fuel\Validation\Rule;
 
-class RequiredIfTest extends RequiredTest
+class RequiredIfTest extends AbstractRequiredTest
 {
 
 	protected function _before()
