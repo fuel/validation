@@ -24,10 +24,10 @@ class RequiredIfTest extends AbstractRequiredTest
 	public function validateProvider()
 	{
 		return array(
-			array('value', null, true, array('field' => 'value')),
+			array('value', null, false, array('field' => 'value')),
 			array('', null, true, null),
-			array('value', null, true, array('field' => 'othervalue')),
-			array('value', null, false, array('field' => '')),
+			array('value', null, false, array('field' => 'othervalue')),
+			array('value', null, true, array('field' => '')),
 		);
 	}
 
