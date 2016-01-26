@@ -10,12 +10,12 @@
 
 namespace Fuel\Validation\Rule;
 
-class RequiredWithTest extends AbstractRequiredTest
+class RequiredIfTest extends AbstractRequiredTest
 {
 
 	protected function _before()
 	{
-		$this->object = new RequiredWith('field');
+		$this->object = new RequiredIf('field');
 	}
 
 	/**
@@ -24,10 +24,10 @@ class RequiredWithTest extends AbstractRequiredTest
 	public function validateProvider()
 	{
 		return array(
-			array('admin@test.com', null, false, array('field' => '')),
-			array('admin@test.com', null, true, null),
+			array('value', null, true, array('field' => 'value')),
 			array('', null, true, null),
-			array('', null, false, array('field' => '')),
+			array('value', null, true, array('field' => 'othervalue')),
+			array('value', null, false, array('field' => '')),
 		);
 	}
 
