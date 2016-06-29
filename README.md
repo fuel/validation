@@ -192,6 +192,8 @@ It is possible to use a validator itself as a rule for an entry in the data bein
 This can be done using the `Fuel\Validation\Rule\Validator` rule and can be nested as deeply as you desire.
 
 ```
+<?php
+
 $childValidator = new Validator();
 $childValidator
     ->addField('test')
