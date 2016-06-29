@@ -57,9 +57,10 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - regex - Checks if the value matches against a given regular expression
  - required - Checks if the value exists in the data being validated
  - url - Checks if the given value is a valid url or not
- - Date - Checks if the given value matches a given date format
- - Type - Checks if a value is a typeof or instanceof parameter(s)
- - Value - Checks if a value is one of given values
+ - date - Checks if the given value matches a given date format
+ - type - Checks if a value is a typeof or instanceof parameter(s)
+ - value - Checks if a value is one of given values
+ - enum - Checks if a value is in an allowed list of values
 
 ## Error messages
 
