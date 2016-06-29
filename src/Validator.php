@@ -37,6 +37,7 @@ use LogicException;
  * @method $this type(string $type)
  * @method $this enum(array $values)
  * @method $this enumMulti(array $values)
+ * @method $this validator(ValidatableInterface $validator)
  */
 class Validator implements ValidatableInterface
 {
@@ -262,7 +263,13 @@ class Validator implements ValidatableInterface
 
 		foreach ($rules as $rule)
 		{
-			if (($dataPresent || $rule->canAlwaysRun()) && ! $rule->validate($value, $field, $data))
+			if ( ! $dataPresent && ! $rule->canAlwaysRun())
+			{
+				continue;
+			}
+
+			$validateResult = $rule->validate($value, $field, $data);
+			if ( ! $validateResult)
 			{
 				// Don't allow any others to run if this one failed
 				$result->setError($field, $this->buildMessage($this->getField($field), $rule, $value), $rule);

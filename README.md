@@ -61,6 +61,7 @@ All core rule classes can be found under the `Fuel\Validation\Rule` namespace.
  - type - Checks if a value is a typeof or instanceof parameter(s)
  - enum - Checks if a value is in an allowed list of values
  - enumMulti - Checks if all values in an array are in an allowed list of values
+ - validator - For validating nested child models
 
 ## Error messages
 

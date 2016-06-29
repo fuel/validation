@@ -94,4 +94,24 @@ interface ResultInterface
 	 */
 	public function setValidated($field);
 
+
+	/**
+	 * Returns a list of rules that caused fields to fail, indexed by the field name.
+	 *
+	 * @return RuleInterface[]
+	 *
+	 * @since 2.0
+	 */
+	public function getFailedRules();
+
+	/**
+	 * Merges the result from the given interface to this result.
+	 *
+	 * @param ResultInterface $resultInterface
+	 * @param string          $fieldPrefix     Prefix to be added to any field names.
+	 *
+	 * @return $this
+	 */
+	public function merge(ResultInterface $resultInterface, $fieldPrefix = '');
+
 }

@@ -156,4 +156,31 @@ class Result implements ResultInterface
 		return $this->failedRules;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public function merge(ResultInterface $resultInterface, $fieldPrefix = '')
+	{
+		foreach ($resultInterface->getErrors() as $key => $error)
+		{
+			$this->errors[$fieldPrefix . $key] = $error;
+		}
+		
+		foreach ($resultInterface->getFailedRules() as $key => $rules)
+		{
+			$this->failedRules[$fieldPrefix . $key] = $rules;
+		}
+
+		foreach ($resultInterface->getValidated() as $name)
+		{
+			$this->validated[] = $fieldPrefix . $name;
+		}
+
+		if ( ! $resultInterface->isValid())
+		{
+			$this->result = false;
+		}
+
+		return $this;
+	}
 }

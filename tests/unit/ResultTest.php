@@ -92,4 +92,58 @@ class ResultTest extends Test
 		);
 	}
 
+	public function testMerge()
+	{
+		$result1 = new Result;
+		$result1->setResult(false);
+		$result1->setError('foo', 'foo failed', 'foocheck');
+		$result1->setValidated('bar');
+
+		$result2 = new Result;
+		$result2->setResult(true);
+		$result2->setError('baz', 'baz failed', 'bazcheck');
+		$result2->setValidated('bat');
+
+		$result1->merge($result2, 'sub.');
+
+		$this->assertEquals(
+			[
+				'foo' => 'foo failed',
+				'sub.baz' => 'baz failed',
+			],
+			$result1->getErrors()
+		);
+
+		$this->assertEquals(
+			[
+				'foo' => 'foocheck',
+				'sub.baz' => 'bazcheck',
+			],
+			$result1->getFailedRules()
+		);
+
+		$this->assertEquals(
+			[
+				'bar',
+				'sub.bat',
+			],
+			$result1->getValidated()
+		);
+	}
+
+	public function testMergeWithStatus()
+	{
+		$result1 = new Result();
+		$result1->setResult(true);
+
+		// merging this should cause the $result1 to no longer be valid
+		$result2 = new Result();
+		$result2->setResult(false);
+
+		$result1->merge($result2);
+		$this->assertFalse(
+			$result1->isValid()
+		);
+	}
+
 }

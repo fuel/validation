@@ -34,7 +34,7 @@ interface RuleInterface
 	 * @param string $field Name of the field that is being validated
 	 * @param array  $allFields Values of all the other fields being validated
 	 *
-	 * @return bool
+	 * @return bool|ResultInterface
 	 *
 	 * @since 2.0
 	 */
