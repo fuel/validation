@@ -440,4 +440,65 @@ class ValidatorTest extends Test
 		$this->assertTrue($result->isValid());
 	}
 
+	public function testNestedValidator()
+	{
+		$validator = new Validator();
+		$validator
+			->addField('test')
+			->maxLength(5);
+
+		$this->object
+			->addField('child')
+			->validator($validator);
+
+		$this->object
+			->addField('foobar')
+			->required();
+
+		$result = $this->object->run([
+			'foobar' => 'test',
+			'child' => ['test' => '1234']
+		]);
+
+		$this->assertTrue($result->isValid());
+		$this->assertEquals(
+			[
+				'child.test',
+				'foobar',
+			],
+			$result->getValidated()
+		);
+	}
+	public function testNestedValidatorFailure()
+	{
+		$validator = new Validator();
+		$validator
+			->addField('test')
+			->maxLength(5);
+
+		$this->object
+			->addField('child')
+			->validator($validator);
+
+		$this->object
+			->addField('foobar')
+			->required();
+
+		$result = $this->object->run([
+			'foobar' => 'test',
+			'child' => ['test' => '1234567890']
+		]);
+
+		$this->assertFalse($result->isValid());
+		$this->assertEquals(
+			['foobar'],
+			$result->getValidated()
+		);
+		$this->assertEquals(
+			['child.test' => 'The field is longer than the allowed maximum length.'],
+			$result->getErrors()
+		);
+	}
+
+
 }

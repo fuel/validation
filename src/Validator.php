@@ -269,6 +269,13 @@ class Validator implements ValidatableInterface
 			}
 
 			$validateResult = $rule->validate($value, $field, $data);
+
+			if ($validateResult instanceof ResultInterface)
+			{
+				$result->merge($validateResult, $field . '.');
+				return $validateResult->isValid();
+			}
+
 			if ( ! $validateResult)
 			{
 				// Don't allow any others to run if this one failed
@@ -299,7 +306,6 @@ class Validator implements ValidatableInterface
 			'name' => $field->getName(),
 			'label' => $field->getLabel(),
 			'value' => $value,
-
 		) + $rule->getMessageParameters();
 
 		return $this->processMessageTokens($tokens, $rule->getMessage());
