@@ -6,6 +6,9 @@ All notable changes to this package will be documented in this file.
 - Enum rule
 - EnumMulti rule [#34](https://github.com/fuelphp/validation/issues/34)
 
+### Removed
+- Value rule in favour of better named `Enum`
+
 ## [2.0.0] - 2015-01-01
 ### Added
 - Inital release

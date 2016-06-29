@@ -35,9 +35,10 @@ use LogicException;
  * @method $this url()
  * @method $this date(string $format)
  * @method $this type(string $type)
- * @method $this value(array $values)
+ * @method $this enum(array $values)
+ * @method $this enumMulti(array $values)
  */
-class Validator
+class Validator implements ValidatableInterface
 {
 
 	/**
