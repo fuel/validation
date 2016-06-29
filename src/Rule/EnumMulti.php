@@ -12,7 +12,7 @@ namespace Fuel\Validation\Rule;
 
 use Fuel\Validation\AbstractRule;
 
-class Enum extends AbstractRule
+class EnumMulti extends AbstractRule
 {
 
 	/**
@@ -20,7 +20,7 @@ class Enum extends AbstractRule
 	 *
 	 * @var string
 	 */
-	protected $message = 'The value given is not in the list of allowed values.';
+	protected $message = 'One or more of the values given are not in the list of allowed values.';
 
 	/**
 	 * Sets the values to check against
@@ -62,6 +62,6 @@ class Enum extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		return in_array($value, $this->getParameter());
+		return count(array_diff($value, $this->getParameter())) == 0;
 	}
 }
