@@ -186,6 +186,33 @@ $instance = $v->getRuleInstance('required');
 var_dump($instance); // instance of My\App\Rules\CustomRule
 ```
 
+### Nested validators
+
+It is possible to use a validator itself as a rule for an entry in the data being validated. This allows child models to be validated along with the parent data.
+This can be done using the `Fuel\Validation\Rule\Validator` rule and can be nested as deeply as you desire.
+
+```
+$childValidator = new Validator();
+$childValidator
+    ->addField('test')
+    ->maxLength(5);
+
+$parentValidator = new Validator();
+$parentValidator
+    ->addField('child')
+    ->validator($childValidator);
+
+$parentValidator
+    ->addField('foobar')
+    ->required();
+
+$result = $parentValidator->run([
+    'foobar' => 'test',
+    // 'child' contains our child model data and is validted by $childValidator
+    'child' => ['test' => '1234']
+]);
+```
+
 ## Automatic `Validator` population
 Through the use of `RuleProvider` classes it is possible to automatically create rule sets for a given `Validator` this can be used to automatically create validation for any kind of object from forms to ORM models.
 At the moment only one provider exists to serve as an example that creates rule sets from a config array. In the future Fieldset and ORM will provide their own providers.
