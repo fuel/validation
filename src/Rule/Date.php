@@ -43,8 +43,7 @@ class Date extends AbstractRule
 	 */
 	public function validate($value, $field = null, $allFields = null)
 	{
-		$parameters = $this->getParameter();
-		$format = $parameters['format'];
+        $format = $this->getParameter();
 
 		if ( (is_object($value) and ! method_exists($value, '__toString')) or $this->getParameter() === null )
 		{
