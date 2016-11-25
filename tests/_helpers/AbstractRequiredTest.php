@@ -96,6 +96,11 @@ class AbstractRequiredTest extends AbstractRuleTest
 				)
 			),
 			16 => array(0, 'test', true, array('test' => 0)),
+			17 => array('0', 'foo', true,
+				array(
+					'foo' => '0',
+				)
+			),
 		);
 	}
 
