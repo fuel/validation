@@ -7,7 +7,7 @@
 
 A flexible library to validate different kinds of data.
 
-##Simple usage
+## Simple usage
 
 ```php
 <?php
