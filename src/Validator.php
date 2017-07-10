@@ -27,7 +27,7 @@ use LogicException;
  * @method $this minLength(integer $minLength)
  * @method $this maxLength(integer $maxLength)
  * @method $this number()
- * @method $this numericBetween(integer $min, integer $max)
+ * @method $this numericBetween([integer $min, integer $max])
  * @method $this numericMax(integer $max)
  * @method $this numericMin(integer $min)
  * @method $this regex(string $regex)
