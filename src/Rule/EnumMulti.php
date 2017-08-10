@@ -53,7 +53,7 @@ class EnumMulti extends AbstractRule
 	public function getMessageParameters()
 	{
 		return array(
-			'values' => implode('|', $this->getParameter()),
+			'value' => implode('|', $this->getParameter()),
 		);
 	}
 
