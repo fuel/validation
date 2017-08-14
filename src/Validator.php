@@ -302,11 +302,11 @@ class Validator implements ValidatableInterface
 	protected function buildMessage(FieldInterface $field, RuleInterface $rule, $value)
 	{
 		// Build an array with all the token values
-		$tokens = array(
+		$tokens = array_merge(array(
 			'name' => $field->getName(),
 			'label' => $field->getLabel(),
 			'value' => $value,
-		) + $rule->getMessageParameters();
+		), $rule->getMessageParameters());
 
 		return $this->processMessageTokens($tokens, $rule->getMessage());
 	}
