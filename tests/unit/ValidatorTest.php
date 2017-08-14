@@ -347,7 +347,7 @@ class ValidatorTest extends Test
 	public function testMessageReplacementMultiValue()
 	{
 		$this->object->addField('test', 'My Field')
-			->EnumMulti(['foo', 'bar', 'baz', 'bat'])
+			->enumMulti(['foo', 'bar', 'baz', 'bat'])
 			->setMessage('{label} {name} field is should match `{value}`!');
 
 		$result = $this->object->run(array('test' => ['foo', 'bar', 'wombat']));
