@@ -33,7 +33,7 @@ use LogicException;
  * @method $this regex(string $regex)
  * @method $this required()
  * @method $this url()
- * @method $this date(string $format)
+ * @method $this date(['format' => string $format])
  * @method $this type(string $type)
  * @method $this enum(array $values)
  * @method $this enumMulti(array $values)
