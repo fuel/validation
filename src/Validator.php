@@ -301,6 +301,7 @@ class Validator implements ValidatableInterface
 	 */
 	protected function buildMessage(FieldInterface $field, RuleInterface $rule, $value)
 	{
+var_dump($rule);die();
 		// Build an array with all the token values
 		$tokens = array(
 			'name' => $field->getName(),
@@ -325,7 +326,11 @@ class Validator implements ValidatableInterface
 	{
 		foreach ($tokens as $token => $value)
 		{
-			$message = str_replace('{' . $token . '}', $value, $message);
+			// Only string values can be used in a message
+			if (is_scalar($value) or method_exists($value, '__toString'))
+			{
+				$message = str_replace('{' . $token . '}', $value, $message);
+			}
 		}
 
 		return $message;
