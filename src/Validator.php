@@ -301,7 +301,6 @@ class Validator implements ValidatableInterface
 	 */
 	protected function buildMessage(FieldInterface $field, RuleInterface $rule, $value)
 	{
-var_dump($rule);die();
 		// Build an array with all the token values
 		$tokens = array(
 			'name' => $field->getName(),
